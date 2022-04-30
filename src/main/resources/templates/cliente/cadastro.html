@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head :: head">
+<meta charset="utf-8">
+
+</head>
+<body>
+
+	<link rel="stylesheet" href="/css/cadastroc.css">
+	<link rel="stylesheet" href="/css/header.css">
+
+	<header th:insert="head :: header-fixo"></header>
+
+	<div class="container">
+		<div id="form-container">
+			<p id="textcadastro">CADASTRAR CLIENTE</p>
+			<div class="form-floating mb-3">
+
+				<form action="#" th:object="${cliente}"
+					th:action="@{/cliente/salvar}" method="post">
+					
+					<div th:replace="fragments/alert"></div>
+					
+					  <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+          				  th:text="${mensaje}"
+             			  class="alert">
+       				 </div>
+       				 
+       				 
+      				 <span th:text="${mensagem}" th:if="${mensagem != null}" style="color: #FF0000;"></span>
+      				 <br>
+
+
+					<label>Nome: <span style="color: red;">*</span></label>
+					 <input
+						id="nome" name="nome" th:field="*{nome}" type="text"
+						class="form-control" 
+						th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid' : ''">
+					<div class="invalid-feedback" th:errors="*{nome}"></div>
+					
+					 <label>Endereço:<span style="color: red;">*</span></label> 
+					 <input	id="endereco" name="endereco" th:field="*{endereco}"
+						type="text" class="form-control"  
+						th:classappend="${#fields.hasErrors('endereco')} ? 'is-invalid' : ''">
+						<div class="invalid-feedback" th:errors="*{endereco}"></div>
+						
+					<label>Contato:
+						<span style="color: red;">*</span>
+					</label> <span style="color: red; margin-left: 450px;">*</span>
+
+					<div id="parte-contato">
+						<input name="contato" th:filed="*{contato}" type="text"
+							class="form-control" style="width: 250px"  
+							th:classappend="${#fields.hasErrors('contato')} ? 'is-invalid' : ''">
+							
+						 <select
+							id="select" name="tipoContato" th:field="*{tipoContato}"
+							class="form-select" aria-label="Default select example"
+							th:classappend="${#fields.hasErrors('tipoContato')} ? 'is-invalid' : ''">
+							<option th:value="${tipoContato}" disabled selected>Seleciona o tipo de contato:</option>
+							<option th:each="tiposOpt : ${T(com.donutec.model.TipoContato).values()}"
+								th:value="${tiposOpt}" th:text="${tiposOpt}"></option>
+						</select> <br>
+					</div>
+					
+					<div class="invalid-feedback" th:errors="*{contato}"></div>
+					<label>Data de nascimento:</label> <input name="dataNascimento"
+						id="dataNascimento" type="date"
+						th:value="${#temporals.format(cliente.dataNascimento, 'yyyy-MM-dd')}"
+						class="form-control" >
+
+					<div class="button">
+						<div>
+							<button type="button" onclick="limpar()"
+								class="btn btn-primary btn-lg">LIMPAR</button>
+						</div>
+						<input type="hidden" id="id" name="id" th:value="${cliente.id}"
+							th:if="${cliente != null}" />
+						<div>
+							<button type="submit" class="btn btn-success btn-lg">SALVAR</button>
+						</div>
+					</div>
+				</form>
+				
+				
+			</div>
+		</div>
+
+				
+	</div>
+
+	<script>
+		function limpar() {
+			$("input").val("");
+		}
+	</script>
+
+	<script type="text/javascript" src="/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

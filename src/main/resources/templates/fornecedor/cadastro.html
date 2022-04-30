@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head :: head">
+<meta charset="utf-8">
+
+</head>
+<body>
+
+	<link rel="stylesheet" href="/css/cadastroc.css">
+	<link rel="stylesheet" href="/css/header.css">
+
+	<header th:insert="head :: header-fixo"></header>
+
+	<div class="container">
+		<div id="form-container">
+			<p id="textcadastro">CADASTRAR FORNECEDOR</p>
+			<div class="form-floating mb-3">
+
+			<form action="#"
+					th:action="@{/fornecedores/salvar}" method="post" th:object="${fornecedor}">
+					
+					<div th:replace="fragments/alert"></div>
+					
+					<!--<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+          				  th:text="${mensaje}"
+             			  class="alert">
+       				 </div>  -->
+
+      				 <span th:text="${mensagem}" th:if="${mensagem != null}" style="color: #FF0000;"></span>
+      				 <br>
+
+					<label>Nome: <span style="color: red;">*</span></label>
+					 <input
+						id="nome" name="nome" th:field="*{nome}" type="text"
+						class="form-control" >
+					
+					
+					 
+					 <label>Endereço:<span style="color: red;">*</span></label> 
+					 
+					 
+					 <label>Cidade</label>
+					 <input	id="endereco" name="cidade" th:field="*{endereco.cidade}"
+						type="text" class="form-control">
+						
+					 <label>Complemento</label>
+					 <input	id="endereco" name="cidade" th:field="*{endereco.complemento}"
+						type="text" class="form-control">
+						
+					 <label>Número</label>
+					 <input	id="endereco" name="cidade" th:field="*{endereco.numero}"
+						type="text" class="form-control">
+						
+					 <label>Cep</label>
+					 <input	id="endereco" name="cidade" th:field="*{endereco.cep}"
+						type="text" class="form-control">
+						
+					 <label>Rua</label>
+					 <input	id="endereco" name="cidade" th:field="*{endereco.rua}"
+						type="text" class="form-control">
+						
+					 <label>Bairro</label>
+					 <input	id="endereco" name="cidade" th:field="*{endereco.bairro}"
+						type="text" class="form-control">
+						
+					 <label>Cidade</label>
+					 <input	id="endereco" name="cidade" th:field="*{endereco.cidade}"
+						type="text" class="form-control"> -->
+					 
+					
+							
+				
+
+					<div class="button">
+						<div>
+							<button type="button" onclick="limpar()"
+								class="btn btn-primary btn-lg">LIMPAR</button>
+						</div>
+						<input type="hidden" id="id" name="id" th:value="${fornecedor.id}"
+							 />
+							
+						 <input type="hidden" id="id" name="id" th:value="${fornecedor.endereco.id}"
+							 />	
+						
+						<div>
+							<button type="submit" class="btn btn-success btn-lg">SALVAR</button>
+						</div>
+					</div>
+				</form>
+				
+				
+			</div>
+		</div>
+	</div>
+
+	<script>
+		function limpar() {
+			$("input").val("");
+		}
+	</script>
+
+	<script type="text/javascript" src="/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

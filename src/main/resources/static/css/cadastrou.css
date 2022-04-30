@@ -1,0 +1,45 @@
+.containerp{
+    width: 100vw;
+    height: 100vh;
+   background-color: #c5c226;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.corpo{
+    height: 420px;
+    width: 500px;
+    background-color: #ffff;
+    border-radius: 30px;
+    border-style: solid;
+    border-color: #0F3D43;
+    border-width: 3px;
+}
+
+#titulo{
+    margin-top: 15px;
+    color: #000;
+    text-align: center;
+    font-size: 45px;
+}
+
+h6{
+
+    text-align: center;
+    font-weight: bold;
+}
+
+.campos{
+    margin: 25px 0px 15px 35px;
+}
+
+#bt-logar{
+   margin-top: 15px;
+   margin-left: 125px;
+    cursor: pointer;
+    width: 250px;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head :: head">
+    <meta charset="utf-8">
+</head>
+<body>
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/cadastrop.css">
+
+<header th:insert="head :: header-fixo"></header>
+
+<div class="container">
+    <div id="form-container">
+        <p id="textcadastro">CADASTRAR PRODUTO</p>
+        <div class="form-floating mb-3">
+            <form action="#" th:action="@{/produto/salvar}" th:object="${produto}" method="post">
+            
+            	<div th:replace="fragments/alert"></div>
+              
+                <label >Descrição:<span style="color: red ;">*</span></label>
+                <input id="descricao" name="descricao" th:field="*{descricao}" type="text" class="form-control"
+                 th:classappend="${#fields.hasErrors('descricao')} ? 'is-invalid' : ''"      >
+                 <div class="invalid-feedback" th:errors="*{descricao}"></div>
+
+                <label >Sabor Cobertura:<span style="color: red ;">*</span></label>
+                <input id="saborCobertura" name="saborCobertura" th:field="*{saborCobertura}" type="text"
+                 th:classappend="${#fields.hasErrors('saborCobertura')} ? 'is-invalid' : ''"      class="form-control" >
+                 <div class="invalid-feedback" th:errors="*{saborCobertura}"></div>
+
+                <label >Valor de venda:<span style="color: red ;">*</span></label>
+                <input id="valor" name="valor" th:field="*{valor}" type="number" class="form-control" 
+                th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid' : ''">
+                <div class="invalid-feedback" th:errors="*{valor}"></div>
+
+				 <label for="exampleFormControlTextarea1" class="form-label">Observação:</label>
+  					<textarea class="form-control" name="obs" id="exampleFormControlTextarea1" rows="3" th:field="*{obs}"></textarea>
+                <div class="button">
+                    <div>
+                        <button type="reset" class="btn btn-primary btn-lg">LIMPAR</button>
+                    </div>
+                    <input type="hidden" id="id" name="id" th:value="${produto.id}"
+                           th:if="${produto != null}"/>
+                    <div>
+                        <button type="submit" class="btn btn-success btn-lg">SALVAR</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" 
+		src="/bootstrap/bootstrap.min.js"></script>
+		<script type="text/javascript"
+	 src="/bootstrap/bootstrap.bundle.min.js"></script>	
+</body>
+</html>
