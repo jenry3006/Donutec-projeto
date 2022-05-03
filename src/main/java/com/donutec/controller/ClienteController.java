@@ -74,7 +74,7 @@ public class ClienteController {
 		
 		clienteRepo.save(cliente);
 		
-		ra.addFlashAttribute("success", "Cadastro realizado com sucesso. teste1!");
+		ra.addFlashAttribute("success", "Cadastro realizado com sucesso!");
 		return "redirect:/cliente/cadastro";
 	}
 	
@@ -115,8 +115,8 @@ public class ClienteController {
 	@PostMapping("**/pesquisarCliente")
 	public ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomepesquisa) {
 		ModelAndView modelAndView = new ModelAndView("cliente/lista");
-		modelAndView.addObject("clientes", clienteRepo.findClienteByName(nomepesquisa));
-		modelAndView.addObject("cienteobj", new Cliente());
+		modelAndView.addObject("clientes", clienteRepo.findByNomeContaining(nomepesquisa));
+		
 		clientes = clienteRepo.findByNomeContaining(nomepesquisa);
 		
 		return modelAndView;

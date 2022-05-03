@@ -57,15 +57,21 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-1">
+                    
+                    <div class="col-md-3">
                         <div class="dropdown">
-                            <form method="post" action="/logout" >
-                                <button type="submit" class="btn btn-danger">
-                                    SAIR
-                                </button>
-                            </form>
+                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                FORNECEDORES
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                <li><a class="dropdown-item " th:href="@{/fornecedores/cadastrar}" >Cadastrar fornecedores</a></li>
+                                <li><a class="dropdown-item" th:href="@{/fornecedores/listar}">Ver fornecedores</a></li>
+                            </ul>
                         </div>
                     </div>
+                    
+                    
         </nav>
     </header>
 

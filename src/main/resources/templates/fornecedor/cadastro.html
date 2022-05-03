@@ -16,79 +16,73 @@
 			<p id="textcadastro">CADASTRAR FORNECEDOR</p>
 			<div class="form-floating mb-3">
 
-			<form action="#"
-					th:action="@{/fornecedores/salvar}" method="post" th:object="${fornecedor}">
-					
+				<form action="#" th:action="${fornecedor.id == null} ? @{/fornecedores/salvar} : @{/fornecedores/editar}" method="post"
+					th:object="${fornecedor}">
+
 					<div th:replace="fragments/alert"></div>
-					
+
 					<!--<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
           				  th:text="${mensaje}"
              			  class="alert">
        				 </div>  -->
 
-      				 <span th:text="${mensagem}" th:if="${mensagem != null}" style="color: #FF0000;"></span>
-      				 <br>
-
-					<label>Nome: <span style="color: red;">*</span></label>
-					 <input
-						id="nome" name="nome" th:field="*{nome}" type="text"
-						class="form-control" >
-					
-					
-					 
-					 <label>Endereço:<span style="color: red;">*</span></label> 
-					 
-					 
-					 <label>Cidade</label>
-					 <input	id="endereco" name="cidade" th:field="*{endereco.cidade}"
-						type="text" class="form-control">
+					<!--<span th:text="${mensagem}" th:if="${mensagem != null}" style="color: #FF0000;"></span> -->
 						
-					 <label>Complemento</label>
-					 <input	id="endereco" name="cidade" th:field="*{endereco.complemento}"
-						type="text" class="form-control">
+					<br>
 						
-					 <label>Número</label>
-					 <input	id="endereco" name="cidade" th:field="*{endereco.numero}"
-						type="text" class="form-control">
+						<label>Nome: <span style="color: red;">*</span></label> 
+						<input id="nome" name="nome" th:field="*{nome}" type="text" class="form-control"
+						th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid' : ''"> 
+						<div class="invalid-feedback" th:errors="*{nome}"></div>
 						
-					 <label>Cep</label>
-					 <input	id="endereco" name="cidade" th:field="*{endereco.cep}"
-						type="text" class="form-control">
+						<label>Telefone:</label> 
+						<input id="nome" name="nome" th:field="*{telefone}" type="text" class="form-control"> 
 						
-					 <label>Rua</label>
-					 <input	id="endereco" name="cidade" th:field="*{endereco.rua}"
-						type="text" class="form-control">
+						<fieldset>
 						
-					 <label>Bairro</label>
-					 <input	id="endereco" name="cidade" th:field="*{endereco.bairro}"
-						type="text" class="form-control">
-						
-					 <label>Cidade</label>
-					 <input	id="endereco" name="cidade" th:field="*{endereco.cidade}"
-						type="text" class="form-control"> -->
-					 
-					
+							<legend><span>Endereço</span></legend>
 							
-				
-
-					<div class="button">
-						<div>
-							<button type="button" onclick="limpar()"
-								class="btn btn-primary btn-lg">LIMPAR</button>
-						</div>
-						<input type="hidden" id="id" name="id" th:value="${fornecedor.id}"
-							 />
+							<label>Cidade</label> 
+							<input id="endereco" name="cidade" th:field="*{endereco.cidade}" type="text" class="form-control"> 
 							
-						 <input type="hidden" id="id" name="id" th:value="${fornecedor.endereco.id}"
-							 />	
+							<label>Complemento</label>
+						<input id="endereco" name="cidade"
+						th:field="*{endereco.complemento}" type="text"
+						class="form-control"> 
+						<label>Número</label> 
+						<input id="endereco" name="cidade" th:field="*{endereco.numero}"
+						type="text" class="form-control"> 
+						<label>Cep</label> 
+						<input id="endereco" name="cidade" th:field="*{endereco.cep}" type="text"
+						class="form-control"> 
+						<label>Rua</label> 
+						<input id="endereco" name="cidade" th:field="*{endereco.rua}" type="text"
+						class="form-control"> 
+						<label>Bairro</label> 
+						<input id="endereco" name="cidade" th:field="*{endereco.bairro}"
+						type="text" class="form-control"> 
+		
 						
+						</fieldset>
+						
+
+						<div class="button">
+							<div>
+								<button type="button" onclick="limpar()"
+									class="btn btn-primary btn-lg">LIMPAR</button>
+							</div>
+						<input type="hidden" id="id" name="id" th:value="${fornecedor.id}" />
+
+						<input type="hidden" id="id" name="id"
+							th:value="${fornecedor.endereco.id}" />
+
 						<div>
 							<button type="submit" class="btn btn-success btn-lg">SALVAR</button>
 						</div>
 					</div>
 				</form>
-				
-				
+
+
 			</div>
 		</div>
 	</div>

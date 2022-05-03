@@ -38,14 +38,14 @@ public class VendaController {
 		return "venda/finalizar_venda";
 	}
 	
-	@PostMapping("**/pesquisarCliente")
-	public ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomepesquisa) {
+	//@PostMapping("**/pesquisarCliente")
+	/*public ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomepesquisa) {
 		ModelAndView modelAndView = new ModelAndView("cliente/lista");
 		modelAndView.addObject("clientes", clienteRepo.findClienteByName(nomepesquisa));
 		modelAndView.addObject("cienteobj", new Cliente());
 		clientes = clienteRepo.findByNomeContaining(nomepesquisa);
 		
 		return modelAndView;
-	}
+	}*/
 	
 }

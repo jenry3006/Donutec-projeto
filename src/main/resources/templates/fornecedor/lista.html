@@ -14,13 +14,13 @@
 		<div class="buscar">
 			<nav class="navbar navbar-light bg-light">
 				<div class="container-fluid">
-					<a class="navbar-brand"><b>Lista de Clientes</b></a> <a href=""
+					<a class="navbar-brand"><b>Lista de Fornecedores</b></a> <a href=""
 						th:href="@{relatorio}" target="_blank" style="margin-left: 550px;">
 						<img src="/img/printer.svg" alt="icon-print" title="imprimir"
 						class="icon-print" style="height: 30px;">
 					</a>
-					<form action="pesquisarCliente" method="post" class="d-flex">
-						<input name="nomepesquisa" class="form-control me-2" type="text"
+					<form th:action="@{/fornecedores/pesquisar}" method="post" class="d-flex">
+						<input th:name="@{nome}" class="form-control me-2" type="text"
 							id="consulta" placeholder="Informar o nome" aria-label="Search">
 						<button class="btn btn-outline-success" type="submit">Buscar</button>
 					</form>
@@ -38,53 +38,61 @@
 								<thead>
 									<tr>
 										<th class="cell">ID</th>
-										<th class="cell">Cliente</th>
-										<th class="cell">Endereco</th>
-										<th class="cell">Contato:</th>
-										<th class="cell">Tipo de contato:</th>
-										<th class="cell">Data de nascimento:</th>
+										<th class="cell">Nome</th>
+										<th class="cell">Telefone</th>
+										<th class="cell">Cidade:</th>
+										<th class="cell">Complemento</th>
+										<th class="cell">Número</th>
+										<th class="cell">CEP</th>
+										<th class="cell">Rua</th>
+										<th class="cell">Bairro</th>
+										
 										<th class="cell"></th>
 										<th class="cell"></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="c : ${clientes}">
-										<td th:text="${c.id}" class="cell"></td>
-										<td th:text="${c.nome}" class="cell"></td>
-										<td th:text="${c.endereco}" class="cell"></td>
-										<td th:text="${c.contato}" class="cell"></td>
-										<td th:text="${c.tipoContato}" class="cell"></td>
-										<td
-											th:text="${#temporals.format(c.dataNascimento, 'dd/MM/yyyy')}"
-											class="cell"></td>
+									<tr th:each="f : ${fornecedores}">
+										<td th:text="${f.id}" class="cell"></td>
+										<td th:text="${f.nome}" class="cell"></td>
+										<td th:text="${f.telefone}" class="cell"></td>
+										<td th:text="${f.endereco.cidade}" class="cell"></td>
+										<td th:text="${f.endereco.complemento}" class="cell"></td>
+										<td th:text="${f.endereco.numero}" class="cell"></td>
+										<td th:text="${f.endereco.cep}" class="cell"></td>
+										<td th:text="${f.endereco.rua}" class="cell"></td>
+										<td th:text="${f.endereco.bairro}" class="cell"></td>
+										
+										
+	
 										<td class="cell"><a class="btn btn-primary"
-											th:href=@{editar/(id=${c.id})}>Editar</a></td>
+											th:href="@{editar/{id} (id=${f.id})}">Editar</a></td>
+											
 										<td class="cell">
 										
 											<button type="button" class="btn btn-danger"
-												data-bs-toggle="modal"
-												th:attr="data-bs-target='#staticBackdrop'+${c.id}">Excluir
+												data-bs-toggle="modal" th:attr="data-bs-target='#staticBackdrop'+${f.id}">Excluir
 											</button>
 											
 											<div class="modal fade"
-												th:attr="id='staticBackdrop'+ ${c.id}"
+												th:attr="id='staticBackdrop'+ ${f.id}"
 												data-bs-backdrop="static" data-bs-keyboard="false"
 												tabindex="-1" aria-labelledby="staticBackdropLabel"
 												aria-hidden="true">
-												<div class="modal-dialog" id="${c.id}">
+												<div class="modal-dialog" id="${f.id}">
 													<div class="modal-content">
 														<div class="modal-header">
 															<h5 class="modal-title" id="staticBackdropLabel">Excluir
-																cliente</h5>
+																Fornecedor</h5>
 														</div>
 														<div class="modal-body">Deseja realmente excluir o
-															cliente selecionado?</div>
+															fornecedor selecionado?</div>
 														<div class="modal-footer">
 															<button type="button" class="btn btn-secondary"
 																data-bs-dismiss="modal">Fechar</button>
 															<button class="btn btn-danger">
 																<a style="color: #fff; text-decoration: none;"
-																	th:href=@{deletar/(id=${c.id})}>Excluir</a>
+																	th:href=@{deletar/(id=${f.id})}>Excluir</a>
 															</button>
 														</div>
 													</div>
