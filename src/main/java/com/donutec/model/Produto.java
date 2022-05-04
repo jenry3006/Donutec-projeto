@@ -6,8 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -27,6 +28,11 @@ public class Produto {
 	private String descricao;
 	
 	private String obs;
+	
+	@ManyToOne
+	@JoinColumn(name = "ingrediente_id_fk")
+	private Ingrediente ingrediente;
+	
 	
 	
 	public String getObs() {
@@ -59,5 +65,13 @@ public class Produto {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	public Ingrediente getIngrediente() {
+		return ingrediente;
+	}
+	public void setIngrediente(Ingrediente ingrediente) {
+		this.ingrediente = ingrediente;
+	}
+	
+	
 
 }

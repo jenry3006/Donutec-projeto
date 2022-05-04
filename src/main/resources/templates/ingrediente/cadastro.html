@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head :: head">
+    <meta charset="utf-8">
+</head>
+<body>
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/cadastrop.css">
+
+<header th:insert="head :: header-fixo"></header>
+
+<div class="container">
+    <div id="form-container">
+        <p id="textcadastro">CADASTRAR INGREDIENTE</p>
+        <div class="form-floating mb-3">
+        
+            <form action="#" th:action="@{/ingredientes/salvar}" th:object="${ingrediente}" method="post">
+            
+            	<div th:replace="fragments/alert"></div>
+              
+				<ul>
+					<li >
+						<input  th:each="p : ${produtos}" type="checkbox"
+						th:text="${p.saborCobertura}"  th:field="*{produtos}" th:value="${p.id}"
+            />
+					
+					</li>
+				
+				</ul>
+
+                <div class="button">
+                    <div>
+                        <button type="reset" class="btn btn-primary btn-lg">LIMPAR</button>
+                    </div>
+             
+                           
+                    <div>
+                   		<input type="hidden" id="id" name="id" th:field="*{id}"/>
+                        <button type="submit" class="btn btn-success btn-lg">SALVAR</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" 
+		src="/bootstrap/bootstrap.min.js"></script>
+		<script type="text/javascript"
+	 src="/bootstrap/bootstrap.bundle.min.js"></script>	
+</body>
+</html>
