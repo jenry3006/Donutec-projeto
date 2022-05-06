@@ -34,13 +34,11 @@ public class IngredienteController {
 	public String salvar(Ingrediente ingrediente) {
 		
 		ingredienteRepo.save(ingrediente);
-		
-		
+	
 		return "redirect:/ingredientes/cadastrar";
 	}
 	
-	
-	
+
 	@ModelAttribute("produtos")
 	public List<Produto> produtosCheckbox(){
 		return produtoRepo.findAll();
