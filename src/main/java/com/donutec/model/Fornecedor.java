@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -30,6 +31,10 @@ public class Fornecedor implements Serializable{
 	@OneToOne(cascade = CascadeType.ALL) //salvar editar ou excluir vai fazer o mesmo com o endereco tanto quanto o fornecedor
 	@JoinColumn(name = "endereco_id_fk")
 	private Endereco endereco;
+	
+	@ManyToOne
+	@JoinColumn(name = "ingrediente_id_fk")
+	private Ingrediente ingrediente;
 
 	public Long getId() {
 		return id;
@@ -62,6 +67,16 @@ public class Fornecedor implements Serializable{
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
+	public Ingrediente getIngrediente() {
+		return ingrediente;
+	}
+
+	public void setIngrediente(Ingrediente ingrediente) {
+		this.ingrediente = ingrediente;
+	}
+	
+	
 	
 	
 	

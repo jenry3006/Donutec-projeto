@@ -1,5 +1,6 @@
 package com.donutec.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 
 @Entity
@@ -21,8 +25,13 @@ public class Ingrediente {
 	private String nome;
 	
 	@OneToMany(mappedBy = "ingrediente",cascade = CascadeType.ALL)
-	//
 	private List<Produto> produtos;
+	
+	@OneToMany(mappedBy = "ingrediente",cascade = CascadeType.ALL)
+	private List<Fornecedor> fornecedores;
+	
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+	private BigDecimal precoCompra;
 	
 	public Long getId() {
 		return id;
@@ -42,6 +51,20 @@ public class Ingrediente {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
+	public BigDecimal getPrecoCompra() {
+		return precoCompra;
+	}
+	public void setPrecoCompra(BigDecimal precoCompra) {
+		this.precoCompra = precoCompra;
+	}
+	public List<Fornecedor> getFornecedores() {
+		return fornecedores;
+	}
+	public void setFornecedores(List<Fornecedor> fornecedores) {
+		this.fornecedores = fornecedores;
+	}
+	
+	
 	
 	
 

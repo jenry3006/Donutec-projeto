@@ -30,8 +30,7 @@
 						</nav>
 						<!-- Button trigger modal -->
 						<button id="btn-modal" type="button" class="btn btn-primary"
-							data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-							>Cadastrar</button>
+							data-bs-toggle="modal" data-bs-target="#staticBackdrop">Cadastrar</button>
 
 						<!-- Modal -->
 						<div class="modal fade" id="staticBackdrop"
@@ -69,16 +68,16 @@
 																contato:</option>
 															<option>WHATSAPP</option>
 															<option>INSTAGRAM</option>
-														</select> <label>Data de Nascimento:</label> <input
-															name="dataNasc" id="dataNasc" type="date"
-															class="form-control">
+														</select> <label>Data de Nascimento:</label> <input name="dataNasc"
+															id="dataNasc" type="date" class="form-control">
 
 														<div class="button">
 															<div>
 																<button type="reset" class="btn btn-primary btn-lg">LIMPAR</button>
 															</div>
 															<input type="hidden" id="idCliente" name="idCliente"
-																th:value="${cliente.idCliente}" th:if="${cliente != null}" />
+																th:value="${cliente.idCliente}"
+																th:if="${cliente != null}" />
 															<div>
 																<button type="submit" class="btn btn-success btn-lg">SALVAR</button>
 															</div>
@@ -92,12 +91,12 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<form action="cliente/cadastrarcliente" method="">
 							<button class="btn-add">
 								<img src="/img/person-x.svg" alt="person-x" class="icon"
 									title="Não informar">
-									
+
 							</button>
 						</form>
 					</div>
@@ -276,21 +275,99 @@
 							</div>
 						</div>
 						<div class="col-md-12 btn-financeiro">
+
+							<button class="btn btn-danger">Deletar Item</button>
+
+
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary"
+								data-bs-toggle="modal" data-bs-target="#exampleModal">
+								Launch demo modal</button>
+
 							
-								<button class="btn btn-danger">Deletar Item</button>
-						
-							
-								<button type="submit" class="btn btn-success"><a th:href="@{/venda/finalizar_venda}">Avançar</a></button>
-						
+
 						</div>
+						
+						<!-- Modal -->
+							<div class="modal fade" id="exampleModal" tabindex="-1"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-fullscreen">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Modal
+												title</h5>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body"> <div class="container">
+        <div class="row">
+            <div class="col-md-12 estilo titulo">
+                <p>PAGAMENTO</p>
+            </div>
+            <div class="col-md-6 estilo">
+                <p id="total-pagar">Total a pagar: <b>R$ 0.00</b></p>
+            </div>
+            <div class="col-md-6 estilo">
+                <select id="select-fp" class="form-select form-select-lg mb-3 " aria-label=".form-select-lg example">
+                    <option selected class="btn btn-dark dropdown-toggle">FORMA DE PAGAMENTO</option>
+                    <option value="1">CARTÃO</option>
+                    <option value="2">PIX</option>
+                    <option value="3">DINHEIRO</option>
+                </select>
+            </div>
+            <div class="col-md-12 estilo valor-troco">
+                <span class="valor-troco">Valor de entrada:</span>
+                <p><b class="valor-troco">R$ 0.00</b></p>
+            </div>
+            <div class="col-md-12 estilo valor-troco">
+                <span class="valor-troco">Troco:</span>
+                <p><b class="valor-troco">R$ 0.00</b></p>
+            </div>
+            <div class="col-md-12 estilo titulo">
+                <p>Finalizar venda</p>
+            </div>
+
+            <div class="col-md-12 estilo">
+                <div class="form-floating mb-3 end-entrega">
+                    <input type="text" class="form-control" id="input-obs" placeholder="name@example.com" style="width: 400px;">
+                    <label for="floatingInput">Endereço de entrega:</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 estilo">
+                <textarea name="obs" id="obs" cols="40" rows="3" placeholder="Observações:"></textarea>
+            </div>
+
+            <div id="botoes-align" class="estilo">
+                <form method="" action="/tela-home/index.html">
+                    <button class="btn btn-success botao">
+                        Salvar
+                    </button>
+                </form>
+                <form method="" action="/tela-pdv/index.html">
+                    <button class="btn btn-danger botao">
+                        Cancelar
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div></div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save
+												changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" 
-		src="/bootstrap/bootstrap.min.js"></script>
-		<script type="text/javascript"
-	 src="/bootstrap/bootstrap.bundle.min.js"></script>	
+	<script type="text/javascript" src="/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>

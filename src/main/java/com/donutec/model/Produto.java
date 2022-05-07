@@ -34,7 +34,6 @@ public class Produto {
 	private Ingrediente ingrediente;
 	
 	
-	
 	public String getObs() {
 		return obs;
 	}

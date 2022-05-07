@@ -4,14 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.donutec.model.Fornecedor;
 import com.donutec.model.Ingrediente;
 import com.donutec.model.Produto;
+import com.donutec.repository.FornecedorRepository;
 import com.donutec.repository.IngredienteRepository;
 import com.donutec.repository.ProdutoRepository;
 
@@ -21,6 +22,9 @@ public class IngredienteController {
 	
 	@Autowired
 	ProdutoRepository produtoRepo;
+	
+	@Autowired
+	FornecedorRepository fornecedorRepo;
 	
 	@Autowired
 	IngredienteRepository ingredienteRepo;
@@ -42,6 +46,11 @@ public class IngredienteController {
 	@ModelAttribute("produtos")
 	public List<Produto> produtosCheckbox(){
 		return produtoRepo.findAll();
+	}
+	
+	@ModelAttribute("fornecedores")
+	public List<Fornecedor> fornecedoresCheckbox(){
+		return fornecedorRepo.findAll();
 	}
 	
 
