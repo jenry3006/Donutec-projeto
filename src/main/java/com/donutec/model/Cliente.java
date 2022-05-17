@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -35,6 +36,10 @@ public class Cliente {
 	
 	@NotNull(message="Informe o tipo de contato.")
 	private TipoContato tipoContato;
+	
+	@OneToOne
+	private Venda venda;
+	
 	
 	public TipoContato getTipoContato() {
 		return tipoContato;

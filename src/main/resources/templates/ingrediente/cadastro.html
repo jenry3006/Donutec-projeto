@@ -29,25 +29,38 @@
 						id="nome" name="nome" th:field="*{precoCompra}" type="text"
 						class="form-control" data-mask="#.##0,00" data-mask-reverse="true">	
 						
+					<!--
 					<ul>
 						<li>
-								<label> Produtos que deseja cadas trar esse ingredinte: 
+								<label> Produtos que deseja cadastrar esse ingredinte: 
 									<input type="checkbox" name="produtos"
-									 	   th:each="p : ${produtos}" th:value="${p.id}" th:text="${p.saborCobertura}"
-											th:field="*{produtos}" />
+									 	   th:each="p : ${produtos}"
+									 	   th:value="${p.id}"
+									 	   th:text="${p.saborCobertura}"
+										   th:field="*{produtos}" />
 								</label>
 							</li>
 					</ul>
-					
+					  -->
+
+					<select id="" class="form-control"
+						th:field="*{produtos}">
+						<option value="">Selecione</option>
+						<option th:each="p : ${produtosLista}" th:value="${p.id}"
+							th:text="${p.nomeDonuts}"></option>
+					</select>
+					<!-- 
 					<ul>
 						<li>
-								<label> Fornecedores que deseja cadas trar esse ingredinte: 
+								<label> Fornecedores que deseja cadastrar esse ingredinte: 
 									<input type="checkbox" name="fornecedores"
 									 	   th:each="f : ${fornecedores}" th:value="${f.id}" th:text="${f.nome}"
 											th:field="*{fornecedores}" />
 								</label>
 							</li>
 					</ul>
+					 -->
+					
 
 					<div class="button">
 						<div>
@@ -55,7 +68,7 @@
 						</div>
 
 						<div>
-							<input type="hidden" id="id" name="id" th:field="*{id}" />
+							<input type="hidden" id="id" th:field="*{id}" />
 							<button type="submit" class="btn btn-success btn-lg">SALVAR</button>
 						</div>
 					</div>

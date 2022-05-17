@@ -86,7 +86,7 @@ public class ProdutoController {
 	private ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomePesquisa) {
 		ModelAndView modelAndView = new ModelAndView("produto/lista");
 		modelAndView.addObject("produtos", produtoRepo.findProdutoBySabor(nomePesquisa));
-		produtos = produtoRepo.findBySaborCoberturaContaining(nomePesquisa);
+		produtos = produtoRepo.findByNomeDonutsContaining(nomePesquisa);
 		return modelAndView;
 	}
 

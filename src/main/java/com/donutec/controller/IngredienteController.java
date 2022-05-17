@@ -34,6 +34,13 @@ public class IngredienteController {
 		return "/ingrediente/cadastro";
 	}
 	
+	/*//Altere o value e method de acordo com o necessário
+	@RequestMapping(value="caminhoDoMeuFomulario", method=RequestMethod.POST)
+	public String form(@RequestParam("dias") List<String> dias) {
+	        //aqui você faz o processamento que quiser
+	    return "seujsp";
+	}*/
+	
 	@PostMapping("/salvar")
 	public String salvar(Ingrediente ingrediente) {
 		
@@ -43,15 +50,15 @@ public class IngredienteController {
 	}
 	
 
-	@ModelAttribute("produtos")
+	@ModelAttribute("produtosLista")
 	public List<Produto> produtosCheckbox(){
 		return produtoRepo.findAll();
 	}
 	
-	@ModelAttribute("fornecedores")
+	/*@ModelAttribute("fornecedores")
 	public List<Fornecedor> fornecedoresCheckbox(){
 		return fornecedorRepo.findAll();
-	}
+	}*/
 	
 
 }

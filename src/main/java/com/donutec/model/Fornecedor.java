@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 public class Fornecedor implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotEmpty(message = "O nome é obrigatório.")
@@ -32,9 +32,9 @@ public class Fornecedor implements Serializable{
 	@JoinColumn(name = "endereco_id_fk")
 	private Endereco endereco;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name = "ingrediente_id_fk")
-	private Ingrediente ingrediente;
+	private Ingrediente ingrediente;*/
 
 	public Long getId() {
 		return id;
@@ -68,13 +68,13 @@ public class Fornecedor implements Serializable{
 		this.endereco = endereco;
 	}
 
-	public Ingrediente getIngrediente() {
+	/*public Ingrediente getIngrediente() {
 		return ingrediente;
 	}
 
 	public void setIngrediente(Ingrediente ingrediente) {
 		this.ingrediente = ingrediente;
-	}
+	}*/
 	
 	
 	

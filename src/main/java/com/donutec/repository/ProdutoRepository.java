@@ -9,9 +9,9 @@ import com.donutec.model.Produto;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-	List<Produto> findBySaborCoberturaContaining(String saborCobertura);
+	List<Produto> findByNomeDonutsContaining(String nomeDonuts);
 
-	@Query("select p from Produto p where p.saborCobertura like %?1%")
-	List<Produto> findProdutoBySabor(String sabor);
+	@Query("select p from Produto p where p.nomeDonuts like %?1%")
+	List<Produto> findProdutoBySabor(String nome);
 
 }

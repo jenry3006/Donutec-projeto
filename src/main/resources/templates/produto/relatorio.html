@@ -25,7 +25,7 @@
                             <thead>
                             <tr>
                                 <th class="cell">ID</th>
-                                <th class="cell">Descrição</th>
+                               
                                 <th class="cell">Sabor da cobertura</th>
                                 <th class="cell">Valor</th>
                                 <th class="cell">Observação</th>
@@ -34,8 +34,8 @@
                             <tbody>
                             <tr th:each="p : ${produtos}">
                                 <td th:text="${p.id}" class="cell"></td>
-                                <td th:text="${p.descricao}" class="cell"></td>
-                                <td th:text="${p.saborCobertura}" class="cell"></td>
+                               
+                                <td th:text="${p.nomeDonuts}" class="cell"></td>
                                 <td th:text="${p.valor}" class="cell"></td>
                                 <td th:text="${p.obs}" class="cell"></td>
                             </tbody>

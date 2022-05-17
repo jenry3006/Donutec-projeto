@@ -17,19 +17,17 @@
             
             	<div th:replace="fragments/alert"></div>
               
-                <label >Descrição:<span style="color: red ;">*</span></label>
-                <input id="descricao" name="descricao" th:field="*{descricao}" type="text" class="form-control"
-                 th:classappend="${#fields.hasErrors('descricao')} ? 'is-invalid' : ''"      >
-                 <div class="invalid-feedback" th:errors="*{descricao}"></div>
+                <label >Donuts:<span style="color: red ;">*</span></label>
+                <input id="descricao" name="nomeDonuts" th:field="*{nomeDonuts}" type="text" class="form-control"
+                 th:classappend="${#fields.hasErrors('nomeDonuts')} ? 'is-invalid' : ''"      >
+                 <div class="invalid-feedback" th:errors="*{nomeDonuts}"></div>
 
-                <label >Sabor Cobertura:<span style="color: red ;">*</span></label>
-                <input id="saborCobertura" name="saborCobertura" th:field="*{saborCobertura}" type="text"
-                 th:classappend="${#fields.hasErrors('saborCobertura')} ? 'is-invalid' : ''"      class="form-control" >
-                 <div class="invalid-feedback" th:errors="*{saborCobertura}"></div>
+        
 
                 <label >Valor de venda:<span style="color: red ;">*</span></label>
                 <input id="valor" name="valor" th:field="*{valor}" type="number" class="form-control" 
-                th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid' : ''">
+                th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid' : ''" 
+                data-mask="#.##0,00" data-mask-reverse="true">
                 <div class="invalid-feedback" th:errors="*{valor}"></div>
 
 				 <label for="exampleFormControlTextarea1" class="form-label">Observação:</label>
@@ -54,5 +52,8 @@
 		src="/bootstrap/bootstrap.min.js"></script>
 		<script type="text/javascript"
 	 src="/bootstrap/bootstrap.bundle.min.js"></script>	
+	 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>
 </html>

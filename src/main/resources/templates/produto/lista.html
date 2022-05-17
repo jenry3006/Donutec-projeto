@@ -40,7 +40,7 @@
                             <thead>
                             <tr>
                                 <th class="cell">ID</th>
-                                <th class="cell">Descrição</th>
+                                
                                 <th class="cell">Sabor Cobertura</th>
                                 <th class="cell">Valor de venda:</th>
                                 <th class="cell">Observação:</th>
@@ -50,8 +50,8 @@
                             </thead>
                             <tbody>
                                 <tr th:each="p : ${produtos}"><td th:text="${p.id}" class="cell"></td>
-                                    <td th:text="${p.descricao}" class="cell"></td>
-                                    <td th:text="${p.saborCobertura}" class="cell"></td>
+                                    
+                                    <td th:text="${p.nomeDonuts}" class="cell"></td>
                                     <td th:text="${p.valor}" class="cell"></td>
                                     <td class="cell"> <textarea rows="2" cols="" th:text="${p.obs}" style="border-width:1px;" disabled></textarea> </td>
                                     <td class="cell"><a class="btn btn-primary"

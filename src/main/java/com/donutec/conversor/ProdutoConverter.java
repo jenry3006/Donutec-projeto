@@ -15,7 +15,7 @@ public class ProdutoConverter implements Converter<String[], List<Produto>>{
 
 	@Autowired
 	ProdutoRepository repo;
-
+	
 	@Override
 	public List<Produto> convert(String[] source) {
 		
@@ -23,10 +23,17 @@ public class ProdutoConverter implements Converter<String[], List<Produto>>{
 		
 		for (String id : source) {
 			
-			//produtos.add();
+			Produto teste =  repo.getById(Long.valueOf(id));
+		
+			produtos.add(teste);
+			System.out.println(id);
+			System.out.println(source);
+			System.out.println(produtos);
+			convert(source);
 		}
 		return produtos;
 	}
 	
 	
 }
+

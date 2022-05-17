@@ -1,27 +1,33 @@
 package com.donutec.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.donutec.model.Cliente;
+import com.donutec.model.Produto;
+import com.donutec.model.Venda;
 import com.donutec.repository.ClienteRepository;
+import com.donutec.repository.ProdutoRepository;
+import com.donutec.repository.VendaRepository;
 
 @Controller
 @RequestMapping("venda")
 public class VendaController {
 	
-	List<Cliente> clientes = new ArrayList<>();
+	@Autowired
+	private VendaRepository vendaRepo;
 	
 	@Autowired
-	ClienteRepository clienteRepo;
+	private ClienteRepository clienteRepo;
+	
+	@Autowired
+	private ProdutoRepository produtoRepo;
 	
 	@RequestMapping("ponto_venda")
 	public String abrirPontoVenda(Model model) {
@@ -33,10 +39,16 @@ public class VendaController {
 		return "venda/lista_venda";
 	}
 	
-	@RequestMapping("finalizar_venda")
-	public String abrirFimVenda(Model model) {
-		return "venda/finalizar_venda";
-	}
+	/*@PostMapping(value = "salvar")
+	@ResponseBody
+	public ResponseEntity<Venda> salvar(@RequestBody Venda venda, Cliente cliente, Produto produto){
+		clienteRepo.save(cliente);
+		produtoRepo.save(produto);
+		vendaRepo.save(produto);
+		return ;
+		
+	}*/
+	
 	
 	//@PostMapping("**/pesquisarCliente")
 	/*public ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomepesquisa) {
