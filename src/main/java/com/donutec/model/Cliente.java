@@ -28,7 +28,6 @@ public class Cliente {
 	private String endereco;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	
 	private LocalDate dataNascimento;
 	
 	@NotBlank(message="O campo contato não pode estar vazio.")
@@ -36,50 +35,57 @@ public class Cliente {
 	
 	@NotNull(message="Informe o tipo de contato.")
 	private TipoContato tipoContato;
-	
-	@OneToOne
-	private Venda venda;
-	
-	
-	public TipoContato getTipoContato() {
-		return tipoContato;
-	}
-	public void setTipoContato(TipoContato tipoContato) {
-		this.tipoContato = tipoContato;
-	}
-	public String getContato() {
-		return contato;
-	}
-	public void setContato(String contato) {
-		this.contato = contato;
-	}
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
+
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	public void setDataNascimento(RedirectAttributes ra) {
-		// TODO Auto-generated method stub
+
+	public String getContato() {
+		return contato;
 	}
+
+	public void setContato(String contato) {
+		this.contato = contato;
+	}
+
+	public TipoContato getTipoContato() {
+		return tipoContato;
+	}
+
+	public void setTipoContato(TipoContato tipoContato) {
+		this.tipoContato = tipoContato;
+	}
+
+	
+	
 	
 
 	

@@ -1,6 +1,6 @@
 package com.donutec.model;
 
-import java.math.BigDecimal;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,17 +23,9 @@ public class Produto {
 	private String nomeDonuts;
 
 	@NotNull(message = "Valor não pode ser null!")
-	private BigDecimal valor;
+	private double valor;
 	
 	private String obs;
-	
-	@OneToOne
-	private Venda venda;
-	
-	/*@ManyToOne
-	@JoinColumn(name = "ingrediente_id_fk")
-	private Ingrediente ingrediente;*/
-	
 	
 	
 	public long getId() {
@@ -43,17 +35,16 @@ public class Produto {
 		this.id = id;
 	}
 	
-	
 	public String getNomeDonuts() {
 		return nomeDonuts;
 	}
 	public void setNomeDonuts(String nomeDonuts) {
 		this.nomeDonuts = nomeDonuts;
 	}
-	public BigDecimal getValor() {
+	public double getValor() {
 		return valor;
 	}
-	public void setValor(BigDecimal valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 
@@ -63,13 +54,6 @@ public class Produto {
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
-	
-	/*public Ingrediente getIngrediente() {
-		return ingrediente;
-	}
-	public void setIngrediente(Ingrediente ingrediente) {
-		this.ingrediente = ingrediente;
-	}*/
 	
 	
 

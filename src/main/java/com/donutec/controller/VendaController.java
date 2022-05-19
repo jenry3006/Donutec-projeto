@@ -1,9 +1,15 @@
 package com.donutec.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +21,11 @@ import com.donutec.model.Venda;
 import com.donutec.repository.ClienteRepository;
 import com.donutec.repository.ProdutoRepository;
 import com.donutec.repository.VendaRepository;
+import com.donutec.service.ClienteServiceApi;
+import com.donutec.service.VendaService;
 
 @Controller
-@RequestMapping("venda")
+@RequestMapping("/venda")
 public class VendaController {
 	
 	@Autowired
@@ -29,35 +37,39 @@ public class VendaController {
 	@Autowired
 	private ProdutoRepository produtoRepo;
 	
-	@RequestMapping("ponto_venda")
-	public String abrirPontoVenda(Model model) {
+	@Autowired
+	VendaService vendaService;
+	
+	@RequestMapping("/ponto_venda")
+	public String abrirPontoVenda(Model model, Venda venda) {
 		return "venda/ponto_venda";
 	}
 	
-	@RequestMapping("lista_venda")
+	@RequestMapping("/lista_venda")
 	public String abrirListaVenda(Model model) {
 		return "venda/lista_venda";
 	}
 	
-	/*@PostMapping(value = "salvar")
-	@ResponseBody
-	public ResponseEntity<Venda> salvar(@RequestBody Venda venda, Cliente cliente, Produto produto){
-		clienteRepo.save(cliente);
-		produtoRepo.save(produto);
-		vendaRepo.save(produto);
-		return ;
-		
-	}*/
+	@PostMapping("/salvar")
+	public String salvar(@Valid @ModelAttribute("venda") Venda venda,Produto produto ,BindingResult br) {
+		if(br.hasErrors()) {
+			return "cliente/cadastro";
+		}
+		double total =  vendaService.calculoTotal(venda,produto);
+		venda.setTotal(total);
+		System.out.println(vendaService.calculoTotal(venda, produto));
+		vendaRepo.save(venda);
+		return "redirect:/venda/ponto_venda";
+	}
 	
+	@ModelAttribute("clientes")
+	public List<Cliente> clientes(){
+		return clienteRepo.findAll();
+	}
 	
-	//@PostMapping("**/pesquisarCliente")
-	/*public ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomepesquisa) {
-		ModelAndView modelAndView = new ModelAndView("cliente/lista");
-		modelAndView.addObject("clientes", clienteRepo.findClienteByName(nomepesquisa));
-		modelAndView.addObject("cienteobj", new Cliente());
-		clientes = clienteRepo.findByNomeContaining(nomepesquisa);
-		
-		return modelAndView;
-	}*/
+	@ModelAttribute("produtos")
+	public List<Produto> produtos(){
+		return produtoRepo.findAll();
+	}
 	
 }

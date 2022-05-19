@@ -25,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.donutec.model.Cliente;
 import com.donutec.repository.ClienteRepository;
-import com.donutec.service.ClienteService;
+
 import com.donutec.service.ClienteServiceApi;
 
 @Controller
@@ -36,9 +36,6 @@ public class ClienteController {
 	
 	@Autowired
 	ClienteRepository clienteRepo;
-
-	@Autowired
-	ClienteService service;
 
 	@Autowired
 	private ClienteServiceApi clienteServiceAPI;
