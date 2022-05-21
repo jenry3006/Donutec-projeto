@@ -51,10 +51,8 @@ public class VendaController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(@Valid @ModelAttribute("venda") Venda venda,Produto produto ,BindingResult br) {
-		if(br.hasErrors()) {
-			return "cliente/cadastro";
-		}
+	public String salvar( @ModelAttribute("venda") Venda venda,Produto produto) {
+	
 		double total =  vendaService.calculoTotal(venda,produto);
 		venda.setTotal(total);
 		System.out.println(vendaService.calculoTotal(venda, produto));

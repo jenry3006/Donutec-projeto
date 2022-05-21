@@ -19,7 +19,7 @@
 		</select>
 		
 		<label>Produto</label>
-		<select class="form-select" th:field="*{produto}" aria-label="Default select example">
+		<select class="form-select" th:field="*{produtos}">
 			<option th:each="p : ${produtos}" th:text="${p.nomeDonuts}" th:value="${p.id}"></option>
 		</select>
 		

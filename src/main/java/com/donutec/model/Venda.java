@@ -1,12 +1,18 @@
 package com.donutec.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Venda {
@@ -16,13 +22,18 @@ public class Venda {
 	private Long id;
 	
 	@ManyToOne
-	
 	private Cliente cliente;
 	
 	private String nomeCliente;
 	
-	@ManyToOne
-	private Produto produto;
+	@NotNull(message = "Não pode ser null")
+	@ManyToMany
+	@JoinTable(name = "venda_produto",
+	joinColumns = {@JoinColumn(name="venda_id")},
+	inverseJoinColumns = {@JoinColumn(name="produto_id")})
+	@Column(nullable = false)
+	private List<Produto> produtos;
+	
 	private String nomeProduto;
 	
 	private int quantidade;
@@ -53,12 +64,13 @@ public class Venda {
 		this.nomeCliente = nomeCliente;
 	}
 
-	public Produto getProduto() {
-		return produto;
+	
+	public List<Produto> getProdutos() {
+		return produtos;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	public String getNomeProduto() {

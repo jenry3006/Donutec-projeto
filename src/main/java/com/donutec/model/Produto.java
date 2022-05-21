@@ -2,13 +2,13 @@ package com.donutec.model;
 
 
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -26,6 +26,9 @@ public class Produto {
 	private double valor;
 	
 	private String obs;
+	
+	@ManyToMany(mappedBy = "produtos")
+	private List<Venda> vendas;
 	
 	
 	public long getId() {
@@ -54,6 +57,14 @@ public class Produto {
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
+	public List<Venda> getVendas() {
+		return vendas;
+	}
+	public void setVendas(List<Venda> vendas) {
+		this.vendas = vendas;
+	}
+	
+	
 	
 	
 
