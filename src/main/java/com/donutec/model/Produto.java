@@ -2,6 +2,7 @@ package com.donutec.model;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -28,7 +29,10 @@ public class Produto {
 	private String obs;
 	
 	@ManyToMany(mappedBy = "produtos")
-	private List<Venda> vendas;
+	private List<Venda> vendas = new ArrayList<Venda>();
+	
+	@ManyToMany(mappedBy = "produtos")
+	private List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
 	
 	
 	public long getId() {
@@ -63,6 +67,16 @@ public class Produto {
 	public void setVendas(List<Venda> vendas) {
 		this.vendas = vendas;
 	}
+	public List<Ingrediente> getIngredientes() {
+		return ingredientes;
+	}
+	public void setIngredientes(List<Ingrediente> ingredientes) {
+		this.ingredientes = ingredientes;
+	}
+
+	
+	
+	
 	
 	
 	

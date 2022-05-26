@@ -2,6 +2,7 @@ package com.donutec.conversor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
@@ -15,22 +16,33 @@ public class ProdutoConverter implements Converter<String[], List<Produto>>{
 
 	@Autowired
 	ProdutoRepository repo;
-	
+
+	@Override
+	public Produto[] convert(String text) {
+
+		if(text.isEmpty()) {
+			return null;
+		}
+		
+		Long id = Long.valueOf(text);
+		
+		return repo.findById(id);
+	}
+
 	@Override
 	public List<Produto> convert(String[] source) {
-		
+
 		List<Produto> produtos = new ArrayList<>();
 		
-		for (String id : source) {
-			
-			Produto teste =  repo.getById(Long.valueOf(id));
+		Produto produto = new Produto();
 		
-			produtos.add(teste);
-			System.out.println(id);
-			System.out.println(source);
-			System.out.println(produtos);
-			convert(source);
+		for(String id : source) {
+		
+			
+			
+			produtos.add(idTeste);
 		}
+		
 		return produtos;
 	}
 	

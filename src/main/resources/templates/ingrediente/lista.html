@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head :: head">
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<link rel="stylesheet" href="/css/header.css">
+
+	<header th:insert="head :: header-fixo"></header>
+
+	<div class="container">
+		<div class="buscar">
+			<nav class="navbar navbar-light bg-light">
+				<div class="container-fluid">
+					<a class="navbar-brand"><b>Lista de Ingredientes</b></a> <a href=""
+						th:href="@{relatorio}" target="_blank" style="margin-left: 550px;">
+						<img src="/img/printer.svg" alt="icon-print" title="imprimir"
+						class="icon-print" style="height: 30px;">
+					</a>
+					<form th:action="@{/fornecedores/pesquisar}" method="post" class="d-flex">
+						<input th:name="@{nome}" class="form-control me-2" type="text"
+							id="consulta" placeholder="Informar o nome" aria-label="Search">
+						<button class="btn btn-outline-success" type="submit">Buscar</button>
+					</form>
+				</div>
+			</nav>
+		</div>
+
+		<div class="tab-content" id="orders-table-tab-content">
+			<div class="tab-pane fade show active" id="orders-all"
+				role="tabpanel" aria-labelledby="orders-all-tab">
+				<div class="app-card app-card-orders-table shadow-sm mb-5">
+					<div class="app-card-body">
+						<div class="table-responsive">
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
+										<th class="cell">ID</th>
+										<th class="cell">Nome</th>
+										<th class="cell">Telefone</th>
+										<th class="cell">Cidade:</th>
+										<th class="cell">Complemento</th>
+										<th class="cell">Número</th>
+										<th class="cell">CEP</th>
+										<th class="cell">Rua</th>
+										<th class="cell">Bairro</th>
+										
+										<th class="cell"></th>
+										<th class="cell"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="f : ${fornecedores}">
+										<td th:text="${f.id}" class="cell"></td>
+										<td th:text="${f.nome}" class="cell"></td>
+										<td th:text="${f.telefone}" class="cell"></td>
+										<td th:text="${f.endereco.cidade}" class="cell"></td>
+										<td th:text="${f.endereco.complemento}" class="cell"></td>
+										<td th:text="${f.endereco.numero}" class="cell"></td>
+										<td th:text="${f.endereco.cep}" class="cell"></td>
+										<td th:text="${f.endereco.rua}" class="cell"></td>
+										<td th:text="${f.endereco.bairro}" class="cell"></td>
+										
+										
+	
+										<td class="cell"><a class="btn btn-primary"
+											th:href="@{editar/{id} (id=${f.id})}">Editar</a></td>
+											
+										<td class="cell">
+										
+											<button type="button" class="btn btn-danger"
+												data-bs-toggle="modal" th:attr="data-bs-target='#staticBackdrop'+${f.id}">Excluir
+											</button>
+											
+											<div class="modal fade"
+												th:attr="id='staticBackdrop'+ ${f.id}"
+												data-bs-backdrop="static" data-bs-keyboard="false"
+												tabindex="-1" aria-labelledby="staticBackdropLabel"
+												aria-hidden="true">
+												<div class="modal-dialog" id="${f.id}">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="staticBackdropLabel">Excluir
+																Fornecedor</h5>
+														</div>
+														<div class="modal-body">Deseja realmente excluir o
+															fornecedor selecionado?</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary"
+																data-bs-dismiss="modal">Fechar</button>
+															<button class="btn btn-danger">
+																<a style="color: #fff; text-decoration: none;"
+																	th:href=@{deletar/(id=${f.id})}>Excluir</a>
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</td>
+									<tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<nav aria-label="Pagination">
+					<ul class="pagination justify-content-center">
+
+						<li class="page-item"
+							th:classappend="${prev == 0 ? 'disabled': ''}"><a
+							class="page-link" th:href="@{|/cliente/lista?page=${prev}|}">Anterior</a>
+						</li>
+						<li class="page-item" th:each="page : ${pages}"
+							th:classappend="${current == page ? 'active': ''}"><a
+							class="page-link" th:href="@{|/cliente/lista?page=${page}|}"
+							th:text="${page}"></a></li>
+						<li class="page-item"
+							th:classappend="${current == last ? 'disabled': ''}"><a
+							class="page-link" th:href="@{|/cliente/lista?page=${next}|}">Próxima</a>
+						</li>
+					</ul>
+				</nav>
+
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+
+
+	</div>
+	<script type="text/javascript" src="/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

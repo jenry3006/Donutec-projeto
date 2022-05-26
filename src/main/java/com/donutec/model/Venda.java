@@ -1,5 +1,6 @@
 package com.donutec.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -32,7 +33,7 @@ public class Venda {
 	joinColumns = {@JoinColumn(name="venda_id")},
 	inverseJoinColumns = {@JoinColumn(name="produto_id")})
 	@Column(nullable = false)
-	private List<Produto> produtos;
+	private List<Produto> produtos = new ArrayList<Produto>();
 	
 	private String nomeProduto;
 	
@@ -74,7 +75,7 @@ public class Venda {
 	}
 
 	public String getNomeProduto() {
-		return nomeProduto;
+		return nomeProduto; 
 	}
 
 	public void setNomeProduto(String nomeProduto) {

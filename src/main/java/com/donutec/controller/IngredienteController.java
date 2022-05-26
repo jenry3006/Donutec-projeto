@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.donutec.model.Fornecedor;
 import com.donutec.model.Ingrediente;
 import com.donutec.model.Produto;
 import com.donutec.repository.FornecedorRepository;
@@ -42,9 +41,11 @@ public class IngredienteController {
 	}*/
 	
 	@PostMapping("/salvar")
-	public String salvar(Ingrediente ingrediente) {
+	public String salvar(Ingrediente ingrediente, Produto produto) {
 		
 		ingredienteRepo.save(ingrediente);
+		System.out.println(ingrediente);
+		System.out.println(produto);
 	
 		return "redirect:/ingredientes/cadastrar";
 	}

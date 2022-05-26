@@ -25,7 +25,7 @@
         
 
                 <label >Valor de venda:<span style="color: red ;">*</span></label>
-                <input id="valor" name="valor" th:field="*{valor}" type="number" class="form-control" 
+                <input id="valor" name="valor" th:field="*{valor}" type="text" class="form-control" 
                 th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid' : ''" 
                 data-mask="#.##0,00" data-mask-reverse="true">
                 <div class="invalid-feedback" th:errors="*{valor}"></div>
