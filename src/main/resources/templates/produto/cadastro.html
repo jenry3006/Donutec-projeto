@@ -13,7 +13,7 @@
     <div id="form-container">
         <p id="textcadastro">CADASTRAR PRODUTO</p>
         <div class="form-floating mb-3">
-            <form action="#" th:action="@{/produto/salvar}" th:object="${produto}" method="post">
+            <form action="#" th:action="@{/produto/salvar}" enctype="multipart/form-data" th:object="${produto}" method="post">
             
             	<div th:replace="fragments/alert"></div>
               
@@ -32,6 +32,8 @@
 
 				 <label for="exampleFormControlTextarea1" class="form-label">Observação:</label>
   					<textarea class="form-control" name="obs" id="exampleFormControlTextarea1" rows="3" th:field="*{obs}"></textarea>
+                
+                <input type="file" name="file" >
                 <div class="button">
                     <div>
                         <button type="reset" class="btn btn-primary btn-lg">LIMPAR</button>

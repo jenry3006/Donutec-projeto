@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head :: head">
+<meta charset="utf-8">
+
+</head>
+<body>
+
+	<link rel="stylesheet" href="/css/cadastroc.css">
+	<link rel="stylesheet" href="/css/header.css">
+
+	<header th:insert="head :: header-fixo"></header>
+
+	<div class="container">
+		<div id="form-container">
+			<p id="textcadastro">Entrada de Produtos</p>
+			<div class="form-floating mb-3">
+
+				<form action="#" th:object="${entrada}"
+					th:action="@{/entrada/salvar}" method="post">
+
+					<div th:replace="fragments/alert"></div>
+
+					<div
+						th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+						th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+					</div>
+
+
+					<span th:text="${mensagem}" th:if="${mensagem != null}"
+						style="color: #FF0000;"></span> <br>
+
+					<div class="form-row" th:object="${entradaItens}">
+						<div class="form-group col-md-4">
+							<label>Produto</label> <select th:field="*{produto}"
+								, class="form-control">
+								<option th:each="p : ${listaProdutos}" th:value="${p.id}"
+									th:text="${p.nomeDonuts}"></option>
+							</select>
+						</div>
+
+						<div class="form-group col-md-2">
+							<label>Quantidade</label> <input type="number"
+								class="form-control" id="quantidade" placeholder="Quantidade"
+								th:field="*{quantidade}">
+						</div>
+
+						<div class="form-group col-md-2">
+							<label>Valor cutso</label> <input type="number" class="form-control"
+								id="valor" placeholder="Valor" th:field="*{valorProduto}">
+						</div>
+						
+						<div class="form-group col-md-2">
+							<label>Valor venda</label> <input type="number" class="form-control"
+								id="valorVenda" placeholder="Valor" th:field="*{valorVenda}">
+						</div>
+
+						<div class="form-group col-md-2">
+							<hr>
+							<button type="submit" name="acao" th:value="itens"
+								class="btn btn-success btn-lg">ADICIONAR</button>
+						</div>
+
+					</div>
+
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
+										
+										<th class="cell">Descrição Produto</th>
+										<th class="cell">Quantidade</th>
+										<th class="cell">Valor custo</th>
+										<th class="cell">Valor venda</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="itens : ${listaEntradaItens}">
+										<td th:text="${itens.produto.nomeDonuts}" class="cell"></td>
+										<td th:text="${itens.quantidade}" class="cell"></td>
+										<td th:text="${itens.valorProduto}" class="cell"></td>
+										<td th:text="${itens.valorVenda}" class="cell"></td>
+										
+										
+									<tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="button">
+						
+						<input type="hidden" id="id" th:field="*{id}" name="id"
+							 />
+						
+							<button type="submit" class="btn btn-success btn-lg" name="acao" th:value="salvar">SALVAR</button>
+						
+					</div> 
+
+
+				</form>
+
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<script>
+		function limpar() {
+			$("input").val("");
+		}
+	</script>
+
+	<script type="text/javascript" src="/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

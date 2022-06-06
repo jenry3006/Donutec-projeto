@@ -2,96 +2,132 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head th:fragment="head">
 <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
-	
-	<link rel="shortcut icon" type="imagex/png" href="/img/logo_1.ico">
-    <title>Donutec</title>
-   
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+
+<link rel="shortcut icon" type="imagex/png" href="/img/logo_1.ico">
+<title>Donutec</title>
+
 </head>
 <body>
 
-	  <header th:fragment="header-fixo">
-        <nav id="header">
-            <div id="parte-esq">
-                <a th:href="@{/index}"><b id="texto-logo">DONUTEC</b></a>
-            </div>
+	<header th:fragment="header-fixo">
+		<nav id="header">
+			<div id="parte-esq">
+				<a th:href="@{/index}"><b id="texto-logo">DONUTEC</b></a>
+			</div>
 
-            <div id="parte-dir">
-                <div id="nav" class="row">
-                    <div class="col-md-2">
-                        <div class="dropdown">
-                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                VENDA
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <li><a class="dropdown-item " th:href="@{/venda/ponto_venda}">Abrir PDV</a></li>
-                                <li><a class="dropdown-item" th:href="@{/venda/lista_venda}">Ver Vendas</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="dropdown">
-                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                CLIENTES
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <li><a class="dropdown-item" th:href="@{/cliente/cadastro}">Cadastrar Cliente</a></li>
-                                <li><a class="dropdown-item" th:href="@{/cliente/lista}">Ver clientes</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="dropdown">
-                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                PRODUTOS
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <li><a class="dropdown-item " th:href="@{/produto/cadastro}" >Cadastrar produtos</a></li>
-                                <li><a class="dropdown-item" th:href="@{/produto/lista}">Ver produtos</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-2">
-                        <div class="dropdown">
-                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                FORNECEDORES
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <li><a class="dropdown-item " th:href="@{/fornecedores/cadastrar}" >Cadastrar fornecedores</a></li>
-                                <li><a class="dropdown-item" th:href="@{/fornecedores/listar}">Ver fornecedores</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="dropdown">
-                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                INGREDIENTES
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <li><a class="dropdown-item " th:href="@{/ingredientes/cadastrar}" >Cadastrar fornecedores</a></li>
-                                <li><a class="dropdown-item" th:href="@{/ingrediente/lista}">Ver fornecedores</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-        </nav>
-    </header>
+			<div id="parte-dir">
+				<div id="nav" class="row">
 
-	<script type="text/javascript" 
-		src="/bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript"
-	 src="/bootstrap/bootstrap.bundle.min.js"></script>	
-  
-     
+					<div class="col-md-1">
+						<div class="dropdown">
+							<button class="btn btn-dark dropdown-toggle" type="button"
+								id="dropdownMenuButton2" data-bs-toggle="dropdown"
+								aria-expanded="false">Area Venda</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+								<li><a class="dropdown-item "
+									th:href="@{/area-venda}">Area venda</a></li>
+								<li><a class="dropdown-item"
+									th:href="@{carrinho}">Carrinho (só para teste)</a></li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="col-md-1">
+						<div class="dropdown">
+							<button class="btn btn-dark dropdown-toggle" type="button"
+								id="dropdownMenuButton2" data-bs-toggle="dropdown"
+								aria-expanded="false">Entrada</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+								<li><a class="dropdown-item "
+									th:href="@{/entrada/cadastrar}">Entrada Produtos</a></li>
+								<li><a class="dropdown-item"
+									th:href="@{/venda/lista_venda}">x</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-1">
+						<div class="dropdown">
+							<button class="btn btn-dark dropdown-toggle" type="button"
+								id="dropdownMenuButton2" data-bs-toggle="dropdown"
+								aria-expanded="false">VENDA</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+								<li><a class="dropdown-item "
+									th:href="@{/venda/ponto_venda}">Abrir PDV</a></li>
+								<li><a class="dropdown-item"
+									th:href="@{/venda/lista_venda}">Ver Vendas</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-1">
+						<div class="dropdown">
+							<button class="btn btn-dark dropdown-toggle" type="button"
+								id="dropdownMenuButton2" data-bs-toggle="dropdown"
+								aria-expanded="false">CLIENTES</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+								<li><a class="dropdown-item" th:href="@{/cliente/cadastro}">Cadastrar
+										Cliente</a></li>
+								<li><a class="dropdown-item" th:href="@{/cliente/lista}">Ver
+										clientes</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-1">
+						<div class="dropdown">
+							<button class="btn btn-dark dropdown-toggle" type="button"
+								id="dropdownMenuButton2" data-bs-toggle="dropdown"
+								aria-expanded="false">PRODUTOS</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+								<li><a class="dropdown-item "
+									th:href="@{/produto/cadastro}">Cadastrar produtos</a></li>
+								<li><a class="dropdown-item" th:href="@{/produto/lista}">Ver
+										produtos</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-1">
+						<div class="dropdown">
+							<button class="btn btn-dark dropdown-toggle" type="button"
+								id="dropdownMenuButton2" data-bs-toggle="dropdown"
+								aria-expanded="false">FORNECEDORES</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+								<li><a class="dropdown-item "
+									th:href="@{/fornecedores/cadastrar}">Cadastrar
+										fornecedores</a></li>
+								<li><a class="dropdown-item"
+									th:href="@{/fornecedores/listar}">Ver fornecedores</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-1">
+						<div class="dropdown">
+							<button class="btn btn-dark dropdown-toggle" type="button"
+								id="dropdownMenuButton2" data-bs-toggle="dropdown"
+								aria-expanded="false">INGREDIENTES</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+								<li><a class="dropdown-item "
+									th:href="@{/ingredientes/cadastrar}">Cadastrar
+										fornecedores</a></li>
+								<li><a class="dropdown-item"
+									th:href="@{/ingrediente/lista}">Ver fornecedores</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</nav>
+	</header>
+
+	<script type="text/javascript" src="/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/bootstrap.bundle.min.js"></script>
+
+
 </body>
 </html>

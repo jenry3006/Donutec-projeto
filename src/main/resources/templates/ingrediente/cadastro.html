@@ -47,8 +47,9 @@
 						th:field="*{produtos}">
 						<option value="">Selecione</option>
 						<option th:each="p : ${produtosLista}" th:value="${p.id}"
-							th:text="${p.nomeDonuts}"></option>
+							    th:text="${p.nomeDonuts}"></option>
 					</select>
+					
 					<!-- 
 					<ul>
 						<li>

@@ -24,16 +24,14 @@ public class Produto {
 	private String nomeDonuts;
 
 	@NotNull(message = "Valor não pode ser null!")
-	private double valor;
+	private Double valor =0.;
 	
 	private String obs;
 	
-	@ManyToMany(mappedBy = "produtos")
-	private List<Venda> vendas = new ArrayList<Venda>();
+	@NotNull
+	private Double quantidadeEstoque=0.;
 	
-	@ManyToMany(mappedBy = "produtos")
-	private List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
-	
+	private String nomeImagem;
 	
 	public long getId() {
 		return id;
@@ -48,10 +46,10 @@ public class Produto {
 	public void setNomeDonuts(String nomeDonuts) {
 		this.nomeDonuts = nomeDonuts;
 	}
-	public double getValor() {
+	public Double getValor() {
 		return valor;
 	}
-	public void setValor(double valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 
@@ -61,18 +59,23 @@ public class Produto {
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
-	public List<Venda> getVendas() {
-		return vendas;
+	public Double getQuantidadeEstoque() {
+		return quantidadeEstoque;
 	}
-	public void setVendas(List<Venda> vendas) {
-		this.vendas = vendas;
+	public void setQuantidadeEstoque(Double quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
 	}
-	public List<Ingrediente> getIngredientes() {
-		return ingredientes;
+	public String getNomeImagem() {
+		return nomeImagem;
 	}
-	public void setIngredientes(List<Ingrediente> ingredientes) {
-		this.ingredientes = ingredientes;
+	public void setNomeImagem(String nomeImagem) {
+		this.nomeImagem = nomeImagem;
 	}
+	
+	
+	
+	
+	
 
 	
 	
