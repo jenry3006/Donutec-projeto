@@ -39,7 +39,7 @@ public class FornecedorController {
 		
 		fornecedorRepo.save(fornecedor);
 		
-		ra.addFlashAttribute("success", "Fornecedor cadastrado com sucesso!");
+		ra.addFlashAttribute("success", "Ingrediente cadastrado com sucesso!");
 		
 		return "redirect:/fornecedores/cadastrar";
 	}

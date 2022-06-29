@@ -6,11 +6,11 @@
 </head>
 <body>
 
-	<link rel="stylesheet" href="/css/header.css">
+	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
-	<header th:insert="head :: header-fixo"></header>
+	<div th:replace="~{dashboard :: voltDonutec}"></div>
 
-	<div class="container">
+	<div class="container" style="margin-right: 75px">
 		<div class="buscar">
 			<nav class="navbar navbar-light bg-light">
 				<div class="container-fluid">
@@ -19,7 +19,8 @@
 						<img src="/img/printer.svg" alt="icon-print" title="imprimir"
 						class="icon-print" style="height: 30px;">
 					</a>
-					<form th:action="@{/fornecedores/pesquisar}" method="post" class="d-flex">
+					<form th:action="@{/fornecedores/pesquisar}" method="post"
+						class="d-flex">
 						<input th:name="@{nome}" class="form-control me-2" type="text"
 							id="consulta" placeholder="Informar o nome" aria-label="Search">
 						<button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -46,7 +47,7 @@
 										<th class="cell">CEP</th>
 										<th class="cell">Rua</th>
 										<th class="cell">Bairro</th>
-										
+
 										<th class="cell"></th>
 										<th class="cell"></th>
 									</tr>
@@ -62,18 +63,19 @@
 										<td th:text="${f.endereco.cep}" class="cell"></td>
 										<td th:text="${f.endereco.rua}" class="cell"></td>
 										<td th:text="${f.endereco.bairro}" class="cell"></td>
-										
-										
-	
+
+
+
 										<td class="cell"><a class="btn btn-primary"
 											th:href="@{editar/{id} (id=${f.id})}">Editar</a></td>
-											
+
 										<td class="cell">
-										
+
 											<button type="button" class="btn btn-danger"
-												data-bs-toggle="modal" th:attr="data-bs-target='#staticBackdrop'+${f.id}">Excluir
+												data-bs-toggle="modal"
+												th:attr="data-bs-target='#staticBackdrop'+${f.id}">Excluir
 											</button>
-											
+
 											<div class="modal fade"
 												th:attr="id='staticBackdrop'+ ${f.id}"
 												data-bs-backdrop="static" data-bs-keyboard="false"
@@ -137,7 +139,13 @@
 
 
 	</div>
-	<script type="text/javascript" src="/bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/bootstrap/bootstrap.bundle.min.js"></script>
+	<!-- Core -->
+	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Simplebar -->
+	<script src="../../vendor/simplebar/dist/simplebar.min.js"></script>
+
+	<!-- Volt JS -->
+	<script src="../../js/volt.js"></script>
 </body>
 </html>

@@ -4,65 +4,43 @@
 <meta charset="utf-8">
 </head>
 <body>
-	<link rel="stylesheet" href="/css/header.css">
-	<link rel="stylesheet" href="/css/cadastrop.css">
 
-	<header th:insert="head :: header-fixo"></header>
+	<link rel="stylesheet" href="/css/cadastrop.css">
+	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
+
+
+	<div th:replace="~{dashboard :: voltDonutec}"></div>
 
 	<div class="container">
 		<div id="form-container">
 			<p id="textcadastro">CADASTRAR INGREDIENTE</p>
 			<div class="form-floating mb-3">
 
-				<form action="#" th:action="@{/ingredientes/salvar}"
+				<form action="#" th:action="${ingrediente.id == null} ? @{/ingredientes/salvar} : @{/ingredientes/editar}"
 					th:object="${ingrediente}" method="post">
 
 					<div th:replace="fragments/alert"></div>
-					
-					<label>Nome: <span style="color: red;">*</span></label>
-					 <input
-						id="nome" name="nome" th:field="*{nome}" type="text"
-						class="form-control">
-						
-					<label>Preço: <span style="color: red;">*</span></label>
-					 <input
-						id="nome" name="nome" th:field="*{precoCompra}" type="text"
-						class="form-control" data-mask="#.##0,00" data-mask-reverse="true">	
-						
-					<!--
-					<ul>
-						<li>
-								<label> Produtos que deseja cadastrar esse ingredinte: 
-									<input type="checkbox" name="produtos"
-									 	   th:each="p : ${produtos}"
-									 	   th:value="${p.id}"
-									 	   th:text="${p.saborCobertura}"
-										   th:field="*{produtos}" />
-								</label>
-							</li>
-					</ul>
-					  -->	
-					<label> Produtos que deseja cadastrar esse ingredinte:</label>
-					<select id="" class="form-control"
-						th:field="*{produtos}">
-						<option value="">Selecione</option>
-						<option th:each="p : ${produtosLista}" th:value="${p.id}"
-							    th:text="${p.nomeDonuts}"></option>
-					</select>
-					
-					<!-- 
-					<ul>
-						<li>
-								<label> Fornecedores que deseja cadastrar esse ingredinte: 
-									<input type="checkbox" name="fornecedores"
-									 	   th:each="f : ${fornecedores}" th:value="${f.id}" th:text="${f.nome}"
-											th:field="*{fornecedores}" />
-								</label>
-							</li>
-					</ul>
-					 -->
-					
 
+					<label>Nome: <span style="color: red;">*</span></label> 
+					<input id="nome" name="nome" th:field="*{nome}" type="text" class="form-control"
+					 th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid' : ''"> 
+					<div class="invalid-feedback" th:errors="*{nome}"></div>
+					
+					<label>Preço: <span style="color: red;">*</span></label> 
+					<input id="nome" name="nome" th:field="*{precoCompra}" type="text" class="form-control"
+						data-mask="#.##0,00" data-mask-reverse="true" 
+						th:classappend="${#fields.hasErrors('precoCompra')} ? 'is-invalid' : ''">
+					<div class="invalid-feedback" th:errors="*{precoCompra}"></div>
+						
+					<label>Marca:</label> 
+					<input id="marca" name="marca" th:field="*{marca}" type="text" class="form-control"> 	
+								
+								
+								<label> Produtos que deseja cadastrar esse ingredinte: </label>	
+								<p>
+									<input class="form-check-input" type="checkbox" name="produtos"
+									 	   th:each="p : ${produtosLista}" th:value="${p.id}" th:text="${p.nomeDonuts}"
+											th:field="*{produtos}" style="margin-left: 12px"/>
 					<div class="button">
 						<div>
 							<button type="reset" class="btn btn-primary btn-lg">LIMPAR</button>
@@ -79,10 +57,17 @@
 
 	</div>
 
-	<script type="text/javascript" src="/bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/bootstrap/bootstrap.bundle.min.js"></script>
+	<!-- Core -->
+	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Simplebar -->
+	<script src="../../vendor/simplebar/dist/simplebar.min.js"></script>
+
+	<!-- Volt JS -->
+	<script src="../../js/volt.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script> 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>
 </html>

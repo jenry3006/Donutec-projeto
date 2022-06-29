@@ -1,106 +1,67 @@
 package com.donutec.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-public class Venda {
+public class Venda implements Serializable{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	public Venda() {
+		super();
+	}
+	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
 	@ManyToOne
 	private Cliente cliente;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataVenda = new Date();
+	private String formaPagamento;
+	private Double valorTotal=0.;
 	
-	private String nomeCliente;
-	
-	@NotNull(message = "Não pode ser null")
-	@ManyToMany
-	@JoinTable(name = "venda_produto",
-	joinColumns = {@JoinColumn(name="venda_id")},
-	inverseJoinColumns = {@JoinColumn(name="produto_id")})
-	@Column(nullable = false)
-	private List<Produto> produtos = new ArrayList<Produto>();
-	
-	private String nomeProduto;
-	
-	private int quantidade;
-	
-	private double total;
 
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
-
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
-	public String getNomeCliente() {
-		return nomeCliente;
+	public Date getDataVenda() {
+		return dataVenda;
 	}
-
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
+	public void setDataVenda(Date dataVenda) {
+		this.dataVenda = dataVenda;
 	}
-
-	
-	public List<Produto> getProdutos() {
-		return produtos;
+	public String getFormaPagamento() {
+		return formaPagamento;
 	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setFormaPagamento(String formaPagamento) {
+		this.formaPagamento = formaPagamento;
 	}
-
-	public String getNomeProduto() {
-		return nomeProduto; 
+	public Double getValorTotal() {
+		return valorTotal;
 	}
-
-	public void setNomeProduto(String nomeProduto) {
-		this.nomeProduto = nomeProduto;
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
 	}
-
-	public int getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public double getTotal() {
-		return total;
-	}
-
-	public void setTotal(double total) {
-		this.total = total;
-	}
-	
-	
-	
-	
 	
 	
 }

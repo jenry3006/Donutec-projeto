@@ -7,9 +7,10 @@
 <body>
 
 	<link rel="stylesheet" href="/css/cadastroc.css">
-	<link rel="stylesheet" href="/css/header.css">
+	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
-	<header th:insert="head :: header-fixo"></header>
+	<div th:replace="~{dashboard :: voltDonutec}"></div>
+	
 
 	<div class="container">
 		<div id="form-container">
@@ -21,13 +22,6 @@
 
 					<div th:replace="fragments/alert"></div>
 
-					<!--<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
-          				  th:text="${mensaje}"
-             			  class="alert">
-       				 </div>  -->
-
-					<!--<span th:text="${mensagem}" th:if="${mensagem != null}" style="color: #FF0000;"></span> -->
-						
 					<br>
 						
 						<label>Nome: <span style="color: red;">*</span></label> 
@@ -93,7 +87,13 @@
 		}
 	</script>
 
-	<script type="text/javascript" src="/bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/bootstrap/bootstrap.bundle.min.js"></script>
+	<!-- Core -->
+	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Simplebar -->
+	<script src="../../vendor/simplebar/dist/simplebar.min.js"></script>
+
+	<!-- Volt JS -->
+	<script src="../../js/volt.js"></script>
 </body>
 </html>

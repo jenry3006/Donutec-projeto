@@ -6,11 +6,12 @@
 </head>
 <body>
 
-	<link rel="stylesheet" href="/css/header.css">
+	
+	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
-	<header th:insert="head :: header-fixo"></header>
+	<div th:replace="~{dashboard :: voltDonutec}"></div>	
 
-	<div class="container">
+	<div class="container" style="margin-right: 75px">
 		<div class="buscar">
 			<nav class="navbar navbar-light bg-light">
 				<div class="container-fluid">
@@ -49,7 +50,7 @@
 								</thead>
 								<tbody>
 									<tr th:each="c : ${clientes}">
-										<td th:text="${c.id}" class="cell"></td>
+										<td  class="cell"></td>
 										<td th:text="${c.nome}" class="cell"></td>
 										<td th:text="${c.endereco}" class="cell"></td>
 										<td th:text="${c.contato}" class="cell"></td>
@@ -129,7 +130,14 @@
 
 
 	</div>
-	<script type="text/javascript" src="/bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/bootstrap/bootstrap.bundle.min.js"></script>
+	
+		<!-- Core -->
+	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Simplebar -->
+	<script src="../../vendor/simplebar/dist/simplebar.min.js"></script>
+
+	<!-- Volt JS -->
+	<script src="../../js/volt.js"></script>
 </body>
 </html>

@@ -40,7 +40,13 @@ public class UsuarioController {
     @GetMapping("/index")
     public String inicio(Usuario usuario ,HttpSession session) {
     	  //session.setAttribute("usuarioLogado", usuario);
-        return "/index";
+        return "/indexantigo";
+    }
+    
+    @GetMapping("/home")
+    public String home() {
+    	  //session.setAttribute("usuarioLogado", usuario);
+        return "/dashboard";
     }
 
     @GetMapping("/cadastro")

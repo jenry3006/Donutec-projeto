@@ -10,9 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ItensCompra implements Serializable{
+public class ItensVenda implements Serializable{
 
-	public ItensCompra() {
+	public ItensVenda() {
 		super();
 	}
 	private static final long serialVersionUID = 1L;
@@ -25,11 +25,13 @@ public class ItensCompra implements Serializable{
 	private Produto produto;
 	
 	@ManyToOne
-	private Compra compra;
+	private Venda venda;
 	
 	private Integer quantidade;
 
-	private Double valorUnitario;
+	private Double valorUnitario=0.;
+	
+	private Double valorTotal=0.;
 
 	public Long getId() {
 		return id;
@@ -47,15 +49,18 @@ public class ItensCompra implements Serializable{
 		this.produto = produto;
 	}
 
-	public Compra getCompra() {
-		return compra;
+	public Venda getVenda() {
+		return venda;
 	}
 
-	public void setCompra(Compra compra) {
-		this.compra = compra;
+	public void setVenda(Venda venda) {
+		this.venda = venda;
 	}
 
 	public Integer getQuantidade() {
+		if(quantidade == null) {
+			quantidade =0;
+		}
 		return quantidade;
 	}
 
@@ -69,6 +74,14 @@ public class ItensCompra implements Serializable{
 
 	public void setValorUnitario(Double valorUnitario) {
 		this.valorUnitario = valorUnitario;
+	}
+
+	public Double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 	
 	

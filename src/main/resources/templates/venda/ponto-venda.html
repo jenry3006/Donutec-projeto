@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head :: head">
+<meta charset="utf-8">
+<title>Donutec-Ponto de Venda</title>
+
+</head>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
+
+<!-- Bootstrap icons-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
+<link type="text/css" href="../../css/volt.css" rel="stylesheet">
+
+<style>
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+	float: left;
+	width: 25%;
+	padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+	margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+	.column {
+		width: 100%;
+		display: block;
+		margin-bottom: 20px;
+	}
+}
+
+/* Style the counter cards */
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	padding: 16px;
+	text-align: center;
+	background-color: #f1f1f1;
+	height: 150px;
+	width: 150px;
+}
+</style>
+
+<body>
+
+	<div th:replace="~{dashboard :: voltDonutec}"></div>
+
+	<div class="container" style="margin-right: 75px">
+
+
+		<!-- Header-->
+		<header class="bg-light">
+			<div class="container">
+				<div class="text-center text-black">
+
+					<h1 class="display-4 fw-bolder">Ponto de Venda</h1>
+					<p class="lead fw-normal text-black-50 mb-0">Escolha os
+						produtos abaixo para adicionar à venda</p>
+				</div>
+			</div>
+		</header>
+		<!-- Section-->
+
+		<div class="row">
+			<div class="column" th:each="p : ${listaProdutos}">
+				<div class="card">
+					<a href="#"><img
+						
+						th:src="@{produto/mostrarImagem/{imagem}(imagem=${p.nomeImagem})}"
+						src=""></a>
+					<h5 th:text="${p.nomeDonuts}"></h5>
+					<h5 th:text="${p.valor}"></h5>
+					<div class="text-center">
+						<a class="btn btn-outline-dark mt-auto"
+							th:href="@{/adicionar-venda/{id}(id=${p.id})}">Selecionar</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<section class="py-5">
+
+			<div class="col-12">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col"></th>
+
+								<th scope="col">Produto</th>
+								<th scope="col" class="text-center">Quantidade</th>
+								<th scope="col" class="text-right">Valor Unitario</th>
+								<th scope="col" class="text-right">Valor Total</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${listaItens}">
+
+								<td></td>
+								<td th:text="${item.produto.nomeDonuts}"></td>
+								<td><span th:text="${item.quantidade}"></span> &nbsp;&nbsp;
+
+									<a class="btn btn-sm btn-success"
+									th:href="@{/alterar-quantidade/{id}/{acao}(id=${item.produto.id}, acao=${1})}"><i
+										class="fa fa-plus"></i></a> <a class="btn btn-sm btn-danger"
+									th:href="@{/alterar-quantidade/{id}/{acao}(id=${item.produto.id}, acao=${0})}"><i
+										class="fa fa-minus"></i></a>
+								<td class="text-right" th:text="${item.valorUnitario}"></td>
+
+								<td class="text-right" th:text="${item.valorTotal}"></td>
+
+								<td class="text-right"><a class="btn btn-sm btn-danger"
+									th:href="@{/remover-produto/{id}(id=${item.produto.id})}"><i
+										class="fa fa-trash"></i></a></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>Sub-Total</td>
+								<td class="text-right"><span th:text="${venda.valorTotal}"></span></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>Frete</td>
+								<td class="text-right">0.00</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><strong>Total</strong></td>
+								<td class="text-right"><strong><span
+										th:text="${venda.valorTotal}"></span></strong></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col mb-2">
+
+				<div class="col-sm-12 col-md-6 text-right text-center">
+					<a class="btn btn-lg btn-block btn-success text-uppercase"
+						th:href="@{/finalizar}">Finalizar a venda</a>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- Footer-->
+		<footer class="py-5 bg-dark">
+			<div class="container">
+				<p class="m-0 text-center text-white">Copyright &copy; Your
+					Website 2022</p>
+			</div>
+		</footer>
+	</div>
+	<!-- Core -->
+	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Simplebar -->
+	<script src="../../vendor/simplebar/dist/simplebar.min.js"></script>
+
+	<!-- Volt JS -->
+	<script src="../../js/volt.js"></script>
+</body>
+</html>

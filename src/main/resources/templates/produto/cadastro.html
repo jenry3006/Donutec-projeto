@@ -1,61 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="head :: head">
-    <meta charset="utf-8">
+<meta charset="utf-8">
 </head>
 <body>
-<link rel="stylesheet" href="/css/header.css">
-<link rel="stylesheet" href="/css/cadastrop.css">
+	
+	<link rel="stylesheet" href="/css/cadastrop.css">
+	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
-<header th:insert="head :: header-fixo"></header>
 
-<div class="container">
-    <div id="form-container">
-        <p id="textcadastro">CADASTRAR PRODUTO</p>
-        <div class="form-floating mb-3">
-            <form action="#" th:action="@{/produto/salvar}" enctype="multipart/form-data" th:object="${produto}" method="post">
-            
-            	<div th:replace="fragments/alert"></div>
-              
-                <label >Donuts:<span style="color: red ;">*</span></label>
-                <input id="descricao" name="nomeDonuts" th:field="*{nomeDonuts}" type="text" class="form-control"
-                 th:classappend="${#fields.hasErrors('nomeDonuts')} ? 'is-invalid' : ''"      >
-                 <div class="invalid-feedback" th:errors="*{nomeDonuts}"></div>
+	<div th:replace="~{dashboard :: voltDonutec}"></div>
 
-        
 
-                <label >Valor de venda:<span style="color: red ;">*</span></label>
-                <input id="valor" name="valor" th:field="*{valor}" type="text" class="form-control" 
-                th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid' : ''" 
-                data-mask="#.##0,00" data-mask-reverse="true">
-                <div class="invalid-feedback" th:errors="*{valor}"></div>
+	<div class="container">
+		<div id="form-container">
+			<p id="textcadastro">CADASTRAR PRODUTO</p>
+			<div class="form-floating mb-3">
+				<form action="#" th:action="@{/produto/salvar}"
+					enctype="multipart/form-data" th:object="${produto}" method="post">
 
-				 <label for="exampleFormControlTextarea1" class="form-label">Observação:</label>
-  					<textarea class="form-control" name="obs" id="exampleFormControlTextarea1" rows="3" th:field="*{obs}"></textarea>
-                
-                <input type="file" name="file" >
-                <div class="button">
-                    <div>
-                        <button type="reset" class="btn btn-primary btn-lg">LIMPAR</button>
-                    </div>
-                    <input type="hidden" id="id" name="id" th:value="${produto.id}"
-                           th:if="${produto != null}"/>
-                    <div>
-                        <button type="submit" class="btn btn-success btn-lg">SALVAR</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+					<div th:replace="fragments/alert"></div>
 
-</div>
+					<label>Donuts:<span style="color: red;">*</span></label> <input
+						id="descricao" name="nomeDonuts" th:field="*{nomeDonuts}"
+						type="text" class="form-control"
+						th:classappend="${#fields.hasErrors('nomeDonuts')} ? 'is-invalid' : ''">
+					<div class="invalid-feedback" th:errors="*{nomeDonuts}"></div>
 
-<script type="text/javascript" 
-		src="/bootstrap/bootstrap.min.js"></script>
-		<script type="text/javascript"
-	 src="/bootstrap/bootstrap.bundle.min.js"></script>	
-	 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script> 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+
+					<label>Valor de venda:<span style="color: red;">*</span></label> <input
+						id="valor" name="valor" th:field="*{valor}" type="number"
+						class="form-control"
+						th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid' : ''"
+						data-mask-reverse="true">
+					<div class="invalid-feedback" th:errors="*{valor}"></div>
+
+					<label for="exampleFormControlTextarea1" class="form-label">Observação:</label>
+					<textarea class="form-control" name="obs"
+						id="exampleFormControlTextarea1" rows="3" th:field="*{obs}"></textarea>
+
+					<input type="file" name="file">
+					<div class="button">
+						<div>
+							<button type="reset" class="btn btn-primary btn-lg">LIMPAR</button>
+						</div>
+						<input type="hidden" id="id" name="id" th:value="${produto.id}"
+							th:if="${produto != null}" />
+						<div>
+							<button type="submit" class="btn btn-success btn-lg">SALVAR</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+<!-- Core -->
+	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Simplebar -->
+	<script src="../../vendor/simplebar/dist/simplebar.min.js"></script>
+
+	<!-- Volt JS -->
+	<script src="../../js/volt.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>
 </html>

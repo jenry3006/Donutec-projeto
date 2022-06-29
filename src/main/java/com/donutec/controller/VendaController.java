@@ -1,73 +1,164 @@
 package com.donutec.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.Valid;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.donutec.model.Cliente;
-import com.donutec.model.Produto;
 import com.donutec.model.Venda;
+import com.donutec.model.ItensVenda;
+import com.donutec.model.Produto;
 import com.donutec.repository.ClienteRepository;
-import com.donutec.repository.ProdutoRepository;
 import com.donutec.repository.VendaRepository;
-import com.donutec.service.ClienteServiceApi;
-import com.donutec.service.VendaService;
+import com.donutec.repository.ItensVendaRepository;
+import com.donutec.repository.ProdutoRepository;
 
 @Controller
-@RequestMapping("/venda")
 public class VendaController {
-	
+
+	private List<ItensVenda> itensVenda = new ArrayList<ItensVenda>();
+	private Venda venda = new Venda();
+
 	@Autowired
-	private VendaRepository vendaRepo;
-	
+	private ProdutoRepository produtoRepository;
+
 	@Autowired
-	private ClienteRepository clienteRepo;
-	
+	private VendaRepository vendaRepository;
+
 	@Autowired
-	private ProdutoRepository produtoRepo;
-	
+	private ItensVendaRepository itensVendaRepository;
+
 	@Autowired
-	VendaService vendaService;
-	
-	@RequestMapping("/ponto_venda")
-	public String abrirPontoVenda(Model model, Venda venda) {
-		return "venda/ponto_venda";
+	private ClienteRepository clienteRepository;
+
+	@GetMapping("/venda")
+	public ModelAndView chamarVenda() {
+		ModelAndView mv = new ModelAndView("venda/ponto-venda");
+		mv.addObject("listaProdutos", produtoRepository.findAll());
+		calcularTotal();
+		mv.addObject("venda", venda);
+		mv.addObject("listaItens", itensVenda);
+
+		return mv;
 	}
-	
-	@RequestMapping("/lista_venda")
-	public String abrirListaVenda(Model model) {
-		return "venda/lista_venda";
+
+	@GetMapping("/registro-venda")
+	public ModelAndView registroVendas() {
+		ModelAndView mv = new ModelAndView("venda/registro-venda");
+		mv.addObject("vendas", vendaRepository.findAll());
+		return mv;
 	}
-	
-	@PostMapping("/salvar")
-	public String salvar( @ModelAttribute("venda") Venda venda,Produto produto) {
-	
-		double total =  vendaService.calculoTotal(venda,produto);
-		venda.setTotal(total);
-		System.out.println(vendaService.calculoTotal(venda, produto));
-		vendaRepo.save(venda);
-		return "redirect:/venda/ponto_venda";
+
+	@GetMapping("/finalizar")
+	public ModelAndView finalizar() {
+		ModelAndView mv = new ModelAndView("venda/finalizar");
+		calcularTotal();
+		mv.addObject("venda", venda);
+		mv.addObject("listaItens", itensVenda);
+		mv.addObject("listaCliente", clienteRepository.findAll());
+		return mv;
 	}
-	
-	@ModelAttribute("clientes")
-	public List<Cliente> clientes(){
-		return clienteRepo.findAll();
+
+	@PostMapping("/finalizar/confirmar")
+	public ModelAndView confirmarVenda(String formaPagamento, Cliente cliente) {
+		ModelAndView mv = new ModelAndView("/dashboard");
+		venda.setCliente(cliente);
+		venda.setFormaPagamento(formaPagamento);
+		vendaRepository.save(venda);
+
+		for (ItensVenda c : itensVenda) {
+			c.setVenda(venda);
+			itensVendaRepository.saveAndFlush(c);
+		}
+
+		itensVenda = new ArrayList<>();
+		venda = new Venda();
+		return mv;
 	}
-	
-	@ModelAttribute("produtos")
-	public List<Produto> produtos(){
-		return produtoRepo.findAll();
+
+	private void calcularTotal() {
+		venda.setValorTotal(0.);
+		for (ItensVenda it : itensVenda) {
+			venda.setValorTotal(venda.getValorTotal() + it.getValorTotal());
+		}
 	}
-	
+
+	@GetMapping("/alterar-quantidade/{id}/{acao}")
+	public String alterarQuantidade(@PathVariable Long id, @PathVariable Integer acao) {
+
+		for (ItensVenda it : itensVenda) {
+
+			if (it.getProduto().getId().equals(id)) {
+
+				if (acao.equals(1)) {
+
+					it.setQuantidade(it.getQuantidade() + 1);
+					it.setValorTotal(0.);
+					it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
+
+				} else if (acao.equals(0)) {
+
+					it.setQuantidade(it.getQuantidade() - 1);
+					it.setValorTotal(0.);
+					it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
+
+				}
+
+				break;
+			}
+		}
+
+		return "redirect:/venda";
+	}
+
+	@GetMapping("/remover-produto/{id}")
+	public String removerProduto(@PathVariable Long id) {
+
+		for (ItensVenda it : itensVenda) {
+			if (it.getProduto().getId() == id) {
+				itensVenda.remove(it);
+				break;
+			}
+		}
+		return "redirect:/venda";
+	}
+
+	@GetMapping("/adicionar-venda/{id}")
+	public String adicionarVenda(@PathVariable Long id) {
+		Optional<Produto> prod = produtoRepository.findById(id);
+		Produto produto = prod.get();
+		int count = 0;
+		for (ItensVenda it : itensVenda) {
+
+			if (it.getProduto().getId().equals(produto.getId())) {
+				it.setQuantidade(it.getQuantidade() + 1);
+				it.setValorTotal(0.);
+
+				it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
+				System.out.println(it.getValorTotal());
+				count = 1;
+				break;
+			}
+		}
+
+		if (count == 0) {
+			ItensVenda item = new ItensVenda();
+			item.setProduto(produto);
+			item.setValorUnitario(produto.getValor());
+			item.setQuantidade(item.getQuantidade() + 1);
+			System.out.println(item.getValorTotal());
+			item.setValorTotal(item.getValorTotal() + (item.getQuantidade() * item.getValorUnitario()));
+			itensVenda.add(item);
+		}
+
+		return "redirect:/venda";
+	}
+
 }
