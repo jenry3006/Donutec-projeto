@@ -50,7 +50,7 @@
 									<tr th:each="v : ${vendas}">
 										
 										<td th:text="${v.id}" class="cell"></td>
-										<td  class="cell">cliente</td>
+										<td th:text="${v.cliente.nome}" class="cell"></td>
 										<td th:text="${v.formaPagamento}" class="cell"></td>
 										<td th:text="${v.valorTotal}" class="cell"></td>
 										<td th:text="${v.dataVenda}" class="cell">data</td>

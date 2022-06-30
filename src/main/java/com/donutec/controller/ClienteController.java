@@ -128,6 +128,7 @@ public class ClienteController {
 
 	@GetMapping("relatorio")
 	public String abrirRelatorio(Model model){
+		clientes = clienteRepo.findAll();
 		model.addAttribute("clientes", clientes);
 
 		return "cliente/relatorio";

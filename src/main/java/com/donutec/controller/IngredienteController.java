@@ -94,6 +94,13 @@ public class IngredienteController {
 		return "ingrediente/lista";
 	}
 	
+	@GetMapping("relatorio")
+	public String abrirRelatorio(Model model){
+		
+		model.addAttribute("ingredientes", ingredienteRepo.findAll());
+
+		return "ingrediente/relatorio";
+	}
 	
 	@ModelAttribute("produtosLista")
 	public List<Produto> produtosCheckbox(){

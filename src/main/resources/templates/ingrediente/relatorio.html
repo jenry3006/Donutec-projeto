@@ -14,7 +14,7 @@
 
 <div class="container">
     <hr>
-    <p style="text-align: center; font-size: 25px;" >RELATÓRIO DE PRODUTO</p>
+    <p style="text-align: center; font-size: 25px;" >RELATÓRIO DE INGREDIENTE</p>
     <hr>
     <div class="tab-content" id="orders-table-tab-content">
         <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
@@ -25,23 +25,25 @@
                             <thead>
                             <tr>
                                 <th class="cell">ID</th>
-                               
-                                <th class="cell">Sabor da cobertura</th>
-                                <th class="cell">Valor</th>
-                                <th class="cell">Observação</th>
-                                <th class="cell">Imagem</th>
+                                <th class="cell">Nome</th>
+                                <th class="cell">Preço</th>
+                                <th class="cell">Marca</th>
+                                <th class="cell">Produtos relacionados</th>
+                              
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="p : ${produtos}">
-                                <td th:text="${p.id}" class="cell"></td>
-                               
-                                <td th:text="${p.nomeDonuts}" class="cell"></td>
-                                <td th:text="${p.valor}" class="cell"></td>
-                                <td th:text="${p.obs}" class="cell"></td>
-                                <td><img alt=""
-											th:src="@{mostrarImagem/{imagem}(imagem=${p.nomeImagem})}"
-											width="100" src=""></td>
+                            <tr th:each="i : ${ingredientes}">
+                                <td th:text="${i.id}" class="cell"></td>
+                                <td th:text="${i.nome}" class="cell"></td>
+                                <td th:text="${i.precoCompra}" class="cell"></td>
+                                <td th:text="${i.marca}" class="cell"></td>
+                                <td>
+									<p th:each="p : ${i.produtos}">
+										<span th:text="${p.nomeDonuts}" class="cell"></span>
+									</p>
+								</td>
+                                
                             </tbody>
                         </table>
                     </div>
