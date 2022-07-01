@@ -100,9 +100,10 @@
 			<ul class="nav flex-column pt-3 pt-md-0">
 				<li class="nav-item"><a href="../../home"
 					class="nav-link d-flex align-items-center"> <span
-						class="sidebar-icon"> <img src="/img/logo.png"
-							height="55" width="55" alt="Volt Logo">
-					</span> <span class="mt-1 ms-1 sidebar-text"><h3 style="font-family: cursive">Donutec</h3></span>
+						class="sidebar-icon"> <img src="/img/logo.png" height="55"
+							width="55" alt="Volt Logo">
+					</span> <span class="mt-1 ms-1 sidebar-text"><h3
+								style="font-family: cursive">Donutec</h3></span>
 				</a></li>
 
 				<li class="nav-item"><span
@@ -127,8 +128,8 @@
 						aria-expanded="false">
 						<ul class="flex-column nav">
 							<li class="nav-item "><a class="nav-link"
-								th:href="@{/cliente/cadastro}"> <span class="sidebar-text">Cadastro
-										de clientes</span>
+								th:href="@{/cliente/cadastro}"> <span class="sidebar-text">Cadastrar
+										 </span>
 							</a></li>
 						</ul>
 					</div>
@@ -136,8 +137,8 @@
 						aria-expanded="false">
 						<ul class="flex-column nav">
 							<li class="nav-item "><a class="nav-link"
-								th:href="@{/cliente/lista}"> <span class="sidebar-text">Lista
-										de clientes</span>
+								th:href="@{/cliente/lista}"> <span class="sidebar-text">Listar
+										</span>
 							</a></li>
 						</ul>
 					</div></li>
@@ -164,15 +165,52 @@
 						aria-expanded="false">
 						<ul class="flex-column nav">
 							<li class="nav-item"><a class="nav-link"
-								th:href="@{/produto/cadastro}"> <span class="sidebar-text">Cadastrar
-										produto</span>
+								th:href="@{/produto/cadastro}"> <span class="sidebar-text">Cadastrar</span>
+							</a></li>
+							<li class="nav-item "><a class="nav-link"
+								th:href="@{/entrada/cadastrar}"> <span class="sidebar-text">Entrada
+										produtos</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
-								th:href="@{/produto/lista}"> <span class="sidebar-text">Listar
-										produtos</span>
+								th:href="@{/produto/lista}"> <span class="sidebar-text">Listar</span>
 							</a></li>
 						</ul>
 					</div></li>
+					
+				<li class="nav-item"><span
+					class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+					data-bs-toggle="collapse" data-bs-target="#submenu-components">
+						<span> <span class="sidebar-icon"> <svg
+									class="icon icon-xs me-2" fill="currentColor"
+									viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+									<path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"></path>
+									<path fill-rule="evenodd"
+										d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
+										clip-rule="evenodd"></path></svg>
+						</span> <span class="sidebar-text">Venda</span>
+					</span> <span class="link-arrow"> <svg class="icon icon-sm"
+								fill="currentColor" viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd"
+									d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+									clip-rule="evenodd"></path></svg>
+					</span>
+				</span>
+					<div class="multi-level collapse " role="list"
+						id="submenu-components" aria-expanded="false">
+						<ul class="flex-column nav">
+							<li class="nav-item "><a class="nav-link"
+								th:href="@{/venda}"> <span class="sidebar-text">Ponto
+										de Venda</span>
+							</a></li>
+
+							<li class="nav-item "><a class="nav-link"
+								th:href="@{/registro-venda}"> <span class="sidebar-text">Registro
+										de vendas</span>
+							</a></li>
+
+						</ul>
+					</div></li>	
 
 				<li class="nav-item"><span
 					class="nav-link  collapsed  d-flex justify-content-between align-items-center"
@@ -198,11 +236,11 @@
 						<ul class="flex-column nav">
 							<li class="nav-item"><a class="nav-link"
 								th:href="@{/ingredientes/cadastrar}"> <span
-									class="sidebar-text">Cadastrar ingrediente</span>
+									class="sidebar-text">Cadastrar</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
-								th:href="@{/ingredientes/listar}"> <span class="sidebar-text">Lista
-										de ingredientes</span>
+								th:href="@{/ingredientes/listar}"> <span
+									class="sidebar-text">Listar</span>
 							</a></li>
 						</ul>
 					</div></li>
@@ -230,69 +268,23 @@
 						<ul class="flex-column nav">
 							<li class="nav-item"><a class="nav-link"
 								th:href="@{/fornecedores/cadastrar}"> <span
-									class="sidebar-text">Cadastrar Fornecedor</span>
+									class="sidebar-text">Cadastrar</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
 								th:href="@{/fornecedores/listar}"> <span
-									class="sidebar-text">Lista de fornecedores</span>
+									class="sidebar-text">Listar</span>
 							</a></li>
 						</ul>
 					</div></li>
-				<li class="nav-item"><span
-					class="nav-link  collapsed  d-flex justify-content-between align-items-center"
-					data-bs-toggle="collapse" data-bs-target="#submenu-components">
-						<span> <span class="sidebar-icon"> <svg
-									class="icon icon-xs me-2" fill="currentColor"
-									viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-									<path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"></path>
-									<path fill-rule="evenodd"
-										d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-										clip-rule="evenodd"></path></svg>
-						</span> <span class="sidebar-text">Venda</span>
-					</span> <span class="link-arrow"> <svg class="icon icon-sm"
-								fill="currentColor" viewBox="0 0 20 20"
-								xmlns="http://www.w3.org/2000/svg">
-								<path fill-rule="evenodd"
-									d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-									clip-rule="evenodd"></path></svg>
-					</span>
-				</span>
-					<div class="multi-level collapse " role="list"
-						id="submenu-components" aria-expanded="false">
-						<ul class="flex-column nav">
-							<li class="nav-item"><a class="nav-link"
-								th:href="@{/area-venda}"> <span class="sidebar-text">Area
-										de venda</span>
-							</a></li>
-							<li class="nav-item "><a class="nav-link"
-								th:href="@{/registro-venda}"> <span class="sidebar-text">Registro
-										de vendas</span>
-							</a></li>
-							<li class="nav-item "><a class="nav-link"
-								th:href="@{/venda}"> <span class="sidebar-text">Ponto de Venda</span>
-							</a></li>
-							<li class="nav-item "><a class="nav-link"
-								th:href="@{/entrada/cadastrar}"> <span class="sidebar-text">Entrada
-										produtos(tirar)</span>
-							</a></li>
-							<li class="nav-item "><a class="nav-link"
-								> <span
-									class="sidebar-text">Modals</span>
-							</a></li>
-							<li class="nav-item "><a class="nav-link"
-								href="../../pages/components/typography.html"> <span
-									class="sidebar-text">Typography</span>
-							</a></li>
-						</ul>
-					</div></li>
+				
 				<li role="separator"
 					class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
-				
+
 
 			</ul>
 		</div>
 	</nav>
-	
+
 	<div th:align="center">
 		<img src="/img/logo.png" alt="Image01" />
 	</div>

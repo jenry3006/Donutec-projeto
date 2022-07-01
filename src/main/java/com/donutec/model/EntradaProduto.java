@@ -22,6 +22,7 @@ public class EntradaProduto implements Serializable{
 
 	private Date dataEntrada = new Date();
 	private String obs;
+	
 	public Long getId() {
 		return id;
 	}
