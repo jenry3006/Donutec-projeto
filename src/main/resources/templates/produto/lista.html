@@ -44,6 +44,7 @@
 										<th class="cell">Sabor Cobertura</th>
 										<th class="cell">Valor de venda:</th>
 										<th class="cell">Observação:</th>
+										<th class="cell">Qtde.Estoque</th>
 										<th class="cell">Imagem</th>
 										<th class="cell"></th>
 										<th class="cell"></th>
@@ -54,9 +55,10 @@
 										<td th:text="${p.id}" class="cell"></td>
 										<td th:text="${p.nomeDonuts}" class="cell"></td>
 										<td th:text="${p.valor}" class="cell"></td>
-										<td class="cell"><textarea rows="2" cols=""
+										<td class="cell"><textarea rows="2" cols="10"
 												th:text="${p.obs}" style="border-width: 1px;" disabled></textarea>
 										</td>
+										<td th:text="${p.quantidadeEstoque}" class="cell"></td>
 										<td><img alt=""
 											th:src="@{mostrarImagem/{imagem}(imagem=${p.nomeImagem})}"
 											width="100" src=""></td>

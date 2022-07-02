@@ -34,7 +34,7 @@ body {
 /* Float four columns side by side */
 .column {
 	float: left;
-	width: 25%;
+	width: 15%;
 	padding: 0 10px;
 }
 
@@ -65,7 +65,7 @@ body {
 	padding: 16px;
 	text-align: center;
 	background-color: #f1f1f1;
-	height: 150px;
+	height: 300px;
 	width: 150px;
 }
 </style>
@@ -93,8 +93,12 @@ body {
 		<div class="row">
 			<div class="column" th:each="p : ${listaProdutos}">
 				<div class="card">
+					<button type="button" class="btn btn-primary"
+						data-bs-toggle="tooltip" data-bs-placement="top"
+						title="Quantidade estoque">
+						<span th:text="${p.quantidadeEstoque}"></span>
+					</button>
 					<a href="#"><img
-						
 						th:src="@{produto/mostrarImagem/{imagem}(imagem=${p.nomeImagem})}"
 						src=""></a>
 					<h5 th:text="${p.nomeDonuts}"></h5>
@@ -125,15 +129,29 @@ body {
 							</tr>
 						</thead>
 						<tbody>
+
 							<tr th:each="item : ${listaItens}">
+							
+									
+								<div th:if="${item.quantidade == item.produto.quantidadeEstoque}"
+								 class="alert alert-warning alert-dismissible fade show"
+									role="alert">
+									<strong>Atenção!</strong> A quantidade de itens não pode exceder a quantidade do estoque.
+									<button type="button" class="btn-close" data-bs-dismiss="alert"
+										aria-label="Close"></button>
+								</div>
 
 								<td></td>
 								<td th:text="${item.produto.nomeDonuts}"></td>
 								<td><span th:text="${item.quantidade}"></span> &nbsp;&nbsp;
 
-									<a class="btn btn-sm btn-success"
+									<a th:if="${item.quantidade<item.produto.quantidadeEstoque}"
+									class="btn btn-sm btn-success"
 									th:href="@{/alterar-quantidade/{id}/{acao}(id=${item.produto.id}, acao=${1})}"><i
-										class="fa fa-plus"></i></a> <a class="btn btn-sm btn-danger"
+										class="fa fa-plus"></i></a> <a
+									th:if="${item.quantidade==item.produto.quantidadeEstoque}"
+									class="btn btn-sm btn-secondary"><i class="fa fa-plus"></i></a>
+									<a class="btn btn-sm btn-danger"
 									th:href="@{/alterar-quantidade/{id}/{acao}(id=${item.produto.id}, acao=${0})}"><i
 										class="fa fa-minus"></i></a>
 								<td class="text-right" th:text="${item.valorUnitario}"></td>
@@ -186,13 +204,7 @@ body {
 
 			</div>
 		</section>
-		<!-- Footer-->
-		<footer class="py-5 bg-dark">
-			<div class="container">
-				<p class="m-0 text-center text-white">Copyright &copy; Your
-					Website 2022</p>
-			</div>
-		</footer>
+
 	</div>
 	<!-- Core -->
 	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
