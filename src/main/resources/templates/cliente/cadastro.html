@@ -56,7 +56,7 @@
 						<select id="select" name="tipoContato" th:field="*{tipoContato}"
 							class="form-select" aria-label="Default select example"
 							th:classappend="${#fields.hasErrors('tipoContato')} ? 'is-invalid' : ''">
-							<option th:value="${tipoContato}" disabled selected>Seleciona
+							<option th:value="${tipoContato}" disabled selected>Selecione
 								o tipo de contato:</option>
 							<option
 								th:each="tiposOpt : ${T(com.donutec.model.TipoContato).values()}"

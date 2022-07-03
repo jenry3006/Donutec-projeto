@@ -67,10 +67,12 @@ public class VendaController {
 	}
 
 	@PostMapping("/finalizar/confirmar")
-	public ModelAndView confirmarVenda(String formaPagamento, Cliente cliente) {
+	public ModelAndView confirmarVenda(String formaPagamento, Cliente cliente, String enderecoAdicional, String observacao) {
 		ModelAndView mv = new ModelAndView("/dashboard");
 		venda.setCliente(cliente);
 		venda.setFormaPagamento(formaPagamento);
+		venda.setEnderecoAdicional(enderecoAdicional);
+		venda.setObservacao(observacao);
 		vendaRepository.save(venda);
 
 		for (ItensVenda c : itensVenda) {
@@ -94,27 +96,20 @@ public class VendaController {
 	public String alterarQuantidade(@PathVariable Long id, @PathVariable Integer acao) {
 
 		for (ItensVenda it : itensVenda) {
-
 			if (it.getProduto().getId().equals(id)) {
-
 				if (acao.equals(1)) {
-
 					it.setQuantidade(it.getQuantidade() + 1);
 					it.setValorTotal(0.);
 					it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
 
 				} else if (acao.equals(0)) {
-
 					it.setQuantidade(it.getQuantidade() - 1);
 					it.setValorTotal(0.);
 					it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
-
 				}
-
 				break;
 			}
 		}
-
 		return "redirect:/venda";
 	}
 

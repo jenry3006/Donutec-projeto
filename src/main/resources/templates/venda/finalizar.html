@@ -21,6 +21,7 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/styles.css" rel="stylesheet" />
 <link type="text/css" href="../../css/volt.css" rel="stylesheet">
+<link rel="shortcut icon" type="imagex/png" href="/img/logo_1.ico">
 <body>
 
 	<div th:replace="~{dashboard :: voltDonutec}"></div>
@@ -39,7 +40,8 @@
 		<!-- Section-->
 
 		<section class="py-5 container">
-			<form action="/finalizar/confirmar" method="post" th:object="${venda}">
+			<form action="/finalizar/confirmar" method="post"
+				th:object="${venda}">
 				<div class="row">
 					<div class="col-12">
 						<div class="table-responsive">
@@ -111,8 +113,8 @@
 						<div class="row">
 
 							<div class="col-md-6">
-							<label>Selecione a forma de pagamento</label>
-								<select name="formaPagamento" class="form-select"
+								<label>Selecione a forma de pagamento</label> <select
+									name="formaPagamento" class="form-select"
 									aria-label="Default select example">
 
 									<option value="Cartão">Cartão</option>
@@ -120,29 +122,38 @@
 									<option value="Dinherio">Dinheiro</option>
 								</select>
 							</div>
-							
+
 							<div class="col-md-6">
-							<label>Selecione o cliente</label>
-								<select th:field="*{cliente}" name="formaPagamento" class="form-select"
+								<label>Selecione o cliente</label> <select th:field="*{cliente}"
+									name="formaPagamento" class="form-select"
 									aria-label="Default select example">
 
 									<option th:each="c : ${listaCliente}" th:value="${c.id}"
-									th:text="${c.nome}"></option>
-									
+										th:text="${c.nome}"></option>
+								
 								</select>
 							</div>
-							
-							<p>
-							<p>
-							<p>
-							<p>
-							
-						
 
+							<p>
+							<p>
+
+
+								<label for="exampleFormControlTextarea1" class="form-label">Observação:</label>
+								<textarea class="form-control" name="observacao"
+									id="exampleFormControlTextarea1" rows="3"
+									th:field="*{observacao}"></textarea>
+								<p><p>
+				
+									<label>Adicionar endereço de entrega?:</label> <input
+									id="enderecoAdicional" name="enderecoAdicional"
+									th:field="*{enderecoAdicional}" type="text"
+									class="form-control">
+							
 							<div class="col-md-6 text-right">
 								<button type="submit"
 									class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
 							</div>
+							<hr>
 						</div>
 					</div>
 

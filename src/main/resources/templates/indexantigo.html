@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="head :: head">
-
+<head>
+<meta http-equiv="refresh"
+	content="3.5; URL='http://localhost:8080/home/'" />
+<link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+<link rel="shortcut icon" type="imagex/png" href="/img/logo_1.ico">
+<title>Donutec teste</title>
 </head>
 <body>
-
-
 
 	<div style="text-align: center;"
 		class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -18,7 +20,15 @@
 	</div>
 
 	<div th:align="center">
-		<a th:href="@{/home}" class="btn btn-primary">Entrar no sistema</a>
+		<button class="btn btn-primary" type="button" disabled>
+			<span class="spinner-grow spinner-grow-sm" role="status"
+				aria-hidden="true"></span> Carregando...
+		</button>
+	</div>
+	<br><br><br>
+
+	<div th:align="center">
+		Aguarde, ou  <a th:href="@{/home}">clique aqui</a>
 	</div>
 
 

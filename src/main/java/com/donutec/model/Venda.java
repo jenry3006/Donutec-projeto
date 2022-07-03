@@ -30,7 +30,8 @@ public class Venda implements Serializable{
 	private Date dataVenda = new Date();
 	private String formaPagamento;
 	private Double valorTotal=0.;
-	
+	private String observacao;
+	private String enderecoAdicional;
 
 	public Long getId() {
 		return id;
@@ -62,6 +63,19 @@ public class Venda implements Serializable{
 	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+	public String getObservacao() {
+		return observacao;
+	}
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+	public String getEnderecoAdicional() {
+		return enderecoAdicional;
+	}
+	public void setEnderecoAdicional(String enderecoAdicional) {
+		this.enderecoAdicional = enderecoAdicional;
+	}
+	
 	
 	
 }

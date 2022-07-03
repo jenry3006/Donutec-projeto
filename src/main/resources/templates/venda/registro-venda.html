@@ -8,7 +8,7 @@
 
 	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
-	<div th:replace="~{dashboard :: voltDonutec}"></div>	
+	<div th:replace="~{dashboard :: voltDonutec}"></div>
 
 	<div class="container" style="margin-right: 75px">
 		<div class="buscar">
@@ -39,23 +39,35 @@
 									<tr>
 										<th class="cell">ID</th>
 										<th class="cell">Cliente</th>
+										<th class="cell">Endereco cliente</th>
+										<th class="cell">Endereco entrega</th>
 										<th class="cell">Forma de Pagamento</th>
 										<th class="cell">Valor Total</th>
+										<th class="cell">Observação</th>
 										<th class="cell">Data</th>
-										<th class="cell"></th>
-										<th class="cell"></th>
+
+
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="v : ${vendas}">
-										
+
 										<td th:text="${v.id}" class="cell"></td>
 										<td th:text="${v.cliente.nome}" class="cell"></td>
+										<td th:text="${v.cliente.endereco}" class="cell"></td>
+										<td th:text="${v.enderecoAdicional}" class="cell"></td>
 										<td th:text="${v.formaPagamento}" class="cell"></td>
 										<td th:text="${v.valorTotal}" class="cell"></td>
-										<td th:text="${v.dataVenda}" class="cell">data</td>
+										<td>
+											<button type="button" class="btn btn-sm btn-danger" 
+										data-bs-toggle="popover" title="Obervação" 
+										th:data-bs-content="${v.observacao}"
+										>obervacao</button>
+										</td>
 										
 										
+										
+										<td th:text="${v.dataVenda}" class="cell"></td>
 									<tr>
 								</tbody>
 							</table>
@@ -67,12 +79,12 @@
 			</div>
 		</div>
 
-		
+
 
 
 	</div>
-	
-		<!-- Core -->
+
+	<!-- Core -->
 	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
 	<!-- Simplebar -->
