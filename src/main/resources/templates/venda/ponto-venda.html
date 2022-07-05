@@ -90,29 +90,55 @@ body {
 			</div>
 		</header>
 		<!-- Section-->
+		<br><br>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+			data-bs-target="#exampleModal">Clique para selecionar os
+			produtos</button>
 
-		<div class="row">
-			<div class="column" th:each="p : ${listaProdutos}">
-				<div class="card">
-					<button type="button" class="btn btn-primary"
-						data-bs-toggle="tooltip" data-bs-placement="top"
-						title="Quantidade estoque">
-						<span th:text="${p.quantidadeEstoque}"></span>
-					</button>
-					<a href="#"><img
-						th:src="@{produto/mostrarImagem/{imagem}(imagem=${p.nomeImagem})}"
-						src=""></a>
-					<h5 th:text="${p.nomeDonuts}"></h5>
-					<h5 th:text="${p.valor}"></h5>
-					<div class="text-center">
-						<a class="btn btn-outline-dark mt-auto"
-							th:href="@{/adicionar-venda/{id}(id=${p.id})}">Selecionar</a>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Selecione o(s)
+							produto(s)</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="column" th:each="p : ${listaProdutos}">
+								<div class="card">
+									<button type="button" class="btn btn-primary"
+										data-bs-toggle="tooltip" data-bs-placement="top"
+										title="Quantidade estoque">
+										<span th:text="${p.quantidadeEstoque}"></span>
+									</button>
+									<a href="#"><img
+										th:src="@{/produto/mostrarImagem/{imagem}(imagem=${p.nomeImagem})}"
+										src=""></a>
+									<h5 th:text="${p.nomeDonuts}"></h5>
+									<h5 th:text="${p.valor}"></h5>
+									<div class="text-center">
+										<a class="btn btn-outline-dark mt-auto"
+											th:href="@{/venda/adicionar-venda/{id}(id=${p.id})}">Selecionar</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-lg"
+							data-bs-dismiss="modal">Fechar</button>
+
 					</div>
 				</div>
 			</div>
-
 		</div>
-
+		
 		<section class="py-5">
 
 			<div class="col-12">
@@ -132,12 +158,14 @@ body {
 						<tbody>
 
 							<tr th:each="item : ${listaItens}">
-							
-									
-								<div th:if="${item.quantidade == item.produto.quantidadeEstoque}"
-								 class="alert alert-warning alert-dismissible fade show"
+
+
+								<div
+									th:if="${item.quantidade == item.produto.quantidadeEstoque}"
+									class="alert alert-warning alert-dismissible fade show"
 									role="alert">
-									<strong>Atenção!</strong> A quantidade de itens não pode exceder a quantidade do estoque.
+									<strong>Atenção!</strong> A quantidade de itens não pode
+									exceder a quantidade do estoque.
 									<button type="button" class="btn-close" data-bs-dismiss="alert"
 										aria-label="Close"></button>
 								</div>
@@ -148,19 +176,19 @@ body {
 
 									<a th:if="${item.quantidade<item.produto.quantidadeEstoque}"
 									class="btn btn-sm btn-success"
-									th:href="@{/alterar-quantidade/{id}/{acao}(id=${item.produto.id}, acao=${1})}"><i
+									th:href="@{/venda/alterar-quantidade/{id}/{acao}(id=${item.produto.id}, acao=${1})}"><i
 										class="fa fa-plus"></i></a> <a
 									th:if="${item.quantidade==item.produto.quantidadeEstoque}"
 									class="btn btn-sm btn-secondary"><i class="fa fa-plus"></i></a>
 									<a class="btn btn-sm btn-danger"
-									th:href="@{/alterar-quantidade/{id}/{acao}(id=${item.produto.id}, acao=${0})}"><i
+									th:href="@{/venda/alterar-quantidade/{id}/{acao}(id=${item.produto.id}, acao=${0})}"><i
 										class="fa fa-minus"></i></a>
 								<td class="text-right" th:text="${item.valorUnitario}"></td>
 
 								<td class="text-right" th:text="${item.valorTotal}"></td>
 
 								<td class="text-right"><a class="btn btn-sm btn-danger"
-									th:href="@{/remover-produto/{id}(id=${item.produto.id})}"><i
+									th:href="@{/venda/remover-produto/{id}(id=${item.produto.id})}"><i
 										class="fa fa-trash"></i></a></td>
 							</tr>
 							<tr>
@@ -196,12 +224,16 @@ body {
 				</div>
 			</div>
 			<div class="col mb-2">
-
-				<div class="col-sm-12 col-md-6 text-right text-center">
+				<br>
+				<div class="col-sm-12 text-end ">
+					<a class="btn btn-lg btn-block btn-danger text-uppercase"
+						th:href="@{/venda/cancelar-venda}" style="margin-right: 150px">Cancelar venda</a>
+						
 					<a class="btn btn-lg btn-block btn-success text-uppercase"
-						th:href="@{/finalizar}">Finalizar a venda</a>
-
+						th:href="@{/venda/finalizar}">Finalizar a venda</a>	
 				</div>
+				
+				
 
 			</div>
 		</section>

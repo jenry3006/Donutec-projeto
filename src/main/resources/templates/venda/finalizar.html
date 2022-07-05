@@ -40,7 +40,7 @@
 		<!-- Section-->
 
 		<section class="py-5 container">
-			<form action="/finalizar/confirmar" method="post"
+			<form action="/venda/finalizar/confirmar" method="post"
 				th:object="${venda}">
 				<div class="row">
 					<div class="col-12">
@@ -49,9 +49,9 @@
 								<thead class="table-dark">
 									<tr>
 										<th scope="col"></th>
-										<th scope="col">Product</th>
-										<th scope="col">Available</th>
-										<th scope="col" class="text-center">Quantity</th>
+										<th scope="col">Produto</th>
+										<th scope="col">Quantidade Estoque</th>
+										<th scope="col" class="text-right">Quantidade venda</th>
 										<th scope="col" class="text-right">Valor Unitario</th>
 										<th scope="col" class="text-right">Valor Total</th>
 										<th></th>
@@ -61,10 +61,9 @@
 									<tr th:each="item : ${listaItens}">
 										<td><img src="https://dummyimage.com/50x50/55595c/fff" />
 										</td>
-										<td th:text="${item.produto.nomeDonuts}">Product Name
-											Dada</td>
-										<td>Em estoque</td>
-										<td><span th:text="${item.quantidade}"></span></td>
+										<td class="text-right" th:text="${item.produto.nomeDonuts}"></td>
+										<td class="text-right" th:text="${item.produto.quantidadeEstoque}">Em estoque</td>
+										<td class="text-right"><span th:text="${item.quantidade}"></span></td>
 
 										<td class="text-right" th:text="${item.valorUnitario}"></td>
 
@@ -151,7 +150,7 @@
 							
 							<div class="col-md-6 text-right">
 								<button type="submit"
-									class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+									class="btn btn-lg btn-block btn-success text-uppercase">CONFIRMAR VENDA</button>
 							</div>
 							<hr>
 						</div>
@@ -163,8 +162,7 @@
 		<!-- Footer-->
 		<footer class="py-5 bg-dark">
 			<div class="container">
-				<p class="m-0 text-center text-white">Copyright &copy; Your
-					Website 2022</p>
+				<p class="m-0 text-center text-white">Donutec &copy; Cianorte-Paraná 2022</p>
 			</div>
 		</footer>
 	</div>

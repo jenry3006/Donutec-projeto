@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.donutec.model.Cliente;
@@ -21,6 +22,7 @@ import com.donutec.repository.ItensVendaRepository;
 import com.donutec.repository.ProdutoRepository;
 
 @Controller
+@RequestMapping("/venda")
 public class VendaController {
 
 	private List<ItensVenda> itensVenda = new ArrayList<ItensVenda>();
@@ -38,7 +40,8 @@ public class VendaController {
 	@Autowired
 	private ClienteRepository clienteRepository;
 
-	@GetMapping("/venda")
+
+	@GetMapping("/ponto-de-venda")
 	public ModelAndView chamarVenda() {
 		ModelAndView mv = new ModelAndView("venda/ponto-venda");
 		mv.addObject("listaProdutos", produtoRepository.findAll());
@@ -46,6 +49,15 @@ public class VendaController {
 		mv.addObject("venda", venda);
 		mv.addObject("listaItens", itensVenda);
 
+		return mv;
+	}
+	
+	@GetMapping("/cancelar-venda")
+	public ModelAndView cancelarVenda() {
+		ModelAndView mv = new ModelAndView("venda/ponto-venda");
+		//tem q arrumar ainda.
+		Venda venda = new Venda();
+	
 		return mv;
 	}
 
@@ -77,9 +89,21 @@ public class VendaController {
 
 		for (ItensVenda c : itensVenda) {
 			c.setVenda(venda);
-			itensVendaRepository.saveAndFlush(c);
+			//double attEstoque;
+			//attEstoque = c.getProduto().getQuantidadeEstoque()- c.getQuantidade();
+			//System.out.println("Estoque atualizado: " + attEstoque);
+			//c.getProduto().setQuantidadeEstoque(attEstoque);
+			
+			//System.out.println("Estoque produto att: " + c.getProduto().getQuantidadeEstoque());
+			Produto produto = c.getProduto();
+			
+			produto.setQuantidadeEstoque(c.getProduto().getQuantidadeEstoque() - c.getQuantidade());
+			System.out.println("Estoque produto att: "+ c.getProduto().getQuantidadeEstoque());
+			produtoRepository.save(produto);
+			itensVendaRepository.save(c);
 		}
-
+		
+		
 		itensVenda = new ArrayList<>();
 		venda = new Venda();
 		return mv;
@@ -110,7 +134,7 @@ public class VendaController {
 				break;
 			}
 		}
-		return "redirect:/venda";
+		return "redirect:/venda/ponto-de-venda";
 	}
 
 	@GetMapping("/remover-produto/{id}")
@@ -122,7 +146,7 @@ public class VendaController {
 				break;
 			}
 		}
-		return "redirect:/venda";
+		return "redirect:/venda/ponto-de-venda";
 	}
 
 	@GetMapping("/adicionar-venda/{id}")
@@ -137,7 +161,7 @@ public class VendaController {
 				it.setValorTotal(0.);
 
 				it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
-				System.out.println(it.getValorTotal());
+				
 				count = 1;
 				break;
 			}
@@ -148,12 +172,12 @@ public class VendaController {
 			item.setProduto(produto);
 			item.setValorUnitario(produto.getValor());
 			item.setQuantidade(item.getQuantidade() + 1);
-			System.out.println(item.getValorTotal());
+		
 			item.setValorTotal(item.getValorTotal() + (item.getQuantidade() * item.getValorUnitario()));
 			itensVenda.add(item);
 		}
 
-		return "redirect:/venda";
+		return "redirect:/venda/ponto-de-venda";
 	}
 
 }

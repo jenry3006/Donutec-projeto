@@ -18,7 +18,7 @@
 			<div class="form-floating mb-3">
 
 				<form action="#" th:object="${entrada}"
-					th:action="@{/entrada/salvar}" method="post">
+					th:action="@{/estoque/salvar}" method="post">
 
 					<div th:replace="fragments/alert"></div>
 
@@ -33,30 +33,22 @@
 
 					<div class="form-row" th:object="${entradaItens}">
 						<div class="form-group col-md-4">
-							<label>Produto</label> <select th:field="*{produto}"
+							<label>Selecione o produto</label> <select th:field="*{produto}"
 								, class="form-control">
 								<option th:each="p : ${listaProdutos}" th:value="${p.id}"
 									th:text="${p.nomeDonuts}"></option>
 							</select>
 						</div>
 
-						<div class="form-group col-md-2">
-							<label>Quantidade</label> <input type="number"
-								class="form-control" id="quantidade" placeholder="Quantidade"
+						<div class="form-group col-md-4">
+							<label>Quantidade (+)</label> <input type="number"
+								class="form-control" id="quantidade" placeholder="Informe a quantidade"
 								th:field="*{quantidade}">
 						</div>
 
-						<div class="form-group col-md-2">
-							<label>Valor cutso</label> <input type="number" class="form-control"
-								id="valor" placeholder="Valor" th:field="*{valorProduto}">
-						</div>
 						
-						<div class="form-group col-md-2">
-							<label>Valor venda</label> <input type="number" class="form-control"
-								id="valorVenda" placeholder="Valor" th:field="*{valorVenda}">
-						</div>
 
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-12">
 							<hr>
 							<button type="submit" name="acao" th:value="itens"
 								class="btn btn-success btn-lg">ADICIONAR</button>
@@ -72,16 +64,14 @@
 										
 										<th class="cell">Descrição Produto</th>
 										<th class="cell">Quantidade</th>
-										<th class="cell">Valor custo</th>
-										<th class="cell">Valor venda</th>
+										
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="itens : ${listaEntradaItens}">
 										<td th:text="${itens.produto.nomeDonuts}" class="cell"></td>
 										<td th:text="${itens.quantidade}" class="cell"></td>
-										<td th:text="${itens.valorProduto}" class="cell"></td>
-										<td th:text="${itens.valorVenda}" class="cell"></td>
+										
 										
 										
 									<tr>
@@ -92,28 +82,17 @@
 
 					<div class="button">
 						
-						<input type="hidden" id="id" th:field="*{id}" name="id"
-							 />
+						<input type="hidden" id="id" th:field="*{id}" name="id"/>
 						
 							<button type="submit" class="btn btn-success btn-lg" name="acao" th:value="salvar">SALVAR</button>
 						
 					</div> 
-
-
 				</form>
-
 
 			</div>
 		</div>
-
-
 	</div>
 
-	<script>
-		function limpar() {
-			$("input").val("");
-		}
-	</script>
 
 <!-- Core -->
 	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>

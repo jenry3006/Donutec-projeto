@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head :: head">
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
+
+	<div th:replace="~{dashboard :: voltDonutec}"></div>
+
+	<div class="container" style="margin-right: 75px">
+		<div class="buscar">
+			<nav class="navbar navbar-light bg-light">
+				<div class="container-fluid">
+					<a class="navbar-brand"><b>Produtos em estoque</b></a>
+					
+
+					
+				</div>
+			</nav>
+		</div>
+
+		<div class="tab-content" id="orders-table-tab-content">
+			<div class="tab-pane fade show active" id="orders-all"
+				role="tabpanel" aria-labelledby="orders-all-tab">
+				<div class="app-card app-card-orders-table shadow-sm mb-5">
+					<div class="app-card-body">
+						<div class="table-responsive">
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
+										<th class="cell">ID</th>
+										<th class="cell">Produto</th>
+										<th class="cell">Qtde.Estoque</th>
+										<th class="cell">Valor</th>
+										<th class="cell">Imagem</th>
+										
+								</thead>
+								<tbody>
+									<tr th:each="p : ${produtos}">
+
+										<td th:text="${p.id}" class="cell"></td>
+										<td th:text="${p.nomeDonuts}" class="cell"></td>
+										<td th:text="${p.quantidadeEstoque}" class="cell"></td>
+										<td th:text="${p.valor}" class="cell"></td>
+										<td><img alt=""
+											th:src="@{mostrarImagem/{imagem}(imagem=${p.nomeImagem})}"
+											width="100" src=""></td>
+										
+										
+									<tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Core -->
+	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Simplebar -->
+	<script src="../../vendor/simplebar/dist/simplebar.min.js"></script>
+
+	<!-- Volt JS -->
+	<script src="../../js/volt.js"></script>
+</body>
+</html>
