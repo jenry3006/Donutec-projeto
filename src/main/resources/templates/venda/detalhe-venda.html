@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head :: head">
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
+
+	<div th:replace="~{dashboard :: voltDonutec}"></div>
+
+	<div class="container" style="margin-right: 75px">
+
+		<div th:each="itensVenda : ${itensVendaObjeto}">
+
+			<h2>Detalhes da venda id:<span th:text="${itensVenda.venda.id}"></span></h2>
+			
+			<p>
+				Cliente: <span th:text="${itensVenda.venda.cliente.nome}"></span>
+			</p>
+			<p>
+				Cliente id: <span th:text="${itensVenda.venda.cliente.id}"></span>
+			</p>
+			<p>
+				Cliente contato: <span th:text="${itensVenda.venda.cliente.contato}"></span>
+			</p>
+			<p>
+				Cliente tipo Contato: <span th:text="${itensVenda.venda.cliente.tipoContato}"></span>
+			</p>
+			<p>
+				Cliente data nascimento: <span th:text="${itensVenda.venda.cliente.dataNascimento}"></span>
+			</p>
+			<p>
+				Endereço Cliente: <span th:text="${itensVenda.venda.cliente.endereco}"></span>
+			</p>
+			<p>
+				Endereço entrega: <span th:text="${itensVenda.venda.enderecoAdicional}"></span>
+			</p>
+			<p>
+				Forma de Pagamento: <span th:text="${itensVenda.venda.formaPagamento}"></span>
+			</p>
+			<p>
+				Observação: <span th:text="${itensVenda.venda.observacao}"></span>
+			</p>
+			<p>
+				Valor total: <span th:text="${itensVenda.venda.valorTotal}"></span>
+			</p>
+			<p>
+				Quantidade de produtos: <span th:text="${itensVenda.quantidade}"></span>
+			</p>
+			
+			<div th:each="itens : ${itensVendaObjeto}">
+				<p>
+				Produto id: <span th:text="${itens.produto.id}"></span>
+			</p>
+			<p>
+				Produto nome: <span th:text="${itens.produto.nomeDonuts}"></span>
+			</p>
+			</div>
+			
+		
+			
+
+		
+	</div>
+
+	<!-- Core -->
+	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Simplebar -->
+	<script src="../../vendor/simplebar/dist/simplebar.min.js"></script>
+
+	<!-- Volt JS -->
+	<script src="../../js/volt.js"></script>
+</body>
+</html>
+

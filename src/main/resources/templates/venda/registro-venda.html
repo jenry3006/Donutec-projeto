@@ -39,12 +39,9 @@
 									<tr>
 										<th class="cell">ID</th>
 										<th class="cell">Cliente</th>
-										<th class="cell">Endereco cliente</th>
-										<th class="cell">Endereco entrega</th>
-										<th class="cell">Forma de Pagamento</th>
 										<th class="cell">Valor Total</th>
-										<th class="cell">Observação</th>
-										<th class="cell">Data</th>
+										<th class="cell">Detalhes</th>
+										
 
 
 									</tr>
@@ -54,20 +51,11 @@
 
 										<td th:text="${v.id}" class="cell"></td>
 										<td th:text="${v.cliente.nome}" class="cell"></td>
-										<td th:text="${v.cliente.endereco}" class="cell"></td>
-										<td th:text="${v.enderecoAdicional}" class="cell"></td>
-										<td th:text="${v.formaPagamento}" class="cell"></td>
+										
 										<td th:text="${v.valorTotal}" class="cell"></td>
-										<td>
-											<button type="button" class="btn btn-sm btn-danger" 
-										data-bs-toggle="popover" title="Obervação" 
-										th:data-bs-content="${v.observacao}"
-										>obervacao</button>
-										</td>
 										
-										
-										
-										<td th:text="${v.dataVenda}" class="cell"></td>
+										<td><a th:href="@{/venda/info/{idVenda}(idVenda=${v.id})}"><span>Ver detalhes</span></a></td>
+					
 									<tr>
 								</tbody>
 							</table>
@@ -78,7 +66,6 @@
 
 			</div>
 		</div>
-
 
 
 

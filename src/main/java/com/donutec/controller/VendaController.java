@@ -1,11 +1,13 @@
 package com.donutec.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,7 @@ import com.donutec.model.ItensVenda;
 import com.donutec.model.Produto;
 import com.donutec.repository.ClienteRepository;
 import com.donutec.repository.VendaRepository;
+
 import com.donutec.repository.ItensVendaRepository;
 import com.donutec.repository.ProdutoRepository;
 
@@ -56,8 +59,8 @@ public class VendaController {
 	public ModelAndView cancelarVenda() {
 		ModelAndView mv = new ModelAndView("venda/ponto-venda");
 		//tem q arrumar ainda.
-		Venda venda = new Venda();
-	
+		
+		//mv.addObject("venda", venda);
 		return mv;
 	}
 
@@ -67,12 +70,31 @@ public class VendaController {
 		mv.addObject("vendas", vendaRepository.findAll());
 		return mv;
 	}
+	
+	@GetMapping("/info/{idVenda}")
+	public ModelAndView detalheVenda(@PathVariable("idVenda") Long idVenda) {
+		ModelAndView mv = new ModelAndView("venda/detalhe-venda");
+		//Optional<Venda> venda = vendaRepository.findById(idVenda);
+		List<ItensVenda> itensVenda = itensVendaRepository.buscarVendaId(idVenda);
+		
+		
+		/*if (idVenda == itensVenda.get().getVenda().getId()) {
+			itensVenda = itensVendaRepository.findById(idVenda);
+		}*/
+				
+		//mv.addObject("vendaObjeto", venda.get());
+		mv.addObject("itensVendaObjeto", itensVenda);
+		
+		return mv;
+	}
+	
 
 	@GetMapping("/finalizar")
 	public ModelAndView finalizar() {
 		ModelAndView mv = new ModelAndView("venda/finalizar");
 		calcularTotal();
 		mv.addObject("venda", venda);
+		
 		mv.addObject("listaItens", itensVenda);
 		mv.addObject("listaCliente", clienteRepository.findAll());
 		return mv;
