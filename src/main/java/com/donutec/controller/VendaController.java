@@ -2,8 +2,11 @@ package com.donutec.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.SortedSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,15 +77,10 @@ public class VendaController {
 	@GetMapping("/info/{idVenda}")
 	public ModelAndView detalheVenda(@PathVariable("idVenda") Long idVenda) {
 		ModelAndView mv = new ModelAndView("venda/detalhe-venda");
-		//Optional<Venda> venda = vendaRepository.findById(idVenda);
-		List<ItensVenda> itensVenda = itensVendaRepository.buscarVendaId(idVenda);
-		
-		
-		/*if (idVenda == itensVenda.get().getVenda().getId()) {
-			itensVenda = itensVendaRepository.findById(idVenda);
-		}*/
+		Optional<Venda> venda = vendaRepository.findById(idVenda);
+		HashSet<ItensVenda> itensVenda = itensVendaRepository.buscarVendaId(idVenda);
 				
-		//mv.addObject("vendaObjeto", venda.get());
+		mv.addObject("vendaObjeto", venda.get());
 		mv.addObject("itensVendaObjeto", itensVenda);
 		
 		return mv;

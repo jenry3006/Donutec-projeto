@@ -12,67 +12,116 @@
 
 	<div class="container" style="margin-right: 75px">
 
-		<div th:each="itensVenda : ${itensVendaObjeto}">
 
-			<h2>Detalhes da venda id:<span th:text="${itensVenda.venda.id}"></span></h2>
-			
-			<p>
-				Cliente: <span th:text="${itensVenda.venda.cliente.nome}"></span>
-			</p>
-			<p>
-				Cliente id: <span th:text="${itensVenda.venda.cliente.id}"></span>
-			</p>
-			<p>
-				Cliente contato: <span th:text="${itensVenda.venda.cliente.contato}"></span>
-			</p>
-			<p>
-				Cliente tipo Contato: <span th:text="${itensVenda.venda.cliente.tipoContato}"></span>
-			</p>
-			<p>
-				Cliente data nascimento: <span th:text="${itensVenda.venda.cliente.dataNascimento}"></span>
-			</p>
-			<p>
-				Endereço Cliente: <span th:text="${itensVenda.venda.cliente.endereco}"></span>
-			</p>
-			<p>
-				Endereço entrega: <span th:text="${itensVenda.venda.enderecoAdicional}"></span>
-			</p>
-			<p>
-				Forma de Pagamento: <span th:text="${itensVenda.venda.formaPagamento}"></span>
-			</p>
-			<p>
-				Observação: <span th:text="${itensVenda.venda.observacao}"></span>
-			</p>
-			<p>
-				Valor total: <span th:text="${itensVenda.venda.valorTotal}"></span>
-			</p>
-			<p>
-				Quantidade de produtos: <span th:text="${itensVenda.quantidade}"></span>
-			</p>
-			
-			<div th:each="itens : ${itensVendaObjeto}">
-				<p>
-				Produto id: <span th:text="${itens.produto.id}"></span>
-			</p>
-			<p>
-				Produto nome: <span th:text="${itens.produto.nomeDonuts}"></span>
-			</p>
+		
+			<div th:each="venda : ${vendaObjeto}">
+
+				<h2>
+					Detalhes da venda id:<span th:text="${venda.id}"></span>
+				</h2>
+				<br>
+
+				<fieldset>
+					<legend><i><h4>Dados do cliente</h4></i></legend>
+
+				<ul class="list-group">
+					
+				
+					<li class="list-group-item"><span> <b>Cliente id:</b>
+					<span th:text="${venda.cliente.id}"></span>
+					</span></li>
+					<li class="list-group-item"><span> <b>Nome do cliente:</b> 
+					<span th:text="${venda.cliente.nome}"></span>
+					</span></li>
+					<li class="list-group-item"><span> <b>Contato do cliente:</b> 
+					<span th:text="${venda.cliente.contato}"></span>
+					</span></li>
+					<li class="list-group-item"><span><b>Tipo de contato:</b>
+					<span th:text="${venda.cliente.tipoContato}"></span>
+					</span></li>
+					<li class="list-group-item"><span><b>Endereço do cliente:</b>
+					<span th:text="${venda.cliente.endereco}"></span>
+					</span></li>
+					<li class="list-group-item"><span><b>Data de nascimento:</b>
+					<span th:text="${venda.cliente.dataNascimento}"></span>
+					</span></li>
+				</ul>
+
+			</fieldset>
+			<br>
+				<fieldset>
+					<legend><i><h4>Dados da venda geral</h4></i></legend>
+					
+				<ul class="list-group">
+					
+				
+					<li class="list-group-item"><span> <b>Forma de Pagamento:</b>
+					<span th:text="${venda.formaPagamento}"></span>
+					</span></li>
+					<li class="list-group-item"><span> <b>Data e hora venda:</b> 
+					<span th:text="${#dates.format(venda.dataVenda, 'dd/MM/yyyy - HH:mm')}"></span>
+					</span></li>
+					<li class="list-group-item"><span> <b>Endereço entrega:</b> 
+					<span th:text="${venda.enderecoAdicional}"></span>
+					</span></li>
+					<li class="list-group-item"><span><b>Valor total:</b>
+					<span th:text="${venda.valorTotal}"></span>
+					</span></li>
+					
+				</ul>
+
+				</fieldset>
 			</div>
+			<br>
+			<fieldset>
+			<legend><i><h4>Produtos relacionados a venda</h4></i></legend>
 			
-		
 			
+			<div class="tab-content" id="orders-table-tab-content">
+		        <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+		            <div class="app-card app-card-orders-table shadow-sm mb-5">
+		                <div class="app-card-body">
+		                    <div class="table-responsive">
+		                        <table class="table  table-hover mb-0 text-left table-bordered border-dark">
+		                            <thead>
+		                            <tr>
+		                                <th class="cell">Nome</th>
+		                                 <th class="cell">Quantidade</th>
+		                                <th class="cell">Valor unitario</th>
+		                                <th class="cell">Valor total itens</th>
+		                            </tr>
+		                            </thead>
+		                            <tbody>
+		                            <tr th:each="itensVenda : ${itensVendaObjeto}">
+		                             <td th:text="${itensVenda.produto.nomeDonuts}" class="cell"></td>
+		                             
+		                                <td th:text="${itensVenda.quantidade}" class="cell"></td>
+		                                 <td th:text="${itensVenda.valorUnitario}" class="cell"></td>
+		                                 <td th:text="${itensVenda.valorTotal}" class="cell"></td>
+		                               
+		                               
+		                                
+		                            </tbody>
+		                        </table>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+   		 </div>
+
+		</fieldset>
+
 
 		
-	</div>
 
-	<!-- Core -->
-	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- Core -->
+		<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
-	<!-- Simplebar -->
-	<script src="../../vendor/simplebar/dist/simplebar.min.js"></script>
+		<!-- Simplebar -->
+		<script src="../../vendor/simplebar/dist/simplebar.min.js"></script>
 
-	<!-- Volt JS -->
-	<script src="../../js/volt.js"></script>
+		<!-- Volt JS -->
+		<script src="../../js/volt.js"></script>
 </body>
 </html>
 

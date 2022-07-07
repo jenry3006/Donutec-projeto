@@ -18,7 +18,9 @@ public class Produto {
 	private String nomeDonuts;
 
 	@NotNull(message = "Valor não pode ser null!")
-	private Double valor =0.;
+	private Double valor;
+	
+	//eu tirei o valor =0.0;
 	
 	private String obs;
 	

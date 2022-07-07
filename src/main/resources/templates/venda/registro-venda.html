@@ -39,6 +39,7 @@
 									<tr>
 										<th class="cell">ID</th>
 										<th class="cell">Cliente</th>
+										<th class="cell">Data e hora:</th>
 										<th class="cell">Valor Total</th>
 										<th class="cell">Detalhes</th>
 										
@@ -52,9 +53,13 @@
 										<td th:text="${v.id}" class="cell"></td>
 										<td th:text="${v.cliente.nome}" class="cell"></td>
 										
+										<td th:text="${#dates.format(v.dataVenda, 'dd/MM/yyyy - HH:mm')}" class="cell"></td>
 										<td th:text="${v.valorTotal}" class="cell"></td>
 										
-										<td><a th:href="@{/venda/info/{idVenda}(idVenda=${v.id})}"><span>Ver detalhes</span></a></td>
+										<td>
+											<a class="btn btn-outline-primary" th:href="@{/venda/info/{idVenda}(idVenda=${v.id})}"><span>Ver detalhes</span></a>
+											
+										</td>
 					
 									<tr>
 								</tbody>
