@@ -19,14 +19,9 @@
 
 				<form action="#" th:object="${entrada}"
 					th:action="@{/estoque/salvar}" method="post">
-
-					<div th:replace="fragments/alert"></div>
-
-					<div
-						th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-						th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
-					</div>
-
+					
+					
+					<h5 th:text="${#dates.format(entrada.dataEntrada, 'dd/MM/yyyy - HH:mm')}"></h5>
 
 					<span th:text="${mensagem}" th:if="${mensagem != null}"
 						style="color: #FF0000;"></span> <br>

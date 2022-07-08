@@ -36,6 +36,16 @@
 						th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid' : ''"
 						data-mask-reverse="true">
 					<div class="invalid-feedback" th:errors="*{valor}"></div>
+					
+					<select id="select" name="categoria" th:field="*{categoria}"
+							class="form-select" aria-label="Default select example"
+							>
+							<option th:value="${categoria}" disabled selected>Selecione
+								a categoria:</option>
+							<option
+								th:each="c : ${T(com.donutec.model.Categoria).values()}"
+								th:value="${c}" th:text="${c}"></option>
+						</select>
 
 					<label for="exampleFormControlTextarea1" class="form-label">Observação:</label>
 					<textarea class="form-control" name="obs"

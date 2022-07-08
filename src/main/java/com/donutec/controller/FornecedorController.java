@@ -1,5 +1,8 @@
 package com.donutec.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
@@ -21,6 +24,8 @@ import com.donutec.repository.FornecedorRepository;
 @Controller
 @RequestMapping("/fornecedores")
 public class FornecedorController {
+	
+	List<Fornecedor> fornecedores = new ArrayList<>();
 	
 	@Autowired
 	FornecedorRepository fornecedorRepo;
@@ -46,8 +51,9 @@ public class FornecedorController {
 	
 	@GetMapping("/listar")
 	public String listar(Fornecedor fornecedor, ModelMap model) {
-		model.addAttribute("fornecedores", fornecedorRepo.findAll());
-		return "/fornecedor/lista";
+		fornecedores = fornecedorRepo.findAll();
+		model.addAttribute("fornecedores", fornecedores);
+		return "fornecedor/lista";
 	}
 	
 	@GetMapping(value = "deletar")
@@ -79,7 +85,14 @@ public class FornecedorController {
 	@PostMapping("/pesquisar")
 	public String pesquisar(@RequestParam("nome") String nome, ModelMap model) {
 		model.addAttribute("fornecedores", fornecedorRepo.findByNomeContaining(nome));
+		fornecedores = fornecedorRepo.findByNomeContaining(nome);
 		return "fornecedor/lista";
+	}
+	
+	@GetMapping("relatorio")
+	public String abrirRelatorio(Model model){
+		model.addAttribute("fornecedores", fornecedores);
+		return "fornecedor/relatorio";
 	}
 	
 

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class EntradaProduto implements Serializable{
@@ -20,6 +22,7 @@ public class EntradaProduto implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataEntrada = new Date();
 	private String obs;
 	

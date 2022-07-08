@@ -28,6 +28,7 @@
                                
                                 <th class="cell">Sabor da cobertura</th>
                                 <th class="cell">Valor</th>
+                                <th class="cell">Categoria</th>
                                 <th class="cell">Observação</th>
                                 <th class="cell">Imagem</th>
                             </tr>
@@ -38,6 +39,7 @@
                                
                                 <td th:text="${p.nomeDonuts}" class="cell"></td>
                                 <td th:text="${p.valor}" class="cell"></td>
+                                <td th:text="${p.categoria}" class="cell"></td>
                                 <td th:text="${p.obs}" class="cell"></td>
                                 <td><img alt=""
 											th:src="@{mostrarImagem/{imagem}(imagem=${p.nomeImagem})}"

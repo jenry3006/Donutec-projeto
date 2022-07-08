@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container">
+    <hr>
+    <p style="text-align: center; font-size: 25px;" >RELATÓRIO DE FORNECEDORES</p>
+    <hr>
+    <div class="tab-content" id="orders-table-tab-content">
+			<div class="tab-pane fade show active" id="orders-all"
+				role="tabpanel" aria-labelledby="orders-all-tab">
+				<div class="app-card app-card-orders-table shadow-sm mb-5">
+					<div class="app-card-body">
+						<div class="table-responsive">
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
+										<th class="cell">ID</th>
+										<th class="cell">Nome</th>
+										<th class="cell">Telefone</th>
+										<th class="cell">Cidade:</th>
+										<th class="cell">Complemento</th>
+										<th class="cell">Número</th>
+										<th class="cell">CEP</th>
+										<th class="cell">Rua</th>
+										<th class="cell">Bairro</th>
+
+										
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="f : ${fornecedores}">
+										<td th:text="${f.id}" class="cell"></td>
+										<td th:text="${f.nome}" class="cell"></td>
+										<td th:text="${f.telefone}" class="cell"></td>
+										<td th:text="${f.endereco.cidade}" class="cell"></td>
+										<td th:text="${f.endereco.complemento}" class="cell"></td>
+										<td th:text="${f.endereco.numero}" class="cell"></td>
+										<td th:text="${f.endereco.cep}" class="cell"></td>
+										<td th:text="${f.endereco.rua}" class="cell"></td>
+										<td th:text="${f.endereco.bairro}" class="cell"></td>
+
+									<tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+</div>
+
+<script type="text/javascript">window.print()</script>
+
+</body>
+
+</html>

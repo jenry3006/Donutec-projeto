@@ -11,7 +11,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
 	List<Produto> findByNomeDonutsContaining(String nomeDonuts);
 
-	@Query("select p from Produto p where p.nomeDonuts like %?1%")
-	List<Produto> findProdutoBySabor(String nome);
+	//@Query("select p from Produto p where p.nomeDonuts like %?1%")
+	//List<Produto> findProdutoBySabor(String nome);
 
 }

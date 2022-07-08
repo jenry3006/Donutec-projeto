@@ -1,5 +1,6 @@
 package com.donutec.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.donutec.model.Fornecedor;
 import com.donutec.model.Ingrediente;
 import com.donutec.model.Produto;
 import com.donutec.repository.FornecedorRepository;
@@ -38,6 +38,8 @@ public class IngredienteController {
 	@Autowired
 	IngredienteRepository ingredienteRepo;
 	
+	List<Ingrediente> ingredientes = new ArrayList<>();
+	
 	@GetMapping("/cadastrar")
 	public String abrirCadastro(Ingrediente ingrediente) {
 		return "/ingrediente/cadastro";
@@ -45,9 +47,10 @@ public class IngredienteController {
 	
 	@GetMapping("/listar")
 	public String abrirLista(Ingrediente ingrediente, ModelMap model, Produto produto) {
-		model.addAttribute("ingredientes", ingredienteRepo.findAll());
+		
+		ingredientes = ingredienteRepo.findAll();
+		model.addAttribute("ingredientes", ingredientes);
 		model.addAttribute("produtos", produtoRepo.findAll());
-		model.addAttribute("ingrediente", ingrediente);
 		return "/ingrediente/lista";
 	}
 
@@ -91,13 +94,14 @@ public class IngredienteController {
 	@PostMapping("/pesquisar")
 	public String pesquisar(@RequestParam("nome") String nome, ModelMap model) {
 		model.addAttribute("ingredientes", ingredienteRepo.findByNomeContaining(nome));
+		ingredientes = ingredienteRepo.findByNomeContaining(nome);
 		return "ingrediente/lista";
 	}
 	
 	@GetMapping("relatorio")
 	public String abrirRelatorio(Model model){
 		
-		model.addAttribute("ingredientes", ingredienteRepo.findAll());
+		model.addAttribute("ingredientes", ingredientes);
 
 		return "ingrediente/relatorio";
 	}

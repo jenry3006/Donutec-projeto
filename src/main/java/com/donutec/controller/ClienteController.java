@@ -1,18 +1,12 @@
 package com.donutec.controller;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,9 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.donutec.model.Cliente;
+import com.donutec.model.Venda;
 import com.donutec.repository.ClienteRepository;
-
-import com.donutec.service.ClienteServiceApi;
+import com.donutec.repository.VendaRepository;
 
 @Controller
 @RequestMapping("cliente")
@@ -38,7 +32,13 @@ public class ClienteController {
 	ClienteRepository clienteRepo;
 
 	@Autowired
+	private VendaRepository vendaRepository;
+	
+	List<Venda> vendas = new ArrayList<>();
+	
+	/*@Autowired
 	private ClienteServiceApi clienteServiceAPI;
+	*/
 
 	@RequestMapping("cadastro")
 	public String abrirCadastro(Cliente cliente, Model model) {
@@ -105,16 +105,28 @@ public class ClienteController {
 	
 	@GetMapping(value="deletar")
 	public String deletar(@PathParam(value = "id") Long id, Model model){
-		clienteRepo.deleteById(id);
+		
+		for(Venda v : vendas) {
+			if(v.getCliente().getId()==id) {
+				System.out.println("esse cliente ja tem venda");
+			} else {
+				clienteRepo.deleteById(id);
+			}
+		}
+		
+		
+		System.out.println("teste delete");
+		
+		
 		return "redirect:/cliente/lista";
 	}
 	
 	@PostMapping("**/pesquisarCliente")
 	public ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomepesquisa) {
 		ModelAndView modelAndView = new ModelAndView("cliente/lista");
-		modelAndView.addObject("clientes", clienteRepo.findByNomeContaining(nomepesquisa));
+		modelAndView.addObject("clientes", clienteRepo.findClienteByName(nomepesquisa));
 		
-		clientes = clienteRepo.findByNomeContaining(nomepesquisa);
+		clientes = clienteRepo.findClienteByName(nomepesquisa);
 		
 		return modelAndView;
 	}
@@ -128,13 +140,13 @@ public class ClienteController {
 
 	@GetMapping("relatorio")
 	public String abrirRelatorio(Model model){
-		clientes = clienteRepo.findAll();
+		//clientes = clienteRepo.findAll();
 		model.addAttribute("clientes", clientes);
 
 		return "cliente/relatorio";
 	}
 	
-	@GetMapping("lista")
+	/*@GetMapping("lista")
 	public String findAll(@RequestParam Map<String, Object> params, Model model) {
 		int page = params.get("page") != null ? (Integer.valueOf(params.get("page").toString()) - 1) : 0;
 		
@@ -159,7 +171,7 @@ public class ClienteController {
 		
 		return "cliente/lista";
 		
-	}
+	}*/
 	
 	
 }	

@@ -22,6 +22,33 @@
 <link href="css/styles.css" rel="stylesheet" />
 <link type="text/css" href="../../css/volt.css" rel="stylesheet">
 <link rel="shortcut icon" type="imagex/png" href="/img/logo_1.ico">
+
+<style>
+
+.tooltipjenry {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltipjenry .tooltiptextjenry {
+  visibility: hidden;
+  width: 265px;
+  background-color: lightblue;
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltipjenry:hover .tooltiptextjenry {
+  visibility: visible;
+}
+
+</style>
 <body>
 
 	<div th:replace="~{dashboard :: voltDonutec}"></div>
@@ -50,7 +77,7 @@
 									<tr>
 										<th scope="col"></th>
 										<th scope="col">Produto</th>
-										<th scope="col">Quantidade Estoque</th>
+										
 										<th scope="col" class="text-right">Quantidade venda</th>
 										<th scope="col" class="text-right">Valor Unitario</th>
 										<th scope="col" class="text-right">Valor Total</th>
@@ -62,7 +89,7 @@
 										<td><img src="https://dummyimage.com/50x50/55595c/fff" />
 										</td>
 										<td class="text-right" th:text="${item.produto.nomeDonuts}"></td>
-										<td class="text-right" th:text="${item.produto.quantidadeEstoque}">Em estoque</td>
+										
 										<td class="text-right"><span th:text="${item.quantidade}"></span></td>
 
 										<td class="text-right" th:text="${item.valorUnitario}"></td>
@@ -111,7 +138,7 @@
 					<div class="col mb-2">
 						<div class="row">
 
-							<div class="col-md-6">
+							<div class="col-md-5">
 								<label>Selecione a forma de pagamento</label> <select
 									name="formaPagamento" class="form-select"
 									aria-label="Default select example">
@@ -122,7 +149,7 @@
 								</select>
 							</div>
 
-							<div class="col-md-6">
+							<div class="col-md-5">
 								<label>Selecione o cliente</label> <select th:field="*{cliente}"
 									name="formaPagamento" class="form-select"
 									aria-label="Default select example">
@@ -132,33 +159,95 @@
 								
 								</select>
 							</div>
-
-							<p>
-							<p>
-
-
-								<label for="exampleFormControlTextarea1" class="form-label">Observação:</label>
-								<textarea class="form-control" name="observacao"
-									id="exampleFormControlTextarea1" rows="3"
-									th:field="*{observacao}"></textarea>
-								<p><p>
-				
-									<label>Adicionar endereço de entrega?:</label> <input
-									id="enderecoAdicional" name="enderecoAdicional"
-									th:field="*{enderecoAdicional}" type="text"
-									class="form-control">
 							
-							<div class="col-md-6 text-right">
-								<button type="submit"
-									class="btn btn-lg btn-block btn-success text-uppercase">CONFIRMAR VENDA</button>
+							<div class="col-md-2">
+								<label>Data da venda</label>
+								<input class="form-control text-center text-black" disabled="disabled" th:value="${#dates.format(venda.dataVenda, 'dd/MM/yyyy')}">
 							</div>
+
+							<p><p>
+							
+							<div class="row">
+							
+								<div class="col-md-8">
+								
+										<label>Endereço de entrega: <span style="margin-left: 10px">
+										<div class="tooltipjenry"><span class="btn-warning btn-sm">!</span>
+	 									<span class="tooltiptextjenry"><small>Se não informar nada neste campo, o endereço de entrega será o mesmo do endereço do cliente cadastrado.</small></span>
+																	</div></span></label>
+										
+										<input
+										id="enderecoAdicional" name="enderecoAdicional"
+										th:field="*{enderecoAdicional}" type="text"
+										class="form-control">
+									
+								</div>
+								
+								<p>
+								<div class="col-md-12">
+										<label for="exampleFormControlTextarea1" class="form-label">Observação:</label>
+									<textarea class="form-control" name="observacao"
+										id="exampleFormControlTextarea1" 
+										th:field="*{observacao}"></textarea>
+									
+								</div>
+								
+								
+							
+							</div>
+	
+							<p>
 							<hr>
+							<p>		
+							<div class="row">
+								<div class="col-md-2 text-left">
+									<a th:href="@{/venda/ponto-de-venda}" 
+									class="btn btn-lg btn-block btn-primary text-uppercase">VOLTAR</a>
+								</div>
+								
+								<div class="col-md-2">
+									<button type="button" class="btn btn-lg btn-block btn-danger text-uppercase" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  									Cancelar
+									</button>
+									
+								</div>
+								
+								<div class="col-md-8 text-end">
+									<button type="submit"
+									class="btn btn-lg btn-block btn-success text-uppercase">CONFIRMAR VENDA</button>
+								</div>
+							</div>
+							
+							
 						</div>
 					</div>
 
 				</div>
 			</form>
 		</section>
+		
+
+		<!-- Modal -->
+		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="staticBackdropLabel">Cancelar a venda?</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <b>Você perderá todas as informações referentes a esta venda.</b>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+		        <a class="btn btn-primary" th:href="@{/venda/cancelar-venda}">Confirmar</a>
+		        
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		
 		<!-- Footer-->
 		<footer class="py-5 bg-dark">
 			<div class="container">

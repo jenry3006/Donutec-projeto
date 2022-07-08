@@ -14,8 +14,8 @@
 		<div class="buscar">
 			<nav class="navbar navbar-light bg-light">
 				<div class="container-fluid">
-					<a class="navbar-brand"><b>Lista de Fornecedores</b></a> <a href=""
-						th:href="@{relatorio}" target="_blank" style="margin-left: 550px;">
+					<a class="navbar-brand"><b>Lista de Fornecedores</b></a>
+					 <a href="" th:href="@{relatorio}" target="_blank" style="margin-left: 550px;">
 						<img src="/img/printer.svg" alt="icon-print" title="imprimir"
 						class="icon-print" style="height: 30px;">
 					</a>
@@ -112,32 +112,7 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-				<nav aria-label="Pagination">
-					<ul class="pagination justify-content-center">
-
-						<li class="page-item"
-							th:classappend="${prev == 0 ? 'disabled': ''}"><a
-							class="page-link" th:href="@{|/cliente/lista?page=${prev}|}">Anterior</a>
-						</li>
-						<li class="page-item" th:each="page : ${pages}"
-							th:classappend="${current == page ? 'active': ''}"><a
-							class="page-link" th:href="@{|/cliente/lista?page=${page}|}"
-							th:text="${page}"></a></li>
-						<li class="page-item"
-							th:classappend="${current == last ? 'disabled': ''}"><a
-							class="page-link" th:href="@{|/cliente/lista?page=${next}|}">Próxima</a>
-						</li>
-					</ul>
-				</nav>
-
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-
-
+		
 	</div>
 	<!-- Core -->
 	<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>

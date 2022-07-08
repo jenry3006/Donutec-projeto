@@ -11,10 +11,12 @@ import java.util.SortedSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.donutec.model.Cliente;
@@ -32,6 +34,7 @@ import com.donutec.repository.ProdutoRepository;
 public class VendaController {
 
 	private List<ItensVenda> itensVenda = new ArrayList<ItensVenda>();
+	private List<Venda> vendas = new ArrayList<>();
 	private Venda venda = new Venda();
 
 	@Autowired
@@ -59,23 +62,41 @@ public class VendaController {
 	}
 	
 	@GetMapping("/cancelar-venda")
-	public ModelAndView cancelarVenda() {
-		ModelAndView mv = new ModelAndView("venda/ponto-venda");
+	public String cancelarVenda(Model model) {
+		//ModelAndView mv = new ModelAndView("venda/ponto-venda");
 		//tem q arrumar ainda.
 		
 		//mv.addObject("venda", venda);
-		return mv;
+		model.addAttribute("listaVendas", itensVenda = new ArrayList<ItensVenda>() );
+		
+		
+		return "/dashboard";
 	}
 
 	@GetMapping("/registro-venda")
 	public ModelAndView registroVendas() {
 		ModelAndView mv = new ModelAndView("venda/registro-venda");
-		mv.addObject("vendas", vendaRepository.findAll());
+		vendas = vendaRepository.findAll();
+		mv.addObject("vendas", vendas);
 		return mv;
 	}
 	
+	@PostMapping("/pesquisarCliente")
+	public String pesquisar(@RequestParam("nome") String nome, ModelMap model) {
+		model.addAttribute("vendas", vendaRepository.findClienteByName(nome));
+		vendas = vendaRepository.findClienteByName(nome);
+		return "venda/registro-venda";
+	}
+	
+	@GetMapping("relatorio")
+	public String abrirRelatorio(Model model) {
+		model.addAttribute("vendas", vendas);
+		return "venda/relatorio";
+	}
+	
+	
 	@GetMapping("/info/{idVenda}")
-	public ModelAndView detalheVenda(@PathVariable("idVenda") Long idVenda) {
+	public ModelAndView detalhesVenda(@PathVariable("idVenda") Long idVenda) {
 		ModelAndView mv = new ModelAndView("venda/detalhe-venda");
 		Optional<Venda> venda = vendaRepository.findById(idVenda);
 		HashSet<ItensVenda> itensVenda = itensVendaRepository.buscarVendaId(idVenda);
@@ -85,6 +106,19 @@ public class VendaController {
 		
 		return mv;
 	}
+	
+	@GetMapping("/relatorio/{idVenda}")
+	public ModelAndView relatorioDetalhesVenda(@PathVariable("idVenda") Long idVenda) {
+		ModelAndView mv = new ModelAndView("venda/relatorio-detalhe-venda");
+		Optional<Venda> venda = vendaRepository.findById(idVenda);
+		HashSet<ItensVenda> itensVenda = itensVendaRepository.buscarVendaId(idVenda);
+				
+		mv.addObject("vendaObjeto", venda.get());
+		mv.addObject("itensVendaObjeto", itensVenda);
+		
+		return mv;
+	}
+	
 	
 
 	@GetMapping("/finalizar")
@@ -105,6 +139,10 @@ public class VendaController {
 		venda.setFormaPagamento(formaPagamento);
 		venda.setEnderecoAdicional(enderecoAdicional);
 		venda.setObservacao(observacao);
+		
+		if(venda.getEnderecoAdicional().isBlank()) {
+			venda.setEnderecoAdicional(cliente.getEndereco());
+		}
 		vendaRepository.save(venda);
 
 		for (ItensVenda c : itensVenda) {

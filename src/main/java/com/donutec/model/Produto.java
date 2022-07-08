@@ -29,6 +29,8 @@ public class Produto {
 	
 	private String nomeImagem;
 	
+	private Categoria categoria;
+	
 	public Long getId() {
 		return id;
 	}
@@ -67,18 +69,12 @@ public class Produto {
 	public void setNomeImagem(String nomeImagem) {
 		this.nomeImagem = nomeImagem;
 	}
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	
 
 }

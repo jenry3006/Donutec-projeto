@@ -8,28 +8,18 @@
 
 	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
-	<div th:replace="~{dashboard :: voltDonutec}"></div>
+	
 
-	<div class="container" style="margin-right: 75px">
+	<div class="container-fluid">
 
 
 		
 			<div th:each="venda : ${vendaObjeto}">
-				<div class="row">
-					<div class="col-md-12">
-						<h2 class="text-left">
-						Detalhes da venda id:<span th:text="${venda.id}"></span>
-						</h2>
-						<a class="btn btn-primary text-center" th:href="@{/venda/relatorio/{idVenda}(idVenda=${venda.id})}" target="_blank">Imprimir</a>
-					</div>
-				
-				</div>
-				
+
+				<h2>
+					Detalhes da venda id:<span th:text="${venda.id}"></span>
+				</h2>
 				<br>
-				
-				
-				
-				
 
 				<fieldset>
 					<legend><i><h4>Dados do cliente</h4></i></legend>
@@ -120,9 +110,11 @@
    		 </div>
 
 		</fieldset>
-
-
 		
+		</div>
+
+
+		<script type="text/javascript">window.print()</script>
 
 		<!-- Core -->
 		<script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>

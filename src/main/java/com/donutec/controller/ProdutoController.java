@@ -27,17 +27,25 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.donutec.model.ItensVenda;
 import com.donutec.model.Produto;
+import com.donutec.model.Venda;
+import com.donutec.repository.ItensVendaRepository;
 import com.donutec.repository.ProdutoRepository;
+import com.donutec.service.ItensVendaService;
 
 @Controller
 @RequestMapping("produto")
 public class ProdutoController {
 
 	List<Produto> produtos = new ArrayList<>();
+	List<ItensVenda> itensVendaList = new ArrayList<>();
 
 	@Autowired
 	ProdutoRepository produtoRepo;
+	
+	@Autowired
+	ItensVendaService itensVendaService;
 	
 	private static String caminhoImagens = "/Users/Usuario/Documents/Homer Donuts - Estagio 2/images/";
 	
@@ -95,17 +103,27 @@ public class ProdutoController {
 		
 		return null;
 	}
-
-
 	
 	@GetMapping("deletar")
 	private String deletar(@PathParam (value="id") Long id, Model model) {
-		produtoRepo.deleteById(id);
+		
+		//for(ItensVenda v : itensVendaList) {
+		//	if(){
+		//		System.out.println("esse produto ja tem venda, teste delete prod id: " + id);
+			//} else {
+				produtoRepo.deleteById(id);
+			//}
+		//}
+			
+		
+		
 		return"redirect:/produto/lista";
 	}
 	
 	@GetMapping(value="editar")
 	private String editarCadastro(@PathParam(value="id") Long id, Model model) {
+		
+		
 		model.addAttribute("produto", produtoRepo.getById(id));
 		return"produto/cadastro";
 	}
@@ -126,7 +144,7 @@ public class ProdutoController {
 	@PostMapping("**/pesquisarProduto")
 	private ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomePesquisa) {
 		ModelAndView modelAndView = new ModelAndView("produto/lista");
-		modelAndView.addObject("produtos", produtoRepo.findProdutoBySabor(nomePesquisa));
+		modelAndView.addObject("produtos", produtoRepo.findByNomeDonutsContaining(nomePesquisa));
 		produtos = produtoRepo.findByNomeDonutsContaining(nomePesquisa);
 		return modelAndView;
 	}

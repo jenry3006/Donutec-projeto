@@ -14,7 +14,7 @@
 
 <div class="container">
     <hr>
-    <p style="text-align: center; font-size: 25px;" >RELATÓRIO DE INGREDIENTE</p>
+    <p style="text-align: center; font-size: 25px;" >RELATÓRIO DE INGREDIENTES</p>
     <hr>
     <div class="tab-content" id="orders-table-tab-content">
         <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
@@ -28,6 +28,8 @@
                                 <th class="cell">Nome</th>
                                 <th class="cell">Preço</th>
                                 <th class="cell">Marca</th>
+                                <th class="cell">Fabricante</th>
+								<th class="cell">Quantidade</th>
                                 <th class="cell">Produtos relacionados</th>
                               
                             </tr>
@@ -38,6 +40,8 @@
                                 <td th:text="${i.nome}" class="cell"></td>
                                 <td th:text="${i.precoCompra}" class="cell"></td>
                                 <td th:text="${i.marca}" class="cell"></td>
+                                <td th:text="${i.fabricante}" class="cell"></td>
+								<td th:text="${i.unidadeMedida}" class="cell"></td>
                                 <td>
 									<p th:each="p : ${i.produtos}">
 										<span th:text="${p.nomeDonuts}" class="cell"></span>

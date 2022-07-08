@@ -91,10 +91,20 @@ body {
 		</header>
 		<!-- Section-->
 		<br><br>
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal"
-			data-bs-target="#exampleModal">Clique para selecionar os
-			produtos</button>
+		<div class="row">
+			<div class="col-md-6 text-left">
+				<!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+					data-bs-target="#exampleModal">Clique para selecionar os
+					produtos</button>
+			</div>
+			<div class="col-md-6 text-end">
+				<h5 th:text="${#dates.format(venda.dataVenda, 'dd/MM/yyyy')}"></h5>
+		
+		</div>
+		
+			
+		
 			
 			
 
@@ -248,11 +258,10 @@ body {
 			<div class="col mb-2">
 				<br>
 				<div class="col-sm-12 text-end ">
-					<a class="btn btn-lg btn-block btn-danger text-uppercase"
-						th:href="@{/venda/cancelar-venda}" style="margin-right: 150px">Cancelar venda</a>
+					<button th:if="${venda.valorTotal == 0}" type="button" class="btn btn-lg btn-block btn-danger text-uppercase" disabled>
+						continuar
+					</button>
 						
-					<a th:if="${venda.valorTotal == 0}" class="btn btn-lg btn-block btn-primary text-uppercase"
-						>Continuar</a>	
 						
 					<a th:if="${venda.valorTotal != 0}" class="btn btn-lg btn-block btn-success text-uppercase"
 						th:href="@{/venda/finalizar}">Continuar</a>		

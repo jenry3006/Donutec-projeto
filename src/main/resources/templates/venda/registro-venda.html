@@ -19,8 +19,8 @@
 						<img src="/img/printer.svg" alt="icon-print" title="imprimir"
 						class="icon-print" style="height: 30px;">
 					</a>
-					<form action="pesquisarCliente" method="post" class="d-flex">
-						<input name="nomepesquisa" class="form-control me-2" type="text"
+					<form th:action="@{/venda/pesquisarCliente}" method="post" class="d-flex">
+						<input name="nome" class="form-control me-2" type="text"
 							id="consulta" placeholder="Informar o nome" aria-label="Search">
 						<button class="btn btn-outline-success" type="submit">Buscar</button>
 					</form>

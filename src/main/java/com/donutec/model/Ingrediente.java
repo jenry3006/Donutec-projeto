@@ -34,6 +34,10 @@ public class Ingrediente implements Serializable{
 	
 	private String marca;
 	
+	private String fabricante;
+	
+	private String unidadeMedida;
+	
 	@NotNull(message = "Informe ao menos um produto.")
 	@ManyToMany
 	@JoinTable(name = "ingrediente_produto",
@@ -77,6 +81,21 @@ public class Ingrediente implements Serializable{
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
+	public String getFabricante() {
+		return fabricante;
+	}
+	public void setFabricante(String fabricante) {
+		this.fabricante = fabricante;
+	}
+	public String getUnidadeMedida() {
+		return unidadeMedida;
+	}
+	public void setUnidadeMedida(String unidadeMedida) {
+		this.unidadeMedida = unidadeMedida;
+	}
+	
+	
+	
 	
 	
 
