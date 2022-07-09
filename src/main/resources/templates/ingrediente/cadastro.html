@@ -38,21 +38,43 @@
 					<label>Fabricante:</label> 
 					<input id="marca" name="marca" th:field="*{fabricante}" type="text" class="form-control">
 					
-					<label>Unidade de medida;</label> 
+					
+					<label>Qtde - Unidade de medida:</label> 
 					<input id="marca" name="marca" th:field="*{unidadeMedida}" type="text" class="form-control">  	
 								<br>	
 								
-								<label> Produtos que deseja cadastrar esse ingredinte: </label>	
-								<br>
-									
-											
-									<div class="form-check" th:each="p : ${produtosLista}">
-									  <input class="form-check-input" th:value="${p.id}" th:text="${p.nomeDonuts}"
+								<!-- Button trigger modal -->
+						<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						  Produtos que deseja cadastrar esse ingredinte:
+						</button>
+						
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">Selecione os produtos que esse ingrediente vai ser utilizado.</h5>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body">
+						        <div class="form-check" th:each="p : ${produtosLista}">
+									  <input class="form-check-input" th:value="${p.id}"
 											th:field="*{produtos}" name="produtos" type="checkbox" value="" id="flexCheckDefault">
 									  <label class="form-check-label" for="flexCheckDefault">
 									   	<span th:text="${p.nomeDonuts}"></span>
 									  </label>
-									</div>		
+									</div>	
+						      </div>
+						      
+						    </div>
+						  </div>
+						</div>
+								
+								
+								
+									
+											
+										
 					<div class="button">
 						<div>
 							<button type="reset" class="btn btn-primary btn-lg">LIMPAR</button>

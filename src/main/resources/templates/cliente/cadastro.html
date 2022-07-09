@@ -72,7 +72,7 @@
 
 					<div class="button">
 						<div>
-							<button type="button" onclick="limpar()"
+							<button type="reset" 
 								class="btn btn-primary btn-lg">LIMPAR</button>
 						</div>
 						<input type="hidden" id="id" name="id" th:value="${cliente.id}"
@@ -90,12 +90,6 @@
 
 	</div>
 
-
-	<script>
-		function limpar() {
-			$("input").val("");
-		}
-	</script>
 
 
 	<!-- Core -->
