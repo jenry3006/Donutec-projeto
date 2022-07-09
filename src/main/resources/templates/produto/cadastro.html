@@ -32,11 +32,11 @@
 
 					<label>Valor de venda:<span style="color: red;">*</span></label> <input
 						id="valor" name="valor" th:field="*{valor}" type="number"
-						class="form-control"
+						class="form-control" 
 						th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid' : ''"
-						data-mask-reverse="true">
+					>
 					<div class="invalid-feedback" th:errors="*{valor}"></div>
-					
+					<br>
 					<select id="select" name="categoria" th:field="*{categoria}"
 							class="form-select" aria-label="Default select example"
 							>
@@ -46,12 +46,18 @@
 								th:each="c : ${T(com.donutec.model.Categoria).values()}"
 								th:value="${c}" th:text="${c}"></option>
 						</select>
-
+					<br>
 					<label for="exampleFormControlTextarea1" class="form-label">Observação:</label>
 					<textarea class="form-control" name="obs"
 						id="exampleFormControlTextarea1" rows="3" th:field="*{obs}"></textarea>
 
-					<input type="file" name="file">
+					<br>
+					
+					<div class="mb-3">
+ 					 <label for="formFile" class="form-label">Enviar foto produto</label>
+ 					 <input class="form-control" name="file" type="file" id="formFile">
+					</div>
+					
 					<div class="button">
 						<div>
 							<button type="reset" class="btn btn-primary btn-lg">LIMPAR</button>

@@ -87,7 +87,7 @@ public class ProdutoController {
 		
 
 		produtoRepo.save(produto);
-		ra.addFlashAttribute("success", "Produto cadastrado com sucesso. teste2");
+		ra.addFlashAttribute("success", "Produto cadastrado com sucesso.");
 		
 		return "redirect:/produto/cadastro";
 	}

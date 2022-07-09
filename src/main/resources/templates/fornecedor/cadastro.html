@@ -34,14 +34,14 @@
 						<div class="invalid-feedback" th:errors="*{nome}"></div>
 						
 						<label>Telefone:</label> 
-						<input id="nome" name="nome" th:field="*{telefone}" type="text" class="form-control"> 
+						<input id="nome" name="nome" onkeypress="$(this).mask('(00) 0000-00009')" th:field="*{telefone}" type="text" class="form-control"> 
 						
 						<fieldset>
 						
 							<legend><span>Endereço</span></legend>
 							
 							<label>Cep</label> 
-							<input id="cep" name="cep" th:field="*{endereco.cep}" type="text"
+							<input id="cep" onkeypress="$(this).mask('00.000-000')" name="cep" th:field="*{endereco.cep}" type="text"
 							class="form-control"> 
 							
 							<label>Rua</label> 
@@ -92,6 +92,9 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 	<script>
 		 $(document).ready(function() {

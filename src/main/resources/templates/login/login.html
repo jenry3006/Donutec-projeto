@@ -17,13 +17,13 @@
         <p id="login">LOGIN</p>
         <a id="cadastrar" th:href="@{cadastro}" >Cadastrar</a> <br>
 
-        <h6>
-            Insira suas credenciais para acessar o sistema.
-        </h6>
+        <h5 class="text-center">
+            Preencha os dados para criar um novo usuário.
+        </h5>
 
         <form method="post" action="" th:action="@{/efetuarLogin}" th:object="${usuario}">
 
-          <div class="alert alert-danger" role="alert" style="text-align: center"
+          <div class="alert-danger text-center" role="alert"
                th:text="${message}" th:if="${message != null}"></div>
 
             <input  type="text" class="form-control campos" style="width: 400px;"

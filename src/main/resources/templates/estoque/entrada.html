@@ -36,7 +36,7 @@
 						</div>
 
 						<div class="form-group col-md-4">
-							<label>Quantidade (+)</label> <input type="number"
+							<label>Quantidade (+)</label> <input type="number" min="1"
 								class="form-control" id="quantidade" placeholder="Informe a quantidade"
 								th:field="*{quantidade}">
 						</div>
@@ -45,8 +45,10 @@
 
 						<div class="form-group col-md-12">
 							<hr>
+							
 							<button type="submit" name="acao" th:value="itens"
 								class="btn btn-success btn-lg">ADICIONAR</button>
+								
 						</div>
 
 					</div>
