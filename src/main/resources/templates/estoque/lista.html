@@ -34,9 +34,10 @@
 									<tr>
 										<th class="cell">ID</th>
 										<th class="cell">Produto</th>
+										<th class="cell">Imagem</th>
 										<th class="cell">Qtde.Estoque</th>
 										<th class="cell">Valor</th>
-										<th class="cell">Imagem</th>
+										
 										
 								</thead>
 								<tbody>
@@ -44,11 +45,12 @@
 
 										<td th:text="${p.id}" class="cell"></td>
 										<td th:text="${p.nomeDonuts}" class="cell"></td>
-										<td th:text="${p.quantidadeEstoque}" class="cell"></td>
-										<td th:text="${p.valor}" class="cell"></td>
 										<td><img alt=""
 											th:src="@{mostrarImagem/{imagem}(imagem=${p.nomeImagem})}"
 											width="100" src=""></td>
+										<td th:text="${p.quantidadeEstoque}" class="cell"></td>
+										<td th:text="${p.valor}" class="cell"></td>
+										
 										
 									<tr>
 								</tbody>

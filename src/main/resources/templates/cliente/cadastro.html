@@ -5,18 +5,17 @@
 
 </head>
 <body>
-
 	<link rel="stylesheet" href="/css/cadastroc.css">
 	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
 
-	<div th:replace="~{dashboard :: voltDonutec}"></div>
+	 <div th:insert="~{dashboard :: responsiveDonutec}"></div>
 
-	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-		<!-- Navbar content -->
-	</nav>
+	<nav th:replace="~{dashboard :: voltDonutec}"></nav>
 
-	<div class="container">
+
+
+	<div id="div-principal" class="container">
 		<div id="form-container">
 			<p id="textcadastro">CADASTRAR CLIENTE</p>
 			<div class="form-floating mb-3">
@@ -34,7 +33,8 @@
 
 					<span th:text="${mensagem}" th:if="${mensagem != null}"
 						style="color: #FF0000;"></span> <br> <label>Nome: <span
-						style="color: red;">*</span></label> <input id="nome" name="nome"
+						style="color: red;">*</span></label>
+						 <input id="nome" name="nome"
 						th:field="*{nome}" type="text" class="form-control"
 						th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid' : ''">
 					<div class="invalid-feedback" th:errors="*{nome}"></div>
@@ -46,7 +46,7 @@
 					<div class="invalid-feedback" th:errors="*{endereco}"></div>
 
 					<label>Contato: <span style="color: red;">*</span>
-					</label> <span style="color: red; margin-left: 450px;">*</span>
+					</label> 
 
 					<div id="parte-contato">
 						<input name="contato" th:filed="*{contato}" type="text"
@@ -72,8 +72,7 @@
 
 					<div class="button">
 						<div>
-							<button type="reset" 
-								class="btn btn-primary btn-lg">LIMPAR</button>
+							<button type="reset" class="btn btn-primary btn-lg">LIMPAR</button>
 						</div>
 						<input type="hidden" id="id" name="id" th:value="${cliente.id}"
 							th:if="${cliente != null}" />

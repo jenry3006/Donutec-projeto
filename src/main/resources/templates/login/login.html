@@ -17,7 +17,7 @@
         <p id="login">LOGIN</p>
         <a id="cadastrar" th:href="@{cadastro}" >Cadastrar</a> <br>
 
-        <h5 class="text-center">
+        <h5 id="texto">
             Preencha os dados para criar um novo usuário.
         </h5>
 
@@ -26,10 +26,11 @@
           <div class="alert-danger text-center" role="alert"
                th:text="${message}" th:if="${message != null}"></div>
 
-            <input  type="text" class="form-control campos" style="width: 400px;"
+			
+            <input  type="text" class="form-control" 
                    placeholder="Informe seu nome de usuário" name="nome" th:value= "${nome}">
 
-            <input type="password" class="form-control campos" style="width: 400px;"
+            <input type="password" class="form-control"
                    th:value= "${senha}" name="senha" placeholder="Informe a senha">
 
             <button type="submit" id="bt-logar" class="btn btn-primary">LOGAR</button>

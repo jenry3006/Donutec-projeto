@@ -1,54 +1,136 @@
-
-.containerp{
-    width: 100vw;
-    height: 100vh;
-    background-color: #c5c226;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.containerp {
+	width: 100vw;
+	height: 100vh;
+	background-color: #c5c226;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
-
-
-.corpo{
-    height: 420px;
-    width: 500px;
-    background-color: #ffff;
-    border-radius: 30px;
-    border-style: solid;
-    border-color: #0F3D43;
-    border-width: 3px;
+.corpo {
+	padding: 35px;
+	background-color: #ffff;
+	border-radius: 30px;
+	border-style: solid;
+	border-color: #0F3D43;
+	border-width: 3px;
 }
 
-#login{
-    margin-top: 15px;
-    color: #000;
-    text-align: center;
-    margin-bottom: 15px;
-    font-size: 45px;
+#login {
+	color: #000;
+	text-align: center;
+	font-size: 45px;
 }
 
-h6{
-    padding-top: 20px;
-    text-align: center;
-    font-weight: bold;
+.form-control {
+	margin-bottom: 25px;
+	margin-top: 25px;
 }
 
-.campos{
-    margin: 25px 0px 15px 35px;
+#bt-logar {
+	margin-left: 90px;
+	cursor: pointer;
+	width: 250px;
 }
 
-#bt-logar{
-   margin-top: 15px;
-   margin-left: 125px;
-    cursor: pointer;
-    width: 250px;
+#cadastrar {
+	margin-left: 160px;
+	font-size: 20px;
+	text-decoration: none;
 }
 
-#cadastrar{
-    margin-left: 200px;
-    font-size: 20px;
-    text-decoration: none;
+#texto {
+	margin-top: 20px;
+}
 
+@media ( max-width : 600px) {
+	.containerp {
+		background-color: #c5c226;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.corpo {
+		width: 450px;
+		padding: 35px;
+		background-color: #ffff;
+		border-radius: 30px;
+		border-style: solid;
+		border-color: #0F3D43;
+		border-width: 3px;
+		padding: 25px;
+	}
+	#login {
+		color: #000;
+		text-align: center;
+		margin-bottom: 15px;
+		font-size: 35px;
+	}
+	#texto {
+		margin-top: 20px;
+		font-size: 15px;
+		text-align: center;
+		font-weight: 600;
+	}
+	.form-control {
+		margin-bottom: 25px;
+		margin-top: 25px;
+	}
+	#bt-logar {
+		margin-left: 80px;
+		cursor: pointer;
+		width: 250px;
+	}
+	#cadastrar {
+		font-size: 20px;
+		text-decoration: none;
+	}
+}
+
+@media ( max-width : 450px) {
+	.containerp {
+		background-color: #c5c226;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.corpo {
+		width: 300px;
+		
+		background-color: #ffff;
+		border-radius: 30px;
+		border-style: solid;
+		border-color: #0F3D43;
+		border-width: 3px;
+		padding: 25px;
+	}
+	#login {
+		color: #000;
+		text-align: center;
+		margin-bottom: 15px;
+		font-size: 30px;
+	}
+	#texto {
+		margin-top: 20px;
+		font-size: 13px;
+		text-align: center;
+		font-weight: 600;
+	}
+	.form-control {
+		margin-bottom: 25px;
+		margin-top: 25px;
+	}
+	#bt-logar {
+		margin-left: 60px;
+		cursor: pointer;
+		width: 125px;
+	}
+	#cadastrar {
+		margin-left: 80px;
+		font-size: 20px;
+		text-decoration: none;
+	}
 }

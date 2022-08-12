@@ -26,11 +26,12 @@
                             <tr>
                                 <th class="cell">ID</th>
                                 <th class="cell">Nome</th>
-                                <th class="cell">Preço</th>
+                               
                                 <th class="cell">Marca</th>
                                 <th class="cell">Fabricante</th>
 								<th class="cell">Quantidade</th>
                                 <th class="cell">Produtos relacionados</th>
+                                 <th class="cell">Preço</th>
                               
                             </tr>
                             </thead>
@@ -38,7 +39,7 @@
                             <tr th:each="i : ${ingredientes}">
                                 <td th:text="${i.id}" class="cell"></td>
                                 <td th:text="${i.nome}" class="cell"></td>
-                                <td th:text="${i.precoCompra}" class="cell"></td>
+                               
                                 <td th:text="${i.marca}" class="cell"></td>
                                 <td th:text="${i.fabricante}" class="cell"></td>
 								<td th:text="${i.unidadeMedida}" class="cell"></td>
@@ -47,7 +48,7 @@
 										<span th:text="${p.nomeDonuts}" class="cell"></span>
 									</p>
 								</td>
-                                
+                                 <td th:text="${i.precoCompra}" class="cell"></td>
                             </tbody>
                         </table>
                     </div>

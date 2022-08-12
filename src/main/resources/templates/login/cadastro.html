@@ -17,7 +17,7 @@
 
         <p id="titulo">Cadastrar usuário</p>
   
-        <h5 class="text-center">
+        <h5 id="texto">
             Preencha os dados para criar um novo usuário.
         </h5>
 	
@@ -33,14 +33,14 @@
         
         			
          
-            <input type="text" class="form-control campos" th:field="*{email}" style="width: 400px;" placeholder="Informe o seu email"
+            <input type="text" class="form-control campos" th:field="*{email}" placeholder="Informe o seu email"
             th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''"      >
              <div class="invalid-feedback" th:errors="*{email}"></div>
 
-            <input type="text" class="form-control campos"  th:field="*{nome}" style="width: 400px;"
+            <input type="text" class="form-control campos"  th:field="*{nome}"
                    placeholder="Informe seu nome de usuário">
 
-            <input type="password" class="form-control campos" th:field="*{senha}" style="width: 400px;" placeholder="Informe a senha">
+            <input type="password" class="form-control campos" th:field="*{senha}" placeholder="Informe a senha">
 
             <button type="submit" id="bt-logar" class="btn btn-primary">Cadastrar</button>
 
