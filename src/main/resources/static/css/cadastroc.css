@@ -35,7 +35,7 @@
 }
 
 #select {
-	width: 300px
+	width: 225px
 }
 
 @media ( max-width : 990px) {
@@ -44,7 +44,9 @@
 	}
 	#form-container {
 		padding: 40px;
-		width: 540px;
+	}
+	#parte-contato {
+		display: flex;
 	}
 }
 
@@ -59,7 +61,7 @@
 	}
 	#form-container {
 		padding: 40px;
-		width: 400px;
+		width: 375px;
 	}
 	#parte-contato {
 		display: block;

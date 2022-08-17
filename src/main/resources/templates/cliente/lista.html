@@ -5,27 +5,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	
+	
+	<link rel="stylesheet" href="/css/lista-cliente.css">
 	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
-	<div th:replace="~{dashboard :: voltDonutec}"></div>	
+	<div th:insert="~{dashboard :: responsiveDonutec}"></div>
 
-	<div class="container" style="margin-right: 75px">
+	<nav th:replace="~{dashboard :: voltDonutec}"></nav>
+
+	<div class="corpo">
 		<div class="buscar">
-			<nav class="navbar navbar-light bg-light">
-				<div class="container-fluid">
-					<a class="navbar-brand"><b>Lista de Clientes</b></a> <a href=""
-						th:href="@{relatorio}" target="_blank" style="margin-left: 450px;">
-						<img src="/img/printer.svg" alt="icon-print" title="imprimir"
-						class="icon-print" style="height: 30px;">
-					</a>
+			<nav id="nav-sup" class="navbar navbar-light bg-light">
+				
+					<b class="navbar-brand">Lista de Clientes</b> 
+					
 					<form action="pesquisarCliente" method="post" class="d-flex">
 						<input name="nomepesquisa" class="form-control me-2" type="text"
 							id="consulta" placeholder="Informar o nome" aria-label="Search">
 						<button class="btn btn-outline-success" type="submit">Buscar</button>
 					</form>
-				</div>
+					
+					<a id="img-printer" href=""
+						th:href="@{relatorio}" target="_blank" >
+						<img src="/img/printer.svg" alt="icon-print" title="imprimir"
+						class="icon-print" style="height: 30px;">
+					</a>
 			</nav>
 		</div>
 

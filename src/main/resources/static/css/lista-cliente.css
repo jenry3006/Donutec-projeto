@@ -1,0 +1,41 @@
+.corpo {
+	width: 100%- 260px;
+	margin-left: 260px;
+}
+
+#nav-sup {
+	display: flex;
+	justify-content: flex-start;
+	margin-left: 35px
+}
+
+#img-printer {
+	margin-left: 50px
+}
+.tabela{
+	margin-left: 10px;
+	margin-right: 10px
+	
+}
+
+@media ( max-width : 1000px) {
+	.corpo {
+		margin: auto;
+	}
+	#nav-sup {
+		display: flex;
+		justify-content: flex-start;
+		
+	}
+}
+
+@media ( max-width : 540px) {
+	#img-printer {
+		margin-left: 5px
+	}
+	#nav-sup {
+		display: flex;
+		justify-content: flex-start;
+		margin-left: 8px
+	}
+}

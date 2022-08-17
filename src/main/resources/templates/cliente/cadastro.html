@@ -9,7 +9,7 @@
 	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
 
-	 <div th:insert="~{dashboard :: responsiveDonutec}"></div>
+	<div th:insert="~{dashboard :: responsiveDonutec}"></div>
 
 	<nav th:replace="~{dashboard :: voltDonutec}"></nav>
 
@@ -50,7 +50,7 @@
 
 					<div id="parte-contato">
 						<input name="contato" th:filed="*{contato}" type="text"
-							class="form-control" style="width: 250px"
+							class="form-control" style="width: 225px"
 							th:classappend="${#fields.hasErrors('contato')} ? 'is-invalid' : ''">
 
 						<select id="select" name="tipoContato" th:field="*{tipoContato}"
