@@ -3,7 +3,7 @@
 }
 
 #form-container {
-	padding: 40px;
+	
 	width: 650px;
 	margin: auto;
 }
@@ -53,15 +53,15 @@
 @media ( max-width : 540px) {
 	#textcadastro {
 		text-align: center;
-		font-size: 28px;
+		font-size: 23px;
 		padding-top: initial;
 	}
 	#div-principal {
 		margin: auto;
 	}
 	#form-container {
-		padding: 40px;
-		width: 375px;
+		margin:auto;
+		width: 360px;
 	}
 	#parte-contato {
 		display: block;

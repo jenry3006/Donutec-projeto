@@ -9,9 +9,11 @@
 	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
 
-	<div th:replace="~{dashboard :: voltDonutec}"></div>
+	<div th:insert="~{dashboard :: responsiveDonutec}"></div>
 
-	<div class="container">
+	<nav th:replace="~{dashboard :: voltDonutec}"></nav>
+
+	<div id="div-principal">
 		<div id="form-container">
 			<p id="textcadastro">CADASTRAR INGREDIENTE</p>
 			<div class="form-floating mb-3">

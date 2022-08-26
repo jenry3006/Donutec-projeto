@@ -14,7 +14,7 @@
 }
 
 
-@media ( max-width : 990px) {
+@media ( max-width : 1000px) {
 	.corpo {
 		margin: auto;
 	}
@@ -23,11 +23,15 @@
 		justify-content: flex-start;
 		
 	}
+	
+	#img-printer {
+		margin-left: 10px
+	}
 }
 
 @media ( max-width : 540px) {
 	#img-printer {
-		margin-left: 5px
+		margin-left: 10px
 	}
 	#nav-sup {
 		display: flex;

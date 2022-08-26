@@ -13,10 +13,12 @@
 	<link rel="stylesheet" href="/css/cadastroc.css">
 	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
-	<div th:replace="~{dashboard :: voltDonutec}"></div>
+	<div th:insert="~{dashboard :: responsiveDonutec}"></div>
+
+	<nav th:replace="~{dashboard :: voltDonutec}"></nav>
 	
 
-	<div class="container">
+	<div id="div-principal">
 		<div id="form-container">
 			<p id="textcadastro">CADASTRAR FORNECEDOR</p>
 			<div class="form-floating mb-3">

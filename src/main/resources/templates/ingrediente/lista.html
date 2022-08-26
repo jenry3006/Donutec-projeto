@@ -6,27 +6,31 @@
 </head>
 <body>
 
+	<link rel="stylesheet" href="/css/lista-cliente.css">
 	<link type="text/css" href="../../css/volt.css" rel="stylesheet">
 
 
-	<div th:replace="~{dashboard :: voltDonutec}"></div>
+	<div th:insert="~{dashboard :: responsiveDonutec}"></div>
 
-	<div class="container" style="margin-right: 75px">
+	<nav th:replace="~{dashboard :: voltDonutec}"></nav>
+
+	<div class="corpo">
 		<div class="buscar">
-			<nav class="navbar navbar-light bg-light">
-				<div class="container-fluid">
-					<a class="navbar-brand"><b>Lista de Ingredientes</b></a> <a href=""
-						th:href="@{relatorio}" target="_blank" style="margin-left: 450px;">
-						<img src="/img/printer.svg" alt="icon-print" title="imprimir"
-						class="icon-print" style="height: 30px;">
-					</a>
-					<form th:action="@{/ingredientes/pesquisar}" method="post"
-						class="d-flex">
-						<input th:name="@{nome}" class="form-control me-2" type="text"
-							id="consulta" placeholder="Informar o nome" aria-label="Search">
-						<button class="btn btn-outline-success" type="submit">Buscar</button>
-					</form>
-				</div>
+			<nav id="nav-sup" class="navbar navbar-light bg-light">
+				<b class="navbar-brand">Lista de Ingredientes</b>
+
+				<form th:action="@{/ingredientes/pesquisar}" method="post"
+					class="d-flex">
+					<input th:name="@{nome}" class="form-control me-2" type="text"
+						id="consulta" placeholder="Informar o nome" aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Buscar</button>
+				</form>
+
+				<a id="img-printer" th:href="@{relatorio}" target="_blank"> <img
+					src="/img/printer.svg" alt="icon-print" title="imprimir"
+					class="icon-print" style="height: 30px;">
+				</a>
+
 			</nav>
 		</div>
 
@@ -39,12 +43,12 @@
 							<table class="table app-table-hover mb-0 text-left">
 								<thead>
 									<tr>
-										<th class="cell">ID</th>
+									
 										<th class="cell">Nome</th>
-										
+
 										<th class="cell">Marca</th>
 										<th class="cell">Fabricante</th>
-										<th class="cell">Quantidade </th>
+										<th class="cell">Quantidade</th>
 										<th class="cell">Produtos</th>
 										<th class="cell">Preço</th>
 										<th class="cell"></th>
@@ -53,20 +57,20 @@
 								</thead>
 								<tbody>
 									<tr th:each="i : ${ingredientes}">
-										<td th:text="${i.id}" class="cell"></td>
-										<td th:text="${i.nome}" class="cell"></td>
 										
+										<td th:text="${i.nome}" class="cell"></td>
+
 										<td th:text="${i.marca}" class="cell"></td>
 										<td th:text="${i.fabricante}" class="cell"></td>
 										<td th:text="${i.unidadeMedida}" class="cell"></td>
-															
+
 										<td>
 											<p th:each="p : ${i.produtos}">
 												<span th:text="${p.nomeDonuts}" class="cell"></span>
 											</p>
 										</td>
-										<td th:text="${i.precoCompra}" class="cell"></td>	
-											
+										<td th:text="${i.precoCompra}" class="cell"></td>
+
 										<td class="cell"><a class="btn btn-primary"
 											th:href="@{editar/{id} (id=${i.id})}">Editar</a></td>
 
@@ -86,10 +90,10 @@
 													<div class="modal-content">
 														<div class="modal-header">
 															<h5 class="modal-title" id="staticBackdropLabel">Excluir
-																Fornecedor</h5>
+																Ingrediente</h5>
 														</div>
 														<div class="modal-body">Deseja realmente excluir o
-															fornecedor selecionado?</div>
+															ingrediente selecionado?</div>
 														<div class="modal-footer">
 															<button type="button" class="btn btn-secondary"
 																data-bs-dismiss="modal">Fechar</button>
@@ -111,31 +115,6 @@
 				</div>
 
 			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-				<nav aria-label="Pagination">
-					<ul class="pagination justify-content-center">
-
-						<li class="page-item"
-							th:classappend="${prev == 0 ? 'disabled': ''}"><a
-							class="page-link" th:href="@{|/cliente/lista?page=${prev}|}">Anterior</a>
-						</li>
-						<li class="page-item" th:each="page : ${pages}"
-							th:classappend="${current == page ? 'active': ''}"><a
-							class="page-link" th:href="@{|/cliente/lista?page=${page}|}"
-							th:text="${page}"></a></li>
-						<li class="page-item"
-							th:classappend="${current == last ? 'disabled': ''}"><a
-							class="page-link" th:href="@{|/cliente/lista?page=${next}|}">Próxima</a>
-						</li>
-					</ul>
-				</nav>
-
-			</div>
-			<div class="col-md-2"></div>
 		</div>
 
 

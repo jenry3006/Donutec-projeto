@@ -15,7 +15,7 @@
 	<nav th:replace="~{dashboard :: voltDonutec}"></nav>
 
 	<div class="corpo">
-		<div class="buscar">
+		
 			<nav id="nav-sup" class="navbar navbar-light bg-light">
 				
 					<b class="navbar-brand">Lista de Clientes</b> 
@@ -32,7 +32,7 @@
 						class="icon-print" style="height: 30px;">
 					</a>
 			</nav>
-		</div>
+		
 
 		<div class="tab-content" id="orders-table-tab-content">
 			<div class="tab-pane fade show active" id="orders-all"
@@ -43,7 +43,7 @@
 							<table class="table app-table-hover mb-0 text-left">
 								<thead>
 									<tr>
-										<th class="cell">ID</th>
+									
 										<th class="cell">Cliente</th>
 										<th class="cell">Endereco</th>
 										<th class="cell">Contato:</th>
@@ -55,7 +55,7 @@
 								</thead>
 								<tbody>
 									<tr th:each="c : ${clientes}">
-										<td th:text="${c.id}" class="cell"></td>
+										
 										<td th:text="${c.nome}" class="cell"></td>
 										<td th:text="${c.endereco}" class="cell"></td>
 										<td th:text="${c.contato}" class="cell"></td>
